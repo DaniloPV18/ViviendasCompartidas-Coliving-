@@ -24,6 +24,7 @@ public class Habitacion {
     private Promocion promocion;
 
     public Habitacion() {
+        this.fechaReg = new Date();
     }
 
     public Habitacion(int identificador, int numMax, int numBanios, double precio, String estado, TipoHabitacion tipoHab, Propiedad propiedad, EstadoHabitacion estadoHab, Promocion promocion) {
@@ -36,6 +37,7 @@ public class Habitacion {
         this.propiedad = propiedad;
         this.estadoHab = estadoHab;
         this.promocion = promocion;
+        this.fechaReg = new Date();
     }
 
     public int getIdentificador() {

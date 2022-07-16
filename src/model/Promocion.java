@@ -19,6 +19,7 @@ public class Promocion {
     private Date fechaReg;
 
     public Promocion() {
+        this.fechaReg = new Date();
     }
 
     public Promocion(Date fechaInicio, Date fechaFinal, int descuento, String estado) {
@@ -26,6 +27,7 @@ public class Promocion {
         this.fechaFinal = fechaFinal;
         this.descuento = descuento;
         this.estado = estado;
+        this.fechaReg = new Date();
     }
 
     public Date getFechaInicio() {
