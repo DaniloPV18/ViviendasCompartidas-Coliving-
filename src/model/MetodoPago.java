@@ -5,10 +5,60 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author N1L0XD
  */
 public class MetodoPago {
+    private String identificador;
+    private String metodo;
+    private String estado;
+    private Date fechaReg;
+
+    public MetodoPago() {
+        this.fechaReg = new Date();
+    }    
+    
+    public MetodoPago(String identificador, String metodo, String estado) {
+        this.identificador = identificador;
+        this.metodo = metodo;
+        this.estado = estado;
+        this.fechaReg = new Date();
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaReg() {
+        return fechaReg;
+    }
+
+    @Override
+    public String toString() {
+        return "MetodoPago{" + "identificador=" + identificador + ", metodo=" + metodo + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+    }    
     
 }
