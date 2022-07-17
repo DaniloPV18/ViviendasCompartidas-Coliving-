@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Persona {
+    private int id;
     private String identificador;
     private String nombres;
     private String apellidos;
@@ -26,7 +27,6 @@ public class Persona {
     public Persona() {
         this.fechaReg = new Date();
     }
-
     
     public Persona(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, TipoIdentificacion tipoId, Sexo sexo, Nacionalidad nacionalidad) {
         this.identificador = identificador;
@@ -39,6 +39,14 @@ public class Persona {
         this.sexo = sexo;
         this.nacionalidad = nacionalidad;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {

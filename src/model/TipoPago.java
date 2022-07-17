@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class TipoPago {
+    private int id;
     private int identificador;
     private String tipoPago;
     private String estado;
@@ -26,6 +27,14 @@ public class TipoPago {
         this.tipoPago = tipoPago;
         this.estado = estado;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdentificador() {

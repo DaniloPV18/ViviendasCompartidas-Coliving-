@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class MetodoPago {
+    private int id;
     private String identificador;
     private String metodo;
     private String estado;
@@ -26,6 +27,14 @@ public class MetodoPago {
         this.metodo = metodo;
         this.estado = estado;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {

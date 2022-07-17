@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class ServiciosDisponibles {
+    private int id;
     private String servicio;
     private String estado;
     private Date fechaReg;
@@ -24,6 +25,14 @@ public class ServiciosDisponibles {
         this.servicio = servicio;
         this.estado = estado;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getServicio() {
