@@ -31,6 +31,12 @@ public class AdmPersonas {
                                             + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ?"
                                             + "WHERE id_persona = ? ";
     
+    private static final String LISTAR      = " SELECT * FROM PERSONA AS P"
+                                            + " INNER JOIN TIPOIDENTIFICACION AS T "
+                                            + " INNER JOIN SEXO AS S "
+                                            + " INNER JOIN NACIONALIDAD AS N "
+                                            + " WHERE P.tipoidentificacion_id_tipoid = T";
+    
     public static Connection getCn() {
         return cn;
     }
