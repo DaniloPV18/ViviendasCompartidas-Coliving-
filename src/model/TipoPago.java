@@ -5,10 +5,61 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author N1L0XD
  */
 public class TipoPago {
+    private int identificador;
+    private String tipoPago;
+    private String estado;
+    private Date fechaReg;
+
+    public TipoPago() {
+        this.fechaReg = new Date();
+    }
+
+    public TipoPago(int identificador, String tipoPago, String estado) {
+        this.identificador = identificador;
+        this.tipoPago = tipoPago;
+        this.estado = estado;
+        this.fechaReg = new Date();
+    }
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaReg() {
+        return fechaReg;
+    }
+
+    @Override
+    public String toString() {
+        return "TipoPago{" + "identificador=" + identificador + ", tipoPago=" + tipoPago + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+    }
+    
     
 }
