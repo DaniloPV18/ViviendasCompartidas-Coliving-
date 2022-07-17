@@ -20,16 +20,16 @@ public class Propiedad {
     private String direccion;
     private int numHab;
     private Date fechaReg;/*Colocar BD*/
-    private Anfitrion anfitrion;
-    private TipoPropiedad tipoPropiedad;
-    private EstadoPropiedad estadoPropidad;
-    private Ciudad ciudad;
+    private int anfitrion;
+    private int tipoPropiedad;
+    private int estadoPropidad;
+    private int ciudad;
 
     public Propiedad() {
         this.fechaReg = new Date();
     }
 
-    public Propiedad(String identificador, String nombre, int numMaxPersonas, String email, String direccion, int numHab, Anfitrion anfitrion, TipoPropiedad tipoPropiedad, EstadoPropiedad estadoPropidad, Ciudad ciudad) {
+    public Propiedad(String identificador, String nombre, int numMaxPersonas, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropidad, int ciudad) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.numMaxPersonas = numMaxPersonas;
@@ -99,35 +99,35 @@ public class Propiedad {
         this.numHab = numHab;
     }
 
-    public Anfitrion getAnfitrion() {
+    public int getAnfitrion() {
         return anfitrion;
     }
 
-    public void setAnfitrion(Anfitrion anfitrion) {
+    public void setAnfitrion(int anfitrion) {
         this.anfitrion = anfitrion;
     }
 
-    public TipoPropiedad getTipoPropiedad() {
+    public int getTipoPropiedad() {
         return tipoPropiedad;
     }
 
-    public void setTipoPropiedad(TipoPropiedad tipoPropiedad) {
+    public void setTipoPropiedad(int tipoPropiedad) {
         this.tipoPropiedad = tipoPropiedad;
     }
 
-    public EstadoPropiedad getEstadoPropidad() {
+    public int getEstadoPropidad() {
         return estadoPropidad;
     }
 
-    public void setEstadoPropidad(EstadoPropiedad estadoPropidad) {
+    public void setEstadoPropidad(int estadoPropidad) {
         this.estadoPropidad = estadoPropidad;
     }
 
-    public Ciudad getCiudad() {
+    public int getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(Ciudad ciudad) {
+    public void setCiudad(int ciudad) {
         this.ciudad = ciudad;
     }
 
