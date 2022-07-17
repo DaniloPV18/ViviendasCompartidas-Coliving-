@@ -24,7 +24,7 @@ public class Conversiones {
     }
     
     public static String getFecha(java.util.Date fecha){
-        SimpleDateFormat Formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
         if (fecha != null) {
             return Formato.format(fecha);
         } else {
