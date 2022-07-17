@@ -5,6 +5,7 @@
  */
 package testModels;
 
+import java.util.Date;
 import model.Persona;
 
 /**
@@ -14,5 +15,6 @@ import model.Persona;
 public class TestPersona {
     public static void main(String[] args) {
         System.out.println(new Persona().toString());
+        System.out.println(new Persona("0931600548", "Danilo Miguel", "Pin Veloz", new Date(), "daniloski_@gmail.com", "Habilitado", 0, 0, 0).toString());
     }
 }
