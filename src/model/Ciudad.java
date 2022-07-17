@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Ciudad {
+    private int id;
     private int identificador;
     private String nombre;
     private String estado;
@@ -30,6 +31,14 @@ public class Ciudad {
         this.fechaReg = new Date();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }    
+    
     public int getIdentificador() {
         return identificador;
     }

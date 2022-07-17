@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Propiedad {
+    private int id;
     private String identificador;
     private String nombre;
     private int numMaxPersonas;
@@ -40,6 +41,14 @@ public class Propiedad {
         this.estadoPropidad = estadoPropidad;
         this.ciudad = ciudad;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {

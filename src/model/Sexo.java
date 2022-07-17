@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Sexo {
+    private int id;
     private String identificador;
     private String sexo;
     private String estado;
@@ -26,6 +27,14 @@ public class Sexo {
         this.sexo = sexo;
         this.estado = estado;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {

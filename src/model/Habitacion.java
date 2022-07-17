@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Habitacion {
+    private int id;
     private int identificador;
     private int numMax;
     private int numBanios;
@@ -38,6 +39,14 @@ public class Habitacion {
         this.estadoHab = estadoHab;
         this.promocion = promocion;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdentificador() {
