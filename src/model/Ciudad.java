@@ -17,13 +17,13 @@ public class Ciudad {
     private String nombre;
     private String estado;
     private Date fechaReg;
-    private Region region;
+    private int region;
 
     public Ciudad() {
         this.fechaReg = new Date();
     }
     
-    public Ciudad(int identificador, String nombre, String estado, Region region) {
+    public Ciudad(int identificador, String nombre, String estado, int region) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.estado = estado;
@@ -63,11 +63,11 @@ public class Ciudad {
         this.estado = estado;
     }
 
-    public Region getRegion() {
+    public int getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(int region) {
         this.region = region;
     }
 

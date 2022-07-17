@@ -19,16 +19,16 @@ public class Habitacion {
     private double precio;
     private Date fechaReg;
     private String estado;
-    private TipoHabitacion tipoHab;
-    private Propiedad propiedad;
-    private EstadoHabitacion estadoHab;
-    private Promocion promocion;
+    private int tipoHab;
+    private int propiedad;
+    private int estadoHab;
+    private int promocion;
 
     public Habitacion() {
         this.fechaReg = new Date();
     }
 
-    public Habitacion(int identificador, int numMax, int numBanios, double precio, String estado, TipoHabitacion tipoHab, Propiedad propiedad, EstadoHabitacion estadoHab, Promocion promocion) {
+    public Habitacion(int identificador, int numMax, int numBanios, double precio, String estado, int tipoHab, int propiedad, int estadoHab, int promocion) {
         this.identificador = identificador;
         this.numMax = numMax;
         this.numBanios = numBanios;
@@ -89,35 +89,35 @@ public class Habitacion {
         this.estado = estado;
     }
 
-    public TipoHabitacion getTipoHab() {
+    public int getTipoHab() {
         return tipoHab;
     }
 
-    public void setTipoHab(TipoHabitacion tipoHab) {
+    public void setTipoHab(int tipoHab) {
         this.tipoHab = tipoHab;
     }
 
-    public Propiedad getPropiedad() {
+    public int getPropiedad() {
         return propiedad;
     }
 
-    public void setPropiedad(Propiedad propiedad) {
+    public void setPropiedad(int propiedad) {
         this.propiedad = propiedad;
     }
 
-    public EstadoHabitacion getEstadoHab() {
+    public int getEstadoHab() {
         return estadoHab;
     }
 
-    public void setEstadoHab(EstadoHabitacion estadoHab) {
+    public void setEstadoHab(int estadoHab) {
         this.estadoHab = estadoHab;
     }
 
-    public Promocion getPromocion() {
+    public int getPromocion() {
         return promocion;
     }
 
-    public void setPromocion(Promocion promocion) {
+    public void setPromocion(int promocion) {
         this.promocion = promocion;
     }
 

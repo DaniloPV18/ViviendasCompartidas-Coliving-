@@ -18,14 +18,14 @@ public class Reservas {
     private Date fechaFinal;
     private Date fechaReg;
     private String estado;
-    private Pagos pago;
-    private Huesped huesped;
+    private int pago;
+    private int huesped;
 
     public Reservas() {
         this.fechaReg = new Date();
     }
 
-    public Reservas(String identificador, Date fechaInicial, Date fechaFinal, String estado, Pagos pago, Huesped huesped) {
+    public Reservas(String identificador, Date fechaInicial, Date fechaFinal, String estado, int pago, int huesped) {
         this.identificador = identificador;
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
@@ -75,19 +75,19 @@ public class Reservas {
         this.estado = estado;
     }
 
-    public Pagos getPago() {
+    public int getPago() {
         return pago;
     }
 
-    public void setPago(Pagos pago) {
+    public void setPago(int pago) {
         this.pago = pago;
     }
 
-    public Huesped getHuesped() {
+    public int getHuesped() {
         return huesped;
     }
 
-    public void setHuesped(Huesped huesped) {
+    public void setHuesped(int huesped) {
         this.huesped = huesped;
     }
 
