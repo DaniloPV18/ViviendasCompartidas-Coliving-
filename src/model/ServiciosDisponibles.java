@@ -5,10 +5,52 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author N1L0XD
  */
 public class ServiciosDisponibles {
+    private String servicio;
+    private String estado;
+    private Date fechaReg;
+
+    public ServiciosDisponibles() {
+        this.fechaReg = new Date();
+    }
+
+    public ServiciosDisponibles(String servicio, String estado) {
+        this.servicio = servicio;
+        this.estado = estado;
+        this.fechaReg = new Date();
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaReg() {
+        return fechaReg;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiciosDisponibles{" + "servicio=" + servicio + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+    }
+    
+    
     
 }
