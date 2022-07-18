@@ -15,7 +15,7 @@ import utilities.Servicios;
  */
 public class TestServicios {
     public static void main(String[] args) {
-        Persona p = Servicios.setPersona(new Persona("00000001", "melant sedasd", "weeee PRUEBA", new Date(), "test@GMAIL.COM", "habilitado", 1, 1, 1));
+        Persona p = Servicios.personaUpperCase(new Persona("00000001", "melant sedasd", "weeee PRUEBA", new Date(), "test@GMAIL.COM", "habilitado", 1, 1, 1));
         System.out.println(p.toString());
     }
 }
