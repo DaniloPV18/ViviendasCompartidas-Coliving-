@@ -38,7 +38,7 @@ public class AdmPersonasDataBase {
             + "     estado = ?"
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM PERSONA WHERE estado = 'Habilitado' ";
+    private static final String LISTAR = " SELECT * FROM PERSONA WHERE estado = 'HABILITADO' ";
 
     public static Connection getCn() {
         return cn;
@@ -57,8 +57,8 @@ public class AdmPersonasDataBase {
                 ps.setDate(7, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaReg())));
                 ps.setInt(8, persona.getTipoId());
                 ps.setInt(9, persona.getSexo());
-                ps.setInt(10, persona.getNacionalidad());
-                ps.execute();
+                ps.setInt(10, persona.getNacionalidad());                
+                System.out.println(ps.execute());
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -86,7 +86,7 @@ public class AdmPersonasDataBase {
     }
 
     public static void eliminar(String cedula){
-        String newEstado = "    'Eliminado'     ";
+        String newEstado = "ELIMINADO";
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(ELIMINAR);
