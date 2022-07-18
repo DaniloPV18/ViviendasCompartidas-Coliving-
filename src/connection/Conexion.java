@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 public class Conexion {
 
     private static Connection conn = null;
-    private static String myDB = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static String myDB = "jdbc:oracle:thin:@localhost:1521:XE";
     private static String user = "C##USUARIO_COLIVING";
     private static String pass = "USUARIO_COLIVING";
 
