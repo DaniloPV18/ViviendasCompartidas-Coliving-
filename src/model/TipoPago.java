@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class TipoPago {
+
     private int id;
     private int identificador;
     private String tipoPago;
@@ -65,10 +66,13 @@ public class TipoPago {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "TipoPago{" + "identificador=" + identificador + ", tipoPago=" + tipoPago + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
-    
-    
+
 }

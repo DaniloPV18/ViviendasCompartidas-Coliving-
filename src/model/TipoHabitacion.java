@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class TipoHabitacion {
+
     private int id;
     private String identificador;
     private String tipoHabitacion;
@@ -65,11 +66,13 @@ public class TipoHabitacion {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "TipoHabitacion{" + "identificador=" + identificador + ", tipoHabitacion=" + tipoHabitacion + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
-    
-    
 }

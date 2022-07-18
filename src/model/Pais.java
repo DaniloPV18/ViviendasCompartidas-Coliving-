@@ -12,11 +12,12 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Pais {
+
     private int id;
     private String identificador;
     private String nombre;
     private Date fechaReg;
-    private String estado;   
+    private String estado;
 
     public Pais() {
         this.fechaReg = new Date();
@@ -65,10 +66,13 @@ public class Pais {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Pais{" + "identificador=" + identificador + ", nombre=" + nombre + ", fechaReg=" + fechaReg + ", estado=" + estado + '}';
     }
-    
-    
+
 }

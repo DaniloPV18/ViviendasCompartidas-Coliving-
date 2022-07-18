@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Region {
+
     private int id;
     private String nombre;
     private String estado;
@@ -65,10 +66,13 @@ public class Region {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Region{" + "nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + ", Pais=" + Pais + '}';
     }
-    
-    
+
 }

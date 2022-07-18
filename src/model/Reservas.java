@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Reservas {
+
     private int id;
     private String identificador;
     private Date fechaInicial;
@@ -95,10 +96,13 @@ public class Reservas {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Reservas{" + "identificador=" + identificador + ", fechaInicial=" + fechaInicial + ", fechaFinal=" + fechaFinal + ", fechaReg=" + fechaReg + ", estado=" + estado + ", pago=" + pago + ", huesped=" + huesped + '}';
     }
-    
-    
+
 }

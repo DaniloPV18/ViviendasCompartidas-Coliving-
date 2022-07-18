@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Sexo {
+
     private int id;
     private String identificador;
     private String sexo;
@@ -60,15 +61,18 @@ public class Sexo {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     public Date getFechaReg() {
         return fechaReg;
+    }
+
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
     }
 
     @Override
     public String toString() {
         return "Sexo{" + "identificador=" + identificador + ", sexo=" + sexo + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
-    
-    
+
 }

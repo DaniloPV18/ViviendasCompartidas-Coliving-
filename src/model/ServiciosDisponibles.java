@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class ServiciosDisponibles {
+
     private int id;
     private String servicio;
     private String estado;
@@ -55,11 +56,13 @@ public class ServiciosDisponibles {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "ServiciosDisponibles{" + "servicio=" + servicio + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
-    
-    
-    
+
 }
