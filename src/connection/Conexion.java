@@ -29,14 +29,14 @@ public class Conexion {
     public Conexion() {
         getConnection();
     }
-
+    
+    //Establecer conexion con BD MySQL
     public static Connection getConnection() {
         try {
             String connectionUrl = "jdbc:mysql://"+host+":"+port+"/"+ myDB;   				         
             //String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/coliving";
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(connectionUrl,user,pass);
-            
+            conn = DriverManager.getConnection(connectionUrl,user,pass);            
             System.out.println("Conexion abierta");
             return conn;
         } catch (SQLException ex) {
@@ -47,7 +47,7 @@ public class Conexion {
         }
         return null;
     }
-
+    //Cerrar conexion con BD MySQL
     public static void desconectar() {
         try {
             conn.close();

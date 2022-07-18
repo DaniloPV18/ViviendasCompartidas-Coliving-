@@ -43,7 +43,8 @@ public class AdmPersonasDataBase {
     public static Connection getCn() {
         return cn;
     }
-
+    
+    //Insertar registro en BD 
     public static void insertar(Persona persona) {
         if (cn != null) {
             try {
@@ -64,7 +65,8 @@ public class AdmPersonasDataBase {
             }
         }
     }
-
+    
+    //Actualizar registro en BD 
     public static void actualizar(int id, Persona persona) {
         if (cn != null) {
             try {
@@ -84,7 +86,8 @@ public class AdmPersonasDataBase {
             }
         }
     }
-
+    
+    //Eliminado logico en BD 
     public static void eliminar(String cedula){
         String newEstado = "ELIMINADO";
         if (cn != null) {
@@ -99,6 +102,7 @@ public class AdmPersonasDataBase {
         }
     }
     
+    //Consulta de los registros almacenados en la tabla de la BD
     public static ArrayList<Persona> consultar() {
         ArrayList<Persona> lista = new ArrayList<>();
         if (cn != null) {
