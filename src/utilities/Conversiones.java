@@ -7,6 +7,8 @@ package utilities;
 
 import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import jdk.jfr.Timestamp;
 
 /**
@@ -43,4 +45,10 @@ public class Conversiones {
         }
     }
 
+    public static long getEdad(java.util.Date fecha) {
+        LocalDate start = LocalDate.of(fecha.getYear()+1900, fecha.getMonth() , fecha.getDay());
+        LocalDate stop = LocalDate.now(ZoneId.of("America/Montreal"));
+        long years = java.time.temporal.ChronoUnit.YEARS.between(start, stop);
+        return years;
+    }
 }
