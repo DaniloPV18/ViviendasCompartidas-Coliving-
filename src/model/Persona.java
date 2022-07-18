@@ -39,8 +39,8 @@ public class Persona {
         this.sexo = sexo;
         this.nacionalidad = nacionalidad;
         this.fechaReg = new Date();
-    }
-
+    }    
+    
     public int getId() {
         return id;
     }
@@ -123,6 +123,10 @@ public class Persona {
 
     public Date getFechaReg() {
         return fechaReg;
+    }
+
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
     }
     
     @Override

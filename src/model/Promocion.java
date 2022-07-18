@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Promocion {
+
     private int id;
     private Date fechaInicio;
     private Date fechaFinal;
@@ -75,10 +76,13 @@ public class Promocion {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Promocion{" + "fechaInicio=" + fechaInicio + ", fechaFinal=" + fechaFinal + ", descuento=" + descuento + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
-    
-    
+
 }

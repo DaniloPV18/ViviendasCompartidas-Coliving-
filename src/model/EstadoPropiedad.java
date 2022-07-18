@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class EstadoPropiedad {
+
     private int id;
     private String identificador;
     private String estadoPropiedad;
@@ -65,10 +66,13 @@ public class EstadoPropiedad {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "EstadoPropiedad{" + "identificador=" + identificador + ", estadoPropiedad=" + estadoPropiedad + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
-    
-    
+
 }

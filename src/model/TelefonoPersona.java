@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class TelefonoPersona {
+
     private int id;
     private String numTelefono;
     private int persona;
@@ -65,9 +66,13 @@ public class TelefonoPersona {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "TelefonoPersona{" + "numTelefono=" + numTelefono + ", persona=" + persona + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
-    }    
-    
+    }
+
 }

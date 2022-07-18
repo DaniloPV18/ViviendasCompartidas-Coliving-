@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Nacionalidad {
+
     private int id;
     private String identificador;
     private String nacionalidad;
@@ -60,16 +61,18 @@ public class Nacionalidad {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     public Date getFechaReg() {
         return fechaReg;
     }
-    
+
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Nacionalidad{" + "identificador=" + identificador + ", nacionalidad=" + nacionalidad + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
-    
-    
-    
+
 }
