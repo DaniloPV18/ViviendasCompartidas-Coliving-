@@ -20,18 +20,23 @@ import java.sql.PreparedStatement;
 public class Conexion {
 
     private static Connection conn = null;
-    private static String myDB = "jdbc:oracle:thin:@localhost:1521:XE";
-    private static String user = "C##USUARIO_COLIVING";
-    private static String pass = "USUARIO_COLIVING";
-
+    private static String myDB = "coliving";
+    private static String user = "root";
+    private static String pass = "root";
+    private static String host = "127.0.0.1";
+    private static int port = 3306;
+    
     public Conexion() {
         getConnection();
     }
 
     public static Connection getConnection() {
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection(myDB, user, pass);
+            String connectionUrl = "jdbc:mysql://"+host+":"+port+"/"+ myDB;   				         
+            //String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/coliving";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(connectionUrl,user,pass);
+            
             System.out.println("Conexion abierta");
             return conn;
         } catch (SQLException ex) {
