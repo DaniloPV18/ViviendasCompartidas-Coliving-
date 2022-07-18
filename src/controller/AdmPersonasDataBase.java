@@ -51,14 +51,14 @@ public class AdmPersonasDataBase {
                 ps.setString(1, persona.getIdentificador());
                 ps.setString(2, persona.getNombres());
                 ps.setString(3, persona.getApellidos());
-                ps.setDate(4, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaNac())));
+                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaNac())));
                 ps.setString(5, persona.getEmail());
                 ps.setString(6, persona.getEstado());
-                ps.setDate(7, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaReg())));
+                ps.setTimestamp(7, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaReg())));
                 ps.setInt(8, persona.getTipoId());
                 ps.setInt(9, persona.getSexo());
                 ps.setInt(10, persona.getNacionalidad());                
-                System.out.println(ps.execute());
+                ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -72,7 +72,7 @@ public class AdmPersonasDataBase {
                 ps.setString(1, persona.getIdentificador());
                 ps.setString(2, persona.getNombres());
                 ps.setString(3, persona.getApellidos());
-                ps.setDate(4, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaNac())));
+                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaNac())));
                 ps.setString(5, persona.getEmail());
                 ps.setInt(6, persona.getTipoId());
                 ps.setInt(7, persona.getSexo());
@@ -103,7 +103,7 @@ public class AdmPersonasDataBase {
         ArrayList<Persona> lista = new ArrayList<>();
         if (cn != null) {
             try {
-                PreparedStatement ps = cn.prepareCall(LISTAR);
+                PreparedStatement ps = cn.prepareStatement(LISTAR);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     lista.add(new Persona(
