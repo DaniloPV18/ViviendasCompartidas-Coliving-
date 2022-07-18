@@ -7,6 +7,7 @@ package utilities;
 
 import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
+import jdk.jfr.Timestamp;
 
 /**
  *
@@ -22,20 +23,24 @@ public class Conversiones {
             return null;
         }
     }
-    
-    public static String getFecha(java.util.Date fecha){
-        SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
+
+    public static String getFecha(java.util.Date fecha) {
+        SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (fecha != null) {
             return Formato.format(fecha);
         } else {
             return null;
         }
     }
-    
-    public static java.sql.Date getFecha(String fecha){
-       java.sql.Date dateSql= java.sql.Date.valueOf(fecha);
-       return dateSql;
+
+    public static java.sql.Timestamp getFecha(String fecha) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            java.util.Date parsedDate = sdf.parse(fecha);
+            return new java.sql.Timestamp(parsedDate.getTime());
+        } catch (Exception e) {
+            return null;
+        }
     }
-       
 
 }
