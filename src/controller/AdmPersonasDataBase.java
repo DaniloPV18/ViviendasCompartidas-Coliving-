@@ -106,7 +106,7 @@ public class AdmPersonasDataBase {
                 PreparedStatement ps = cn.prepareStatement(LISTAR);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    lista.add(new Persona(
+                    Persona p = new Persona(
                             rs.getString(2),//identificador
                             rs.getString(3),//nombres
                             rs.getString(4),//apellidos
@@ -116,7 +116,9 @@ public class AdmPersonasDataBase {
                             rs.getInt(9),//tipoidentificacion
                             rs.getInt(10),//sexo
                             rs.getInt(11)//nacionalidad
-                    ));
+                    );
+                    p.setFechaReg(rs.getTimestamp(8));
+                    lista.add(p);
                 }
             } catch (SQLException e) {
                 System.out.println(e);
