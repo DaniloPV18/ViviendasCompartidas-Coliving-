@@ -121,6 +121,7 @@ public class AdmPersonasDataBase {
                             rs.getInt(10),//sexo
                             rs.getInt(11)//nacionalidad
                     );
+                    p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(8));
                     lista.add(p);
                 }

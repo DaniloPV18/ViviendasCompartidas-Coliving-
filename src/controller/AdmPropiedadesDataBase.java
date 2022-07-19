@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.Persona;
 import model.Propiedad;
 import utilities.Conversiones;
 
@@ -32,7 +31,7 @@ public class AdmPropiedadesDataBase {
             + "SET "
             + "     identificador = ?, nombre = ?, num_max_per = ?, email = ?, direccion = ?, num_hab = ?, "
             + "     anfitrion_id_persona = ?, tipopropiedad_id_tipopropiedad = ?, estadopropiedad_id_estadopropiedad = ?, ciudad_id_ciudad = ?"
-            + "WHERE id_persona = ? ";
+            + "WHERE id_propiedad = ? ";
     
     private static final String ELIMINAR = " UPDATE PROPIEDAD "
             + "SET "
@@ -128,7 +127,8 @@ public class AdmPropiedadesDataBase {
                             rs.getInt(11),//estadoPropiedad
                             rs.getInt(12)//ciudad
                     );
-                    p.setFechaReg(rs.getTimestamp(8));
+                    p.setId(rs.getInt(1));
+                    p.setFechaReg(rs.getTimestamp(8));                    
                     lista.add(p);
                 }
             } catch (SQLException e) {
