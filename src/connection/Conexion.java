@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 public class Conexion {
 
     private static Connection conn = null;
-    private static String myDB = "coliving";
+    private static String myDB = "coliving_test";
     private static String user = "root";
     private static String pass = "root";
     private static String host = "127.0.0.1";
