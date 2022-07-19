@@ -16,10 +16,9 @@ public class Habitacion {
     private int id;
     private int identificador;
     private int numMax;
-    private int numBanios;
+    private boolean banio;
     private double precio;
     private Date fechaReg;
-    private String estado;
     private int tipoHab;
     private int propiedad;
     private int estadoHab;
@@ -29,12 +28,11 @@ public class Habitacion {
         this.fechaReg = new Date();
     }
 
-    public Habitacion(int identificador, int numMax, int numBanios, double precio, String estado, int tipoHab, int propiedad, int estadoHab, int promocion) {
+    public Habitacion(int identificador, int numMax, boolean banio, double precio, int tipoHab, int propiedad, int estadoHab, int promocion) {
         this.identificador = identificador;
         this.numMax = numMax;
-        this.numBanios = numBanios;
+        this.banio = banio;
         this.precio = precio;
-        this.estado = estado;
         this.tipoHab = tipoHab;
         this.propiedad = propiedad;
         this.estadoHab = estadoHab;
@@ -66,12 +64,12 @@ public class Habitacion {
         this.numMax = numMax;
     }
 
-    public int getNumBanios() {
-        return numBanios;
+    public boolean getBanios() {
+        return banio;
     }
 
-    public void setNumBanios(int numBanios) {
-        this.numBanios = numBanios;
+    public void setBanios(boolean banio) {
+        this.banio = banio;
     }
 
     public double getPrecio() {
@@ -80,14 +78,6 @@ public class Habitacion {
 
     public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 
     public int getTipoHab() {
@@ -132,7 +122,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion{" + "identificador=" + identificador + ", numMax=" + numMax + ", numBanios=" + numBanios + ", precio=" + precio + ", fechaReg=" + fechaReg + ", estado=" + estado + ", tipoHab=" + tipoHab + ", propiedad=" + propiedad + ", estadoHab=" + estadoHab + ", promocion=" + promocion + '}';
+        return "Habitacion{" + "identificador=" + identificador + ", numMax=" + numMax + ", tieneBanios=" + banio + ", precio=" + precio + ", fechaReg=" + fechaReg + ", tipoHab=" + tipoHab + ", propiedad=" + propiedad + ", estadoHab=" + estadoHab + ", promocion=" + promocion + '}';
     }
 
 }
