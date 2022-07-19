@@ -6,6 +6,7 @@
 package utilities;
 
 import model.Persona;
+import model.Propiedad;
 
 /**
  *
@@ -61,6 +62,16 @@ public class Validaciones {
         boolean sexoId = vInt(persona.getSexo());
         boolean mayorEdad = vEdad(Conversiones.getEdad(persona.getFechaNac()));
         return nombres && apellidos && tipoId && sexoId && mayorEdad;
+    }
+    
+    public static boolean vPersona(Propiedad propiedad) {
+        boolean nombres = vWords(propiedad.getNombre());
+        boolean numHab = vInt(propiedad.getNumHab());
+        boolean anfitrion = vInt(propiedad.getAnfitrion());
+        boolean tipoPropiedad = vInt(propiedad.getTipoPropiedad());
+        boolean estadoPropiedad = vInt(propiedad.getEstadoPropiedad());
+        boolean ciudad = vInt(propiedad.getCiudad());
+        return nombres && numHab && anfitrion && tipoPropiedad && estadoPropiedad && ciudad;
     }
 
 }
