@@ -7,6 +7,7 @@ package TestUtilities;
 
 import java.util.Date;
 import model.Persona;
+import model.Propiedad;
 import utilities.Validaciones;
 /**
  *
@@ -23,6 +24,12 @@ public class TestValidaciones {
         // Comprobar si es mayor de edad
         System.out.println(Validaciones.vEdad(19));
         System.out.println(Validaciones.vEdad(15));
+        
+//        testPersonas();
+        testPropiedades();
+    }
+
+    private static void testPersonas() {
         
         //Comprobar datos de objeto Persona -> ESCENARIO EDAD MENOR DE EDAD
         System.out.println("Comprobar datos de objeto Persona -> ESCENARIO EDAD MENOR DE EDAD");
@@ -49,5 +56,21 @@ public class TestValidaciones {
         System.out.println("Comprobar datos de objeto Persona -> ESCENARIO LLAVES DE OBJETO CONTIENEN LETRAS O CARACTERES NO ADMITIDOS ");
         System.out.println(new Persona("0931600548", "KENETH ", "RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1).toString());
         System.out.println(Validaciones.vPersona(new Persona("0931600548", "KENETH ", "RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
+    }
+
+    private static void testPropiedades() {
+        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES NO CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES NO CONTIENEN NUMEROS");
+        System.out.println(new Propiedad
+        ("000000003", "COLIVING TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
+        System.out.println(Validaciones.vPersona(new Propiedad
+        ("000000003", "COLIVING TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
+        
+        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES CONTIENEN NUMEROS");
+        System.out.println(new Propiedad
+        ("000000003", "12312321 TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
+        System.out.println(Validaciones.vPersona(new Propiedad
+        ("000000003", "12312321 TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
     }
 }
