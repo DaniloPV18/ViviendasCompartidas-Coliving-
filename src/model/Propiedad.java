@@ -23,14 +23,14 @@ public class Propiedad {
     private Date fechaReg;/*Colocar BD*/
     private int anfitrion;
     private int tipoPropiedad;
-    private int estadoPropidad;
+    private int estadoPropiedad;
     private int ciudad;
 
     public Propiedad() {
         this.fechaReg = new Date();
     }
 
-    public Propiedad(String identificador, String nombre, int numMaxPersonas, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropidad, int ciudad) {
+    public Propiedad(String identificador, String nombre, int numMaxPersonas, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropiedad, int ciudad) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.numMaxPersonas = numMaxPersonas;
@@ -39,7 +39,7 @@ public class Propiedad {
         this.numHab = numHab;
         this.anfitrion = anfitrion;
         this.tipoPropiedad = tipoPropiedad;
-        this.estadoPropidad = estadoPropidad;
+        this.estadoPropiedad = estadoPropiedad;
         this.ciudad = ciudad;
         this.fechaReg = new Date();
     }
@@ -116,12 +116,12 @@ public class Propiedad {
         this.tipoPropiedad = tipoPropiedad;
     }
 
-    public int getEstadoPropidad() {
-        return estadoPropidad;
+    public int getEstadoPropiedad() {
+        return estadoPropiedad;
     }
 
-    public void setEstadoPropidad(int estadoPropidad) {
-        this.estadoPropidad = estadoPropidad;
+    public void setEstadoPropiedad(int estadoPropiedad) {
+        this.estadoPropiedad = estadoPropiedad;
     }
 
     public int getCiudad() {
@@ -142,7 +142,7 @@ public class Propiedad {
 
     @Override
     public String toString() {
-        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", numMaxPersonas=" + numMaxPersonas + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropidad + ", ciudad=" + ciudad + '}';
+        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", numMaxPersonas=" + numMaxPersonas + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropiedad + ", ciudad=" + ciudad + '}';
     }
 
 }
