@@ -55,6 +55,11 @@ public class Validaciones {
         return (edad >= 18) ? true : false;
     }
 
+    public static boolean vNumHab(int num) {
+        System.out.println("Numero mayor a 1000 habitaciones no permitido.");
+        return (num >= 100) ? true : false;
+    }
+    
     public static boolean vPersona(Persona persona) {
         boolean nombres = vWords(persona.getNombres());
         boolean apellidos = vWords(persona.getApellidos());
@@ -66,7 +71,7 @@ public class Validaciones {
     
     public static boolean vPersona(Propiedad propiedad) {
         boolean nombres = vWords(propiedad.getNombre());
-        boolean numHab = vInt(propiedad.getNumHab());
+        boolean numHab = vNumHab(propiedad.getNumHab());
         boolean anfitrion = vInt(propiedad.getAnfitrion());
         boolean tipoPropiedad = vInt(propiedad.getTipoPropiedad());
         boolean estadoPropiedad = vInt(propiedad.getEstadoPropiedad());
