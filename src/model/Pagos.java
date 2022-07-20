@@ -12,23 +12,25 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Pagos {
+
+    private int id;
     private String identificador;
     private double monto;
     private Date fechaReg;
     private Date fechaInicio;
     private Date fechaFinal;
     private String estado;
-    private MetodoPago metodoPago;
-    private Huesped huesped;
-    private TipoPago tipoPago;
-    private Habitacion habitacion;
-    private Propiedad propiedad;
+    private int metodoPago;
+    private int huesped;
+    private int tipoPago;
+    private int habitacion;
+    private int propiedad;
 
     public Pagos() {
         this.fechaReg = new Date();
     }
 
-    public Pagos(String identificador, double monto, String estado, MetodoPago metodoPago, Huesped huesped, TipoPago tipoPago, Habitacion habitacion, Propiedad propiedad) {
+    public Pagos(String identificador, double monto, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
         this.identificador = identificador;
         this.monto = monto;
         this.estado = estado;
@@ -40,7 +42,7 @@ public class Pagos {
         this.fechaReg = new Date();
     }
 
-    public Pagos(String identificador, double monto, Date fechaInicio, Date fechaFinal, String estado, MetodoPago metodoPago, Huesped huesped, TipoPago tipoPago, Habitacion habitacion, Propiedad propiedad) {
+    public Pagos(String identificador, double monto, Date fechaInicio, Date fechaFinal, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
         this.identificador = identificador;
         this.monto = monto;
         this.fechaInicio = fechaInicio;
@@ -52,6 +54,14 @@ public class Pagos {
         this.habitacion = habitacion;
         this.propiedad = propiedad;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {
@@ -94,43 +104,43 @@ public class Pagos {
         this.estado = estado;
     }
 
-    public MetodoPago getMetodoPago() {
+    public int getMetodoPago() {
         return metodoPago;
     }
 
-    public void setMetodoPago(MetodoPago metodoPago) {
+    public void setMetodoPago(int metodoPago) {
         this.metodoPago = metodoPago;
     }
 
-    public Huesped getHuesped() {
+    public int getHuesped() {
         return huesped;
     }
 
-    public void setHuesped(Huesped huesped) {
+    public void setHuesped(int huesped) {
         this.huesped = huesped;
     }
 
-    public TipoPago getTipoPago() {
+    public int getTipoPago() {
         return tipoPago;
     }
 
-    public void setTipoPago(TipoPago tipoPago) {
+    public void setTipoPago(int tipoPago) {
         this.tipoPago = tipoPago;
     }
 
-    public Habitacion getHabitacion() {
+    public int getHabitacion() {
         return habitacion;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
+    public void setHabitacion(int habitacion) {
         this.habitacion = habitacion;
     }
 
-    public Propiedad getPropiedad() {
+    public int getPropiedad() {
         return propiedad;
     }
 
-    public void setPropiedad(Propiedad propiedad) {
+    public void setPropiedad(int propiedad) {
         this.propiedad = propiedad;
     }
 
@@ -138,10 +148,13 @@ public class Pagos {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Pagos{" + "identificador=" + identificador + ", monto=" + monto + ", fechaReg=" + fechaReg + ", fechaInicio=" + fechaInicio + ", fechaFinal=" + fechaFinal + ", estado=" + estado + ", metodoPago=" + metodoPago + ", huesped=" + huesped + ", tipoPago=" + tipoPago + ", habitacion=" + habitacion + ", propiedad=" + propiedad + '}';
     }
-    
-    
+
 }

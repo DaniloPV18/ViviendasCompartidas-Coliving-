@@ -12,34 +12,42 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Propiedad {
+
+    private int id;
     private String identificador;
     private String nombre;
-    private int numMaxPersonas;
     private String email;
     private String direccion;
     private int numHab;
     private Date fechaReg;/*Colocar BD*/
-    private Anfitrion anfitrion;
-    private TipoPropiedad tipoPropiedad;
-    private EstadoPropiedad estadoPropidad;
-    private Ciudad ciudad;
+    private int anfitrion;
+    private int tipoPropiedad;
+    private int estadoPropiedad;
+    private int ciudad;
 
     public Propiedad() {
         this.fechaReg = new Date();
     }
 
-    public Propiedad(String identificador, String nombre, int numMaxPersonas, String email, String direccion, int numHab, Anfitrion anfitrion, TipoPropiedad tipoPropiedad, EstadoPropiedad estadoPropidad, Ciudad ciudad) {
+    public Propiedad(String identificador, String nombre, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropiedad, int ciudad) {
         this.identificador = identificador;
         this.nombre = nombre;
-        this.numMaxPersonas = numMaxPersonas;
         this.email = email;
         this.direccion = direccion;
         this.numHab = numHab;
         this.anfitrion = anfitrion;
         this.tipoPropiedad = tipoPropiedad;
-        this.estadoPropidad = estadoPropidad;
+        this.estadoPropiedad = estadoPropiedad;
         this.ciudad = ciudad;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {
@@ -56,14 +64,6 @@ public class Propiedad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getNumMaxPersonas() {
-        return numMaxPersonas;
-    }
-
-    public void setNumMaxPersonas(int numMaxPersonas) {
-        this.numMaxPersonas = numMaxPersonas;
     }
 
     public String getEmail() {
@@ -90,35 +90,35 @@ public class Propiedad {
         this.numHab = numHab;
     }
 
-    public Anfitrion getAnfitrion() {
+    public int getAnfitrion() {
         return anfitrion;
     }
 
-    public void setAnfitrion(Anfitrion anfitrion) {
+    public void setAnfitrion(int anfitrion) {
         this.anfitrion = anfitrion;
     }
 
-    public TipoPropiedad getTipoPropiedad() {
+    public int getTipoPropiedad() {
         return tipoPropiedad;
     }
 
-    public void setTipoPropiedad(TipoPropiedad tipoPropiedad) {
+    public void setTipoPropiedad(int tipoPropiedad) {
         this.tipoPropiedad = tipoPropiedad;
     }
 
-    public EstadoPropiedad getEstadoPropidad() {
-        return estadoPropidad;
+    public int getEstadoPropiedad() {
+        return estadoPropiedad;
     }
 
-    public void setEstadoPropidad(EstadoPropiedad estadoPropidad) {
-        this.estadoPropidad = estadoPropidad;
+    public void setEstadoPropiedad(int estadoPropiedad) {
+        this.estadoPropiedad = estadoPropiedad;
     }
 
-    public Ciudad getCiudad() {
+    public int getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(Ciudad ciudad) {
+    public void setCiudad(int ciudad) {
         this.ciudad = ciudad;
     }
 
@@ -126,10 +126,13 @@ public class Propiedad {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
-        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", numMaxPersonas=" + numMaxPersonas + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropidad + ", ciudad=" + ciudad + '}';
+        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropiedad + ", ciudad=" + ciudad + '}';
     }
-    
-    
+
 }

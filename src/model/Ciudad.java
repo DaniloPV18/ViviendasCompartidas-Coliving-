@@ -12,17 +12,18 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Ciudad {
+    private int id;
     private int identificador;
     private String nombre;
     private String estado;
     private Date fechaReg;
-    private Region region;
+    private int region;
 
     public Ciudad() {
         this.fechaReg = new Date();
     }
     
-    public Ciudad(int identificador, String nombre, String estado, Region region) {
+    public Ciudad(int identificador, String nombre, String estado, int region) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.estado = estado;
@@ -30,6 +31,14 @@ public class Ciudad {
         this.fechaReg = new Date();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }    
+    
     public int getIdentificador() {
         return identificador;
     }
@@ -54,16 +63,20 @@ public class Ciudad {
         this.estado = estado;
     }
 
-    public Region getRegion() {
+    public int getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(int region) {
         this.region = region;
     }
 
     public Date getFechaReg() {
         return fechaReg;
+    }
+
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
     }
 
     @Override

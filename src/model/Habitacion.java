@@ -12,32 +12,40 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Habitacion {
+
+    private int id;
     private int identificador;
     private int numMax;
-    private int numBanios;
+    private boolean banio;
     private double precio;
     private Date fechaReg;
-    private String estado;
-    private TipoHabitacion tipoHab;
-    private Propiedad propiedad;
-    private EstadoHabitacion estadoHab;
-    private Promocion promocion;
+    private int tipoHab;
+    private int propiedad;
+    private int estadoHab;
+    private int promocion;
 
     public Habitacion() {
         this.fechaReg = new Date();
     }
 
-    public Habitacion(int identificador, int numMax, int numBanios, double precio, String estado, TipoHabitacion tipoHab, Propiedad propiedad, EstadoHabitacion estadoHab, Promocion promocion) {
+    public Habitacion(int identificador, int numMax, boolean banio, double precio, int tipoHab, int propiedad, int estadoHab, int promocion) {
         this.identificador = identificador;
         this.numMax = numMax;
-        this.numBanios = numBanios;
+        this.banio = banio;
         this.precio = precio;
-        this.estado = estado;
         this.tipoHab = tipoHab;
         this.propiedad = propiedad;
         this.estadoHab = estadoHab;
         this.promocion = promocion;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdentificador() {
@@ -56,12 +64,12 @@ public class Habitacion {
         this.numMax = numMax;
     }
 
-    public int getNumBanios() {
-        return numBanios;
+    public boolean getBanios() {
+        return banio;
     }
 
-    public void setNumBanios(int numBanios) {
-        this.numBanios = numBanios;
+    public void setBanios(boolean banio) {
+        this.banio = banio;
     }
 
     public double getPrecio() {
@@ -72,43 +80,35 @@ public class Habitacion {
         this.precio = precio;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public TipoHabitacion getTipoHab() {
+    public int getTipoHab() {
         return tipoHab;
     }
 
-    public void setTipoHab(TipoHabitacion tipoHab) {
+    public void setTipoHab(int tipoHab) {
         this.tipoHab = tipoHab;
     }
 
-    public Propiedad getPropiedad() {
+    public int getPropiedad() {
         return propiedad;
     }
 
-    public void setPropiedad(Propiedad propiedad) {
+    public void setPropiedad(int propiedad) {
         this.propiedad = propiedad;
     }
 
-    public EstadoHabitacion getEstadoHab() {
+    public int getEstadoHab() {
         return estadoHab;
     }
 
-    public void setEstadoHab(EstadoHabitacion estadoHab) {
+    public void setEstadoHab(int estadoHab) {
         this.estadoHab = estadoHab;
     }
 
-    public Promocion getPromocion() {
+    public int getPromocion() {
         return promocion;
     }
 
-    public void setPromocion(Promocion promocion) {
+    public void setPromocion(int promocion) {
         this.promocion = promocion;
     }
 
@@ -116,10 +116,13 @@ public class Habitacion {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
-        return "Habitacion{" + "identificador=" + identificador + ", numMax=" + numMax + ", numBanios=" + numBanios + ", precio=" + precio + ", fechaReg=" + fechaReg + ", estado=" + estado + ", tipoHab=" + tipoHab + ", propiedad=" + propiedad + ", estadoHab=" + estadoHab + ", promocion=" + promocion + '}';
+        return "Habitacion{" + "identificador=" + identificador + ", numMax=" + numMax + ", tieneBanios=" + banio + ", precio=" + precio + ", fechaReg=" + fechaReg + ", tipoHab=" + tipoHab + ", propiedad=" + propiedad + ", estadoHab=" + estadoHab + ", promocion=" + promocion + '}';
     }
-    
-    
+
 }

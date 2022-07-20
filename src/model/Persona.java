@@ -12,6 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Persona {
+    private int id;
     private String identificador;
     private String nombres;
     private String apellidos;
@@ -19,16 +20,15 @@ public class Persona {
     private String email;
     private String estado;
     private Date fechaReg;
-    private TipoIdentificacion tipoId;
-    private Sexo sexo;
-    private Nacionalidad nacionalidad;
+    private int tipoId;
+    private int sexo;
+    private int nacionalidad;
 
     public Persona() {
         this.fechaReg = new Date();
     }
-
     
-    public Persona(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, TipoIdentificacion tipoId, Sexo sexo, Nacionalidad nacionalidad) {
+    public Persona(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, int tipoId, int sexo, int nacionalidad) {
         this.identificador = identificador;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -39,6 +39,14 @@ public class Persona {
         this.sexo = sexo;
         this.nacionalidad = nacionalidad;
         this.fechaReg = new Date();
+    }    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {
@@ -89,32 +97,36 @@ public class Persona {
         this.estado = estado;
     }
 
-    public TipoIdentificacion getTipoId() {
+    public int getTipoId() {
         return tipoId;
     }
 
-    public void setTipoId(TipoIdentificacion tipoId) {
+    public void setTipoId(int tipoId) {
         this.tipoId = tipoId;
     }
 
-    public Sexo getSexo() {
+    public int getSexo() {
         return sexo;
     }
 
-    public void setSexo(Sexo sexo) {
+    public void setSexo(int sexo) {
         this.sexo = sexo;
     }
 
-    public Nacionalidad getNacionalidad() {
+    public int getNacionalidad() {
         return nacionalidad;
     }
 
-    public void setNacionalidad(Nacionalidad nacionalidad) {
+    public void setNacionalidad(int nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
 
     public Date getFechaReg() {
         return fechaReg;
+    }
+
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
     }
     
     @Override

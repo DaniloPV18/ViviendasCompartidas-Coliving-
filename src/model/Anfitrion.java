@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Anfitrion extends Persona{
     
-    public Anfitrion(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, TipoIdentificacion tipoId, Sexo sexo, Nacionalidad nacionalidad){
+    public Anfitrion(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, int tipoId, int sexo, int nacionalidad){
         super(identificador, nombres, apellidos, fechaNac, email, estado, tipoId, sexo, nacionalidad);
     }    
     

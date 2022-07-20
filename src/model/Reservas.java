@@ -12,19 +12,21 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Reservas {
+
+    private int id;
     private String identificador;
     private Date fechaInicial;
     private Date fechaFinal;
     private Date fechaReg;
     private String estado;
-    private Pagos pago;
-    private Huesped huesped;
+    private int pago;
+    private int huesped;
 
     public Reservas() {
         this.fechaReg = new Date();
     }
 
-    public Reservas(String identificador, Date fechaInicial, Date fechaFinal, String estado, Pagos pago, Huesped huesped) {
+    public Reservas(String identificador, Date fechaInicial, Date fechaFinal, String estado, int pago, int huesped) {
         this.identificador = identificador;
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
@@ -32,6 +34,14 @@ public class Reservas {
         this.pago = pago;
         this.huesped = huesped;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificador() {
@@ -66,19 +76,19 @@ public class Reservas {
         this.estado = estado;
     }
 
-    public Pagos getPago() {
+    public int getPago() {
         return pago;
     }
 
-    public void setPago(Pagos pago) {
+    public void setPago(int pago) {
         this.pago = pago;
     }
 
-    public Huesped getHuesped() {
+    public int getHuesped() {
         return huesped;
     }
 
-    public void setHuesped(Huesped huesped) {
+    public void setHuesped(int huesped) {
         this.huesped = huesped;
     }
 
@@ -86,10 +96,13 @@ public class Reservas {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Reservas{" + "identificador=" + identificador + ", fechaInicial=" + fechaInicial + ", fechaFinal=" + fechaFinal + ", fechaReg=" + fechaReg + ", estado=" + estado + ", pago=" + pago + ", huesped=" + huesped + '}';
     }
-    
-    
+
 }

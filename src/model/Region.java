@@ -12,20 +12,30 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Region {
+
+    private int id;
     private String nombre;
     private String estado;
     private Date fechaReg;
-    private Pais Pais;
+    private int Pais;
 
     public Region() {
         this.fechaReg = new Date();
     }
 
-    public Region(String nombre, String estado, Pais Pais) {
+    public Region(String nombre, String estado, int Pais) {
         this.nombre = nombre;
         this.estado = estado;
         this.Pais = Pais;
         this.fechaReg = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -44,11 +54,11 @@ public class Region {
         this.estado = estado;
     }
 
-    public Pais getPais() {
+    public int getPais() {
         return Pais;
     }
 
-    public void setPais(Pais Pais) {
+    public void setPais(int Pais) {
         this.Pais = Pais;
     }
 
@@ -56,10 +66,13 @@ public class Region {
         return fechaReg;
     }
 
+    public void setFechaReg(Date fechaReg) {
+        this.fechaReg = fechaReg;
+    }
+
     @Override
     public String toString() {
         return "Region{" + "nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + ", Pais=" + Pais + '}';
     }
-    
-    
+
 }

@@ -12,7 +12,7 @@ import java.util.Date;
  * @author N1L0XD
  */
 public class Huesped extends Persona {
-    public Huesped(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, TipoIdentificacion tipoId, Sexo sexo, Nacionalidad nacionalidad){
+    public Huesped(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, int tipoId, int sexo, int nacionalidad){
         super(identificador, nombres, apellidos, fechaNac, email, estado, tipoId, sexo, nacionalidad);
     }  
 }

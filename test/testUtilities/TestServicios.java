@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testModels;
+package testUtilities;
 
 import java.util.Date;
 import model.Persona;
+import utilities.Servicios;
 
 /**
  *
  * @author N1L0XD
  */
-public class TestPersona {
+public class TestServicios {
     public static void main(String[] args) {
-        //Crear objeto de tipo Persona 
-        System.out.println(new Persona().toString());
-        System.out.println(new Persona("0931600548", "Danilo Miguel", "Pin Veloz", new Date(), "daniloski_@gmail.com", "Habilitado", 0, 0, 0).toString());
+        Persona p = Servicios.personaUpperCase(new Persona("00000001", "melant sedasd", "weeee PRUEBA", new Date(), "test@GMAIL.COM", "habilitado", 1, 1, 1));
+        System.out.println(p.toString());
     }
 }
