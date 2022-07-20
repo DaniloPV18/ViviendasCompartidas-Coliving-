@@ -16,7 +16,6 @@ public class Propiedad {
     private int id;
     private String identificador;
     private String nombre;
-    private int numMaxPersonas;
     private String email;
     private String direccion;
     private int numHab;
@@ -30,10 +29,9 @@ public class Propiedad {
         this.fechaReg = new Date();
     }
 
-    public Propiedad(String identificador, String nombre, int numMaxPersonas, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropiedad, int ciudad) {
+    public Propiedad(String identificador, String nombre, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropiedad, int ciudad) {
         this.identificador = identificador;
         this.nombre = nombre;
-        this.numMaxPersonas = numMaxPersonas;
         this.email = email;
         this.direccion = direccion;
         this.numHab = numHab;
@@ -66,14 +64,6 @@ public class Propiedad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getNumMaxPersonas() {
-        return numMaxPersonas;
-    }
-
-    public void setNumMaxPersonas(int numMaxPersonas) {
-        this.numMaxPersonas = numMaxPersonas;
     }
 
     public String getEmail() {
@@ -142,7 +132,7 @@ public class Propiedad {
 
     @Override
     public String toString() {
-        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", numMaxPersonas=" + numMaxPersonas + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropiedad + ", ciudad=" + ciudad + '}';
+        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropiedad + ", ciudad=" + ciudad + '}';
     }
 
 }
