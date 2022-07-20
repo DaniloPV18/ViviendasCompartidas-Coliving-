@@ -25,7 +25,7 @@ public class AdmHabitacionesDataBase {
     private static final String INSERTAR = "  INSERT INTO HABITACION ("
             + "     identificador, num_max_per, tiene_banio , precio, fecha_reg, "
             + "     tipohabitacion_id_tipohab, propiedad_id_propiedad, estadohabitacion_id_estadohab, promocion_id_promocion"
-            + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
+            + ")VALUES(?,?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE HABITACION "
             + "SET "
@@ -56,10 +56,10 @@ public class AdmHabitacionesDataBase {
                 ps.setBoolean(3, habitacion.getBanios());
                 ps.setDouble(4, habitacion.getPrecio());
                 ps.setTimestamp(5, Conversiones.getFecha(Conversiones.getFecha(habitacion.getFechaReg()))); 
-                ps.setInt(7, habitacion.getTipoHab());
-                ps.setInt(8, habitacion.getPropiedad());
-                ps.setInt(9, habitacion.getEstadoHab());       
-                ps.setInt(10, habitacion.getPromocion());                
+                ps.setInt(6, habitacion.getTipoHab());
+                ps.setInt(7, habitacion.getPropiedad());
+                ps.setInt(8, habitacion.getEstadoHab());       
+                ps.setInt(9, habitacion.getPromocion());                
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
