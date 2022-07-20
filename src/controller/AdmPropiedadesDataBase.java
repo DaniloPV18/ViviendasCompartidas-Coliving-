@@ -23,13 +23,13 @@ public class AdmPropiedadesDataBase {
     private static final Connection cn = Conexion.getConnection();
 
     private static final String INSERTAR = "  INSERT INTO PROPIEDAD ("
-            + "     identificador, nombre, num_max_per , email, direccion, num_hab, fecha_reg, "
+            + "     identificador, nombre, email, direccion, num_hab, fecha_reg, "
             + "     anfitrion_id_persona, tipopropiedad_id_tipopropiedad, estadopropiedad_id_estadopropiedad, ciudad_id_ciudad"
-            + ")VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE PROPIEDAD "
             + "SET "
-            + "     identificador = ?, nombre = ?, num_max_per = ?, email = ?, direccion = ?, num_hab = ?, "
+            + "     identificador = ?, nombre = ?, email = ?, direccion = ?, num_hab = ?, "
             + "     anfitrion_id_persona = ?, tipopropiedad_id_tipopropiedad = ?, estadopropiedad_id_estadopropiedad = ?, ciudad_id_ciudad = ?"
             + "WHERE id_propiedad = ? ";
     
@@ -53,15 +53,14 @@ public class AdmPropiedadesDataBase {
                 PreparedStatement ps = cn.prepareStatement(INSERTAR);
                 ps.setString(1, propiedad.getIdentificador());
                 ps.setString(2, propiedad.getNombre());
-                ps.setInt   (3, propiedad.getNumMaxPersonas());
-                ps.setString(4, propiedad.getEmail());
-                ps.setString(5, propiedad.getDireccion());
-                ps.setInt   (6, propiedad.getNumHab());
-                ps.setTimestamp(7, Conversiones.getFecha(Conversiones.getFecha(propiedad.getFechaReg())));                
-                ps.setInt(8, propiedad.getAnfitrion());
-                ps.setInt(9, propiedad.getTipoPropiedad());
-                ps.setInt(10, propiedad.getEstadoPropiedad());                
-                ps.setInt(11, propiedad.getCiudad());                
+                ps.setString(3, propiedad.getEmail());
+                ps.setString(4, propiedad.getDireccion());
+                ps.setInt   (5, propiedad.getNumHab());
+                ps.setTimestamp(6, Conversiones.getFecha(Conversiones.getFecha(propiedad.getFechaReg())));                
+                ps.setInt(7, propiedad.getAnfitrion());
+                ps.setInt(8, propiedad.getTipoPropiedad());
+                ps.setInt(9, propiedad.getEstadoPropiedad());                
+                ps.setInt(10, propiedad.getCiudad());                
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -76,15 +75,14 @@ public class AdmPropiedadesDataBase {
                 PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
                 ps.setString(1, propiedad.getIdentificador());
                 ps.setString(2, propiedad.getNombre());
-                ps.setInt   (3, propiedad.getNumMaxPersonas());
-                ps.setString(4, propiedad.getEmail());
-                ps.setString(5, propiedad.getDireccion());
-                ps.setInt   (6, propiedad.getNumHab());            
-                ps.setInt(7, propiedad.getAnfitrion());
-                ps.setInt(8, propiedad.getTipoPropiedad());
-                ps.setInt(9, propiedad.getEstadoPropiedad());                
-                ps.setInt(10, propiedad.getCiudad());
-                ps.setInt(11, id);
+                ps.setString(3, propiedad.getEmail());
+                ps.setString(4, propiedad.getDireccion());
+                ps.setInt   (5, propiedad.getNumHab());            
+                ps.setInt(6, propiedad.getAnfitrion());
+                ps.setInt(7, propiedad.getTipoPropiedad());
+                ps.setInt(8, propiedad.getEstadoPropiedad());                
+                ps.setInt(9, propiedad.getCiudad());
+                ps.setInt(10, id);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -118,17 +116,16 @@ public class AdmPropiedadesDataBase {
                     Propiedad p = new Propiedad(
                             rs.getString(2),//identificador
                             rs.getString(3),//nombre
-                            rs.getInt(4),//numMaxPersonas
-                            rs.getString(5),//email
-                            rs.getString(6),//direccion
-                            rs.getInt(7),//numHab
-                            rs.getInt(9),//anfitrion
-                            rs.getInt(10),//tipoPropiedad
-                            rs.getInt(11),//estadoPropiedad
-                            rs.getInt(12)//ciudad
+                            rs.getString(4),//email
+                            rs.getString(5),//direccion
+                            rs.getInt(6),//numHab
+                            rs.getInt(8),//anfitrion
+                            rs.getInt(9),//tipoPropiedad
+                            rs.getInt(10),//estadoPropiedad
+                            rs.getInt(11)//ciudad
                     );
                     p.setId(rs.getInt(1));
-                    p.setFechaReg(rs.getTimestamp(8));                    
+                    p.setFechaReg(rs.getTimestamp(7));                    
                     lista.add(p);
                 }
             } catch (SQLException e) {

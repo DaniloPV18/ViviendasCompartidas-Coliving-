@@ -6,6 +6,7 @@
 package testUtilities;
 
 import java.util.Date;
+import model.Habitacion;
 import model.Persona;
 import model.Propiedad;
 import utilities.Validaciones;
@@ -26,7 +27,8 @@ public class TestValidaciones {
         System.out.println(Validaciones.vEdad(15));
         
         testPersonas();
-//        testPropiedades();
+        testPropiedades();
+        testHabitaciones();
     }
 
     private static void testPersonas() {
@@ -41,50 +43,66 @@ public class TestValidaciones {
         System.out.println(new Persona("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
         System.out.println(Validaciones.vPersona(new Persona("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES O APELLIDOS CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES O APELLIDOS CONTIENEN NUMEROS");
+        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES CONTIENEN NUMEROS");
         System.out.println(new Persona("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
         System.out.println(Validaciones.vPersona(new Persona("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
+        //Comprobar datos de objeto Persona -> ESCENARIO APELLIDOS CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO APELLIDOS CONTIENEN NUMEROS");
         System.out.println(new Persona("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
         System.out.println(Validaciones.vPersona(new Persona("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
+        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS
+        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS");
         System.out.println(new Persona("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
         System.out.println(Validaciones.vPersona(new Persona("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO LLAVES DE OBJETO CONTIENEN LETRAS O CARACTERES NO ADMITIDOS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO LLAVES DE OBJETO CONTIENEN LETRAS O CARACTERES NO ADMITIDOS ");
-        System.out.println(new Persona("0931600548", "KENETH ", "RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "KENETH ", "RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
+        //Comprobar datos de objeto Persona -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS
+        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS ");
+        System.out.println(new Persona("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1).toString());
+        System.out.println(Validaciones.vPersona(new Persona("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
     }
 
     private static void testPropiedades() {
-        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS");
+        //Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS");
         System.out.println(new Propiedad
-        ("000000003", "COLIVING TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPersona(new Propiedad
-        ("000000003", "COLIVING TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
+        ("000000003", "COLIVING TURISTICO",  "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
+        System.out.println(Validaciones.vPropiedad(new Propiedad
+        ("000000003", "COLIVING TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1) ));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS");
+        //Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS");
         System.out.println(new Propiedad
-        ("000000003", "12312321 TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPersona(new Propiedad
-        ("000000003", "12312321 TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
+        ("000000003", "12312321 TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
+        System.out.println(Validaciones.vPropiedad(new Propiedad
+        ("000000003", "12312321 TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100");
+        //Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100
+        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100");
         System.out.println(new Propiedad
-        ("000000003", "CENTRO TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 100, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPersona(new Propiedad
-        ("000000003", "CENTRO TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 100, 1, 1, 3, 1)));
+        ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 100, 1, 1, 3, 1).toString());
+        System.out.println(Validaciones.vPropiedad(new Propiedad
+        ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 100, 1, 1, 3, 1)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MENOR QUE 100
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MENOR QUE 100");
+        //Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MENOR QUE 100
+        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 10");
         System.out.println(new Propiedad
-        ("000000003", "CENTRO TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPersona(new Propiedad
-        ("000000003", "CENTRO TURISTICO", 10, "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
+        ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 9, 1, 1, 3, 1).toString());
+        System.out.println(Validaciones.vPropiedad(new Propiedad
+        ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 9, 1, 1, 3, 1)) );
+    }
+
+    private static void testHabitaciones() {
+        //Comprobar datos de objeto Habitacion -> ESCENARIO HABITACION CON PRECIO MENOR QUE 10000
+        System.out.println("Comprobar datos de objeto Habitacion -> ESCENARIO PRECIO MENOR QUE 10000");
+        System.out.println(new Habitacion(101, 4, true, 100 , 1, 1, 1, 0).toString());
+        System.out.println(Validaciones.vHabitacion(new Habitacion(101, 4, true, 100 , 1, 1, 1, 0)));
+        
+        //Comprobar datos de objeto Habitacion -> ESCENARIO HABITACION CON PRECIO MAYOR O IGUAL A 10000
+        System.out.println("Comprobar datos de objeto Habitacion -> ESCENARIO PRECIO MAYOR O IGUAL A 10000");
+        System.out.println(new Habitacion(101, 4, true, 10000 , 1, 1, 1, 0).toString());
+        System.out.println(Validaciones.vHabitacion(new Habitacion(101, 4, true, 10000 , 1, 1, 1, 0)));
     }
 }

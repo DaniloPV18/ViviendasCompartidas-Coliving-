@@ -5,6 +5,7 @@
  */
 package utilities;
 
+import model.Habitacion;
 import model.Persona;
 import model.Propiedad;
 
@@ -52,12 +53,48 @@ public class Validaciones {
     }
 
     public static boolean vEdad(long edad) {
-        return (edad >= 18) ? true : false;
+        if(edad >=18){
+            System.out.println("Mayor de edad admitido.");
+            return true;
+        }else{
+            System.out.println("Menor de edad no admitido.");
+            return false;
+        }
+        //return (edad >= 18) ? true : false;
     }
 
+    //Establecer el numero de habitaciones permitidas por propiedad
     public static boolean vNumHab(int num) {
-        System.out.println("Numero mayor a 1000 habitaciones no permitido.");
-        return (num >= 100) ? true : false;
+        if(num>= 10 && num<=100){
+            return true;
+        }else{
+            System.out.println("Numero mayor a 100 habitaciones no permitido.");
+            System.out.println("Se requieren 10 habitaciones Minimo.");
+            return false;
+        }       
+        //return (num >= 100) ? false : true;
+    }
+    
+    //Establecer el precio máximo por habitacion.
+    public static boolean vPrecioHab(double num) {
+        if(num >= 10000){
+            System.out.println("Precio mayor a 10000 dólares no permitido.");
+            return false;
+        }else{
+            return true;
+        }
+        //return (num >= 10000) ?  false : true;
+    }
+    
+    //Establecer 5 Personas como maximo por habitaciones.
+    public static boolean vMaxPerHab(double num) {
+        if(num >= 5){
+            System.out.println("Cantidad de 5 personas por habitaciones no permitido.");
+            return false;
+        }else{
+            return true;
+        }
+        //return (num >= 10000) ?  false : true;
     }
     
     public static boolean vPersona(Persona persona) {
@@ -69,7 +106,7 @@ public class Validaciones {
         return nombres && apellidos && tipoId && sexoId && mayorEdad;
     }
     
-    public static boolean vPersona(Propiedad propiedad) {
+    public static boolean vPropiedad(Propiedad propiedad) {
         boolean nombres = vWords(propiedad.getNombre());
         boolean numHab = vNumHab(propiedad.getNumHab());
         boolean anfitrion = vInt(propiedad.getAnfitrion());
@@ -79,4 +116,9 @@ public class Validaciones {
         return nombres && numHab && anfitrion && tipoPropiedad && estadoPropiedad && ciudad;
     }
 
+    public static boolean vHabitacion(Habitacion habitacion) {
+        boolean precio = vPrecioHab(habitacion.getPrecio());
+        boolean numPer = vMaxPerHab(habitacion.getNumMax());
+        return precio && numPer;
+    }
 }
