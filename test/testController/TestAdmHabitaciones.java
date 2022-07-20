@@ -5,17 +5,17 @@
  */
 package testController;
 
-import controller.AdmPropiedadesDataBase;
+import controller.AdmHabitacionesDataBase;
 import java.util.ArrayList;
-import model.Propiedad;
+import model.Habitacion;
 
 /**
  *
  * @author N1L0XD
  */
-public class TestAdmPropiedades {
+public class TestAdmHabitaciones {
     public static void main(String[] args) {
-//        insertarDatosPrueba();      
+        insertarDatosPrueba();      
         
 //        consultarTabla();
                
@@ -23,19 +23,19 @@ public class TestAdmPropiedades {
 //        
 //        AdmPropiedadesDataBase.eliminar("000000003");
 //                
-        consultarTabla();
+//        consultarTabla();
     }
 
     private static void insertarDatosPrueba() {
-        AdmPropiedadesDataBase.insertar(new Propiedad
-        ("000000004", "TOUR INTERNATIONAL", "TOURINTERNATIONAL@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1));
+        AdmHabitacionesDataBase.insertar(new Habitacion
+        (1, 4, true, 50,  1, 1, 1, 0));
     }
 
     private static void consultarTabla() {
-        ArrayList<Propiedad> ls1 = AdmPropiedadesDataBase.consultar();
+        ArrayList<Habitacion> ls1 = AdmHabitacionesDataBase.consultar();
         if(ls1!=null && ls1.size()>0){
-            for (Propiedad persona : ls1) {
-                System.out.println(persona.toString());
+            for (Habitacion h : ls1) {
+                System.out.println(h.toString());
             }
         }else{
             System.out.println("lista nula");
