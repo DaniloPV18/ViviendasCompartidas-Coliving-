@@ -15,7 +15,7 @@ public class TipoPago {
 
     private int id;
     private int identificador;
-    private String tipoPago;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
@@ -23,9 +23,9 @@ public class TipoPago {
         this.fechaReg = new Date();
     }
 
-    public TipoPago(int identificador, String tipoPago, String estado) {
+    public TipoPago(int identificador, String nombre, String estado) {
         this.identificador = identificador;
-        this.tipoPago = tipoPago;
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -46,12 +46,12 @@ public class TipoPago {
         this.identificador = identificador;
     }
 
-    public String getTipoPago() {
-        return tipoPago;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTipoPago(String tipoPago) {
-        this.tipoPago = tipoPago;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +72,7 @@ public class TipoPago {
 
     @Override
     public String toString() {
-        return "TipoPago{" + "identificador=" + identificador + ", tipoPago=" + tipoPago + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "TipoPago{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }
