@@ -9,12 +9,17 @@ import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import model.Persona;
 
 /**
  *
  * @author N1L0XD
  */
 public class Conversiones {
+    
+    public static Persona personaUpperCase(Persona persona){
+        return new Persona(persona.getIdentificador(), persona.getNombres().toUpperCase(), persona.getApellidos().toUpperCase(), persona.getFechaNac(), persona.getEmail().toUpperCase(), persona.getEstado().toUpperCase(), persona.getTipoId(), persona.getSexo(), persona.getNacionalidad());
+    }
 
     public static String getFecha(JDateChooser jd) {
         SimpleDateFormat Formato = new SimpleDateFormat("dd/MM/yyyy");
