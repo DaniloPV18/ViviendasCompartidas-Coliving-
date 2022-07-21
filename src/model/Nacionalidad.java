@@ -15,7 +15,7 @@ public class Nacionalidad {
 
     private int id;
     private String identificador;
-    private String nacionalidad;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
@@ -23,9 +23,9 @@ public class Nacionalidad {
         this.fechaReg = new Date();
     }
 
-    public Nacionalidad(String identificador, String nacionalidad, String estado) {
+    public Nacionalidad(String identificador, String nombre, String estado) {
         this.identificador = identificador;
-        this.nacionalidad = nacionalidad;
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -46,12 +46,12 @@ public class Nacionalidad {
         this.identificador = identificador;
     }
 
-    public String getNacionalidad() {
-        return nacionalidad;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +72,7 @@ public class Nacionalidad {
 
     @Override
     public String toString() {
-        return "Nacionalidad{" + "identificador=" + identificador + ", nacionalidad=" + nacionalidad + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "Nacionalidad{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }
