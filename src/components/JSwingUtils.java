@@ -68,21 +68,21 @@ public class JSwingUtils {
         getInstance().setListaSexoBD(Servicios.consultarTSexo());
         //Setear elementos del combo con la tabla de la Base de datos
         for (Sexo elemento : getInstance().getListaSexoBD()) {
-            cmbSexo.addItem(elemento.getSexo());
+            cmbSexo.addItem(elemento.getNombre());
         }
     }
     
     public static void cargarComboNacionalidad(JComboBox<String> cmbNacionalidad) {
         getInstance().setListaNacionalidadBD(Servicios.consultarTNacionalidad());
         for (Nacionalidad elemento : getInstance().getListaNacionalidadBD()) {
-            cmbNacionalidad.addItem(elemento.getNacionalidad());
+            cmbNacionalidad.addItem(elemento.getNombre());
         }
     }
 
     public static void cargarComboTipoId(JComboBox<String> cmbTipoId) {
         getInstance().setListaTipoIdBD(Servicios.consultarTTipoId());
         for (TipoIdentificacion elemento : getInstance().getListaTipoIdBD()) {
-            cmbTipoId.addItem(elemento.getSexo());
+            cmbTipoId.addItem(elemento.getNombre());
         }
     }
     
