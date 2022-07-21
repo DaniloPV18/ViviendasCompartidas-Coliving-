@@ -14,7 +14,7 @@ import java.util.Date;
 public class ServiciosDisponibles {
 
     private int id;
-    private String servicio;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
@@ -22,8 +22,8 @@ public class ServiciosDisponibles {
         this.fechaReg = new Date();
     }
 
-    public ServiciosDisponibles(String servicio, String estado) {
-        this.servicio = servicio;
+    public ServiciosDisponibles(String nombre, String estado) {
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -36,12 +36,12 @@ public class ServiciosDisponibles {
         this.id = id;
     }
 
-    public String getServicio() {
-        return servicio;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -62,7 +62,7 @@ public class ServiciosDisponibles {
 
     @Override
     public String toString() {
-        return "ServiciosDisponibles{" + "servicio=" + servicio + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "ServiciosDisponibles{" + "nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

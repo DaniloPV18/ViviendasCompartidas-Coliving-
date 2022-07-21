@@ -15,7 +15,7 @@ public class Sexo {
 
     private int id;
     private String identificador;
-    private String sexo;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
@@ -23,9 +23,9 @@ public class Sexo {
         this.fechaReg = new Date();
     }
 
-    public Sexo(String identificador, String sexo, String estado) {
+    public Sexo(String identificador, String nombre, String estado) {
         this.identificador = identificador;
-        this.sexo = sexo;
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -46,12 +46,12 @@ public class Sexo {
         this.identificador = identificador;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +72,7 @@ public class Sexo {
 
     @Override
     public String toString() {
-        return "Sexo{" + "identificador=" + identificador + ", sexo=" + sexo + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "Sexo{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

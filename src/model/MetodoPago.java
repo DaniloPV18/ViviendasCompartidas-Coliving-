@@ -15,7 +15,7 @@ public class MetodoPago {
 
     private int id;
     private String identificador;
-    private String metodo;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
@@ -23,9 +23,9 @@ public class MetodoPago {
         this.fechaReg = new Date();
     }
 
-    public MetodoPago(String identificador, String metodo, String estado) {
+    public MetodoPago(String identificador, String nombre, String estado) {
         this.identificador = identificador;
-        this.metodo = metodo;
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -46,12 +46,12 @@ public class MetodoPago {
         this.identificador = identificador;
     }
 
-    public String getMetodo() {
-        return metodo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +72,7 @@ public class MetodoPago {
 
     @Override
     public String toString() {
-        return "MetodoPago{" + "identificador=" + identificador + ", metodo=" + metodo + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "MetodoPago{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }
