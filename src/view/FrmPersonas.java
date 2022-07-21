@@ -5,18 +5,18 @@
  */
 package view;
 
-import controller.AdmPersonas;
-import utilities.Conversiones;
+import components.JSwingUtils;
+
 
 /**
  *
  * @author N1L0XD
  */
 public class FrmPersonas extends javax.swing.JFrame {
-    AdmPersonas admP = new AdmPersonas();
     
-    public FrmPersonas() {
+    public FrmPersonas() {        
         initComponents();
+        JSwingUtils.cargarCombos(cmbSexo,cmbNacionalidad,cmbTipoId);
     }
     
     
@@ -36,12 +36,10 @@ public class FrmPersonas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        cmbTipoPersona = new javax.swing.JComboBox<>();
         cmbNacionalidad = new javax.swing.JComboBox<>();
         cmbSexo = new javax.swing.JComboBox<>();
         cmbTipoId = new javax.swing.JComboBox<>();
@@ -103,15 +101,11 @@ public class FrmPersonas extends javax.swing.JFrame {
 
         jLabel9.setText("Nacionalidad:");
 
-        jLabel10.setText("Tipo de Persona:");
-
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
-
-        cmbTipoPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Huesped", "Anfitrion" }));
 
         dtcFechaNac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,12 +135,9 @@ public class FrmPersonas extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbNacionalidad, 0, 117, Short.MAX_VALUE)
-                                    .addComponent(cmbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtEmail)))
+                            .addComponent(txtEmail)
+                            .addComponent(cmbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbNacionalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -167,12 +158,9 @@ public class FrmPersonas extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(107, 107, 107))
                             .addComponent(cmbTipoId, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(124, 124, 124))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,9 +168,7 @@ public class FrmPersonas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel10)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -382,6 +368,9 @@ public class FrmPersonas extends javax.swing.JFrame {
         String nombre = txtNombres.getText().trim();        
         String apellidos = txtApellidos.getText().trim();
         String email = txtEmail.getText().trim();
+        String fkSexo = (String) cmbSexo.getSelectedItem();
+        String fkTipoID = (String) cmbTipoId.getSelectedItem();
+        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
         //System.out.println(Conversiones.getFecha(dtcFechaNac));
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -475,10 +464,8 @@ public class FrmPersonas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbNacionalidad;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JComboBox<String> cmbTipoId;
-    private javax.swing.JComboBox<String> cmbTipoPersona;
     private com.toedter.calendar.JDateChooser dtcFechaNac;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
