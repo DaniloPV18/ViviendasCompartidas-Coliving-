@@ -117,9 +117,9 @@ public class AdmHabitacionesDataBase {
                             rs.getBoolean(4),//tiene_banio
                             rs.getDouble(5),//precio
                             rs.getInt(7),//tipohabitacion_id_tipohab
-                            rs.getInt(9),//propiedad_id_propiedad
-                            rs.getInt(10),//estadohabitacion_id_estadohab
-                            rs.getInt(11)//promocion_id_promocion
+                            rs.getInt(8),//propiedad_id_propiedad
+                            rs.getInt(9),//estadohabitacion_id_estadohab
+                            rs.getInt(10)//promocion_id_promocion
                     );
                     p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(6));
