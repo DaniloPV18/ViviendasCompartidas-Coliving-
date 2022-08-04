@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Persona;
 import utilities.Conversiones;
 
@@ -60,6 +61,7 @@ public class AdmPersonasDataBase {
                 ps.setInt(9, persona.getSexo());
                 ps.setInt(10, persona.getNacionalidad());                
                 ps.execute();
+                JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
             } catch (SQLException e) {
                 System.out.println(e);
             }

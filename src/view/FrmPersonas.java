@@ -380,6 +380,7 @@ public class FrmPersonas extends javax.swing.JFrame {
         
         if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
             AdmPersonas.insertarRegistro();
+            AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
         }else{
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
         }

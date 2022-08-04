@@ -8,6 +8,9 @@ package controller;
 import arraylists.ArrayListsFK;
 import com.toedter.calendar.JDateChooser;
 import controllerDB.AdmPersonasDataBase;
+import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import model.Persona;
 import utilities.Conversiones;
 import utilities.Validaciones;
@@ -35,10 +38,14 @@ public class AdmPersonas {
     }
 
     public static void insertarRegistro() {
-        if(p != null){            
-            System.out.println(p.toString());
-            //AdmPersonasDataBase.insertar(p);
-        }
+        AdmPersonasDataBase.insertar(p);
+    }
+
+    public static void limpiarCampos(JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail, JDateChooser dtcFechaNac) {
+        txtCedula.setText(" ");
+        txtNombres.setText(" ");
+        txtApellidos.setText(" ");
+        dtcFechaNac.setDate(new Date(2000-1900, 0, 1));
     }
     
 }
