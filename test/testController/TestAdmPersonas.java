@@ -5,7 +5,7 @@
  */
 package testController;
 
-import controller.AdmPersonasDataBase;
+import controllerDB.AdmPersonasDataBase;
 import java.util.ArrayList;
 import java.util.Date;
 import model.Persona;
