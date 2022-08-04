@@ -6,6 +6,10 @@
 package view;
 
 import components.JSwingUtils;
+import controller.AdmPersonas;
+import java.util.Date;
+import model.Persona;
+import utilities.Conversiones;
 
 
 /**
@@ -16,7 +20,10 @@ public class FrmPersonas extends javax.swing.JFrame {
     
     public FrmPersonas() {        
         initComponents();
+        /*Cargar combos con valores obtenidos de la BD*/
         JSwingUtils.cargarCombos(cmbSexo,cmbNacionalidad,cmbTipoId);
+        /*Setear dateChooser con una fecha del 2000*/
+        dtcFechaNac.setDate(new Date(2000-1900, 0, 1));
     }
     
     
@@ -364,14 +371,17 @@ public class FrmPersonas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String cedula = txtCedula.getText().trim();
-        String nombre = txtNombres.getText().trim();        
+        String identificador = txtCedula.getText().trim();
+        String nombres = txtNombres.getText().trim();        
         String apellidos = txtApellidos.getText().trim();
         String email = txtEmail.getText().trim();
         String fkSexo = (String) cmbSexo.getSelectedItem();
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
         String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
-        //System.out.println(Conversiones.getFecha(dtcFechaNac));
+        
+        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
+            
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
