@@ -76,9 +76,6 @@ public class Servicios {
                 System.out.println(e);
             }
         }
-        for (Nacionalidad nacionalidad : lista) {
-            System.out.println(nacionalidad.toString());
-        }
         return lista;
     }
     

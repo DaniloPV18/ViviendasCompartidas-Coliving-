@@ -6,6 +6,7 @@
 package utilities;
 
 import com.toedter.calendar.JDateChooser;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -44,13 +45,14 @@ public class Conversiones {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             java.util.Date parsedDate = sdf.parse(fecha);
             return new java.sql.Timestamp(parsedDate.getTime());
-        } catch (Exception e) {
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     public static long getEdad(java.util.Date fecha) {
-        LocalDate start = LocalDate.of(fecha.getYear()+1900, fecha.getMonth() , fecha.getDay());
+        LocalDate start = LocalDate.of(fecha.getYear()+1900, fecha.getMonth()+1 , fecha.getDay());
         LocalDate stop = LocalDate.now(ZoneId.of("America/Montreal"));
         long years = java.time.temporal.ChronoUnit.YEARS.between(start, stop);
         return years;
