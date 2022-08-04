@@ -8,8 +8,7 @@ package view;
 import components.JSwingUtils;
 import controller.AdmPersonas;
 import java.util.Date;
-import model.Persona;
-import utilities.Conversiones;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -380,7 +379,9 @@ public class FrmPersonas extends javax.swing.JFrame {
         String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
         
         if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
-            
+            AdmPersonas.insertarRegistro();
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
