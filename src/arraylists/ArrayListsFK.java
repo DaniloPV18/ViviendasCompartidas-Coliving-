@@ -27,6 +27,16 @@ public class ArrayListsFK {
         return 0;
     }
     
+    public static String getSexo(int id){
+        ArrayList<Sexo> lista = JSwingUtils.getInstance().getListaSexoBD();
+        for (Sexo x : lista) {
+            if(id == x.getId()){
+                return x.getNombre();
+            }
+        }
+        return "-";
+    }
+    
     public static int getTipoIdentificacionFK(String nombre){
         ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
         for (TipoIdentificacion x : lista) {
@@ -35,7 +45,17 @@ public class ArrayListsFK {
             }
         }
         return 0;
-    }    
+    } 
+    
+    public static String getTipoIdentificacion(int id){
+        ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
+        for (TipoIdentificacion x : lista) {
+            if(id == x.getId()){
+                return x.getNombre();
+            }
+        }
+        return "-";
+    }
     
     public static int getNacionalidadFK(String nombre){
         ArrayList<Nacionalidad> lista = JSwingUtils.getInstance().getListaNacionalidadBD();
