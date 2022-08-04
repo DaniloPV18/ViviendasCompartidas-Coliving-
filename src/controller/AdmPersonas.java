@@ -52,11 +52,13 @@ public class AdmPersonas {
         dtcFechaNac.setDate(new Date(2000-1900, 0, 1));
     }
 
+    /* Metodo para actualizar los registros de la tabla del formulario */
     public static void actualizarTabla(JTable tblPersonas) {
         tamanoColumnasTabla(tblPersonas);
         ArrayList<Persona> lista = AdmPersonasDataBase.consultar();
         DefaultTableModel model = (DefaultTableModel) tblPersonas.getModel();        
-        model.setRowCount(0);        
+        model.setRowCount(0);    
+        /* Insertar registros a la tabla del formulario */
         for (Persona x : lista) {
             Object[] rowData = new Object[5];
             rowData[0] = x.getIdentificador();
@@ -68,6 +70,7 @@ public class AdmPersonas {
         }
     }
 
+    /* Modificar el ancho de las columnas de la tabla */
     public static void tamanoColumnasTabla(JTable tblPersonas) {
         int[] anchos = {6, 70, 70, 150, 10};
         for (int i = 0; i < tblPersonas.getColumnCount(); i++) {

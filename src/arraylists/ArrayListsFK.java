@@ -17,6 +17,7 @@ import model.TipoIdentificacion;
  */
 public class ArrayListsFK {
     
+    /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getSexoFK(String nombre){
         ArrayList<Sexo> lista = JSwingUtils.getInstance().getListaSexoBD();
         for (Sexo x : lista) {
@@ -27,6 +28,7 @@ public class ArrayListsFK {
         return 0;
     }
     
+    /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */
     public static String getSexo(int id){
         ArrayList<Sexo> lista = JSwingUtils.getInstance().getListaSexoBD();
         for (Sexo x : lista) {
@@ -37,6 +39,7 @@ public class ArrayListsFK {
         return "-";
     }
     
+    /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getTipoIdentificacionFK(String nombre){
         ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
         for (TipoIdentificacion x : lista) {
@@ -47,6 +50,7 @@ public class ArrayListsFK {
         return 0;
     } 
     
+    /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */
     public static String getTipoIdentificacion(int id){
         ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
         for (TipoIdentificacion x : lista) {
@@ -57,6 +61,7 @@ public class ArrayListsFK {
         return "-";
     }
     
+    /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getNacionalidadFK(String nombre){
         ArrayList<Nacionalidad> lista = JSwingUtils.getInstance().getListaNacionalidadBD();
         for (Nacionalidad x : lista) {

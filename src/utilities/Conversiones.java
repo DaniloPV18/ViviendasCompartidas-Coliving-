@@ -18,10 +18,12 @@ import model.Persona;
  */
 public class Conversiones {
     
+    /* Convertir los textos ingresados en los datos del objeto Persona en Mayusculas */
     public static Persona personaUpperCase(Persona persona){
         return new Persona(persona.getIdentificador(), persona.getNombres().toUpperCase(), persona.getApellidos().toUpperCase(), persona.getFechaNac(), persona.getEmail().toUpperCase(), persona.getEstado().toUpperCase(), persona.getTipoId(), persona.getSexo(), persona.getNacionalidad());
     }
 
+    /* Convertir la fecha de JDatechooser en String*/
     public static String getFecha(JDateChooser jd) {
         SimpleDateFormat Formato = new SimpleDateFormat("dd/MM/yyyy");
         if (jd.getDate() != null) {
@@ -31,6 +33,7 @@ public class Conversiones {
         }
     }
 
+    /* Convertir la fecha de Date(Java) en String*/
     public static String getFecha(java.util.Date fecha) {
         SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (fecha != null) {
@@ -40,6 +43,7 @@ public class Conversiones {
         }
     }
 
+    /* Convertir String en TimeStamp SQL*/
     public static java.sql.Timestamp getFecha(String fecha) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -51,6 +55,7 @@ public class Conversiones {
         }
     }
 
+    /* Metodo para obtener la edad a través de un Date(Java) */
     public static long getEdad(java.util.Date fecha) {
         LocalDate start = LocalDate.of(fecha.getYear()+1900, fecha.getMonth()+1 , fecha.getDay());
         LocalDate stop = LocalDate.now(ZoneId.of("America/Montreal"));
