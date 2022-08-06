@@ -42,6 +42,17 @@ public class Conversiones {
             return null;
         }
     }
+    
+    /* Convertir String a Date(Java) */
+    public static java.util.Date getDate(String fecha){
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = formatter.parse(fecha);
+            return date;
+        } catch (ParseException ex) {
+            return null;
+        }
+    }
 
     /* Convertir String en TimeStamp SQL*/
     public static java.sql.Timestamp getFecha(String fecha) {
