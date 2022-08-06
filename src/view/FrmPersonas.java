@@ -9,6 +9,7 @@ import components.JSwingUtils;
 import controller.AdmPersonas;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import utilities.Validaciones;
 
 
 /**
@@ -16,6 +17,8 @@ import javax.swing.JOptionPane;
  * @author N1L0XD
  */
 public class FrmPersonas extends javax.swing.JFrame {
+    private int indice;
+    private String identificadorPersona;    
     
     public FrmPersonas() {        
         initComponents();
@@ -359,8 +362,9 @@ public class FrmPersonas extends javax.swing.JFrame {
         String fkSexo = (String) cmbSexo.getSelectedItem();
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
         String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();        
-        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
+        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)  && Validaciones.existePersona(identificador)){
             AdmPersonas.insertarRegistro();
+            JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
             AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
             AdmPersonas.actualizarTabla(tblPersonas);
         }else{
@@ -373,7 +377,21 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
-        
+        String identificador = txtCedula.getText().trim();
+        String nombres = txtNombres.getText().trim();        
+        String apellidos = txtApellidos.getText().trim();
+        String email = txtEmail.getText().trim();
+        String fkSexo = (String) cmbSexo.getSelectedItem();
+        String fkTipoID = (String) cmbTipoId.getSelectedItem();
+        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();     
+        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
+            AdmPersonas.actualizarRegistro(identificadorPersona);
+            JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
+            AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
+            AdmPersonas.actualizarTabla(tblPersonas);            
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
+        }
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -385,7 +403,9 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
-        
+        indice = AdmPersonas.getIndexTable(tblPersonas);
+        identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
+        AdmPersonas.cargarRegistro(identificadorPersona,txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac,cmbSexo,cmbTipoId,cmbNacionalidad);
     }//GEN-LAST:event_tblPersonasMouseClicked
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
