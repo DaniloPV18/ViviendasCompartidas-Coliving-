@@ -20,7 +20,7 @@ public class TestAdmPersonas {
         
         consultarTabla();
                
-        AdmPersonasDataBase.actualizar(44, new Persona("1561651651", "DANILO MIGUEL", "PIN VELOZ", new Date(), "DANILO@GMAIL.COM", "HABILITADO", 1, 1, 1));
+        AdmPersonasDataBase.actualizar("1561651651", new Persona("1212", "DANILO MIGUEL", "PIN VELOZ", new Date(), "DANILO@GMAIL.COM", "HABILITADO", 1, 1, 1));
         
         AdmPersonasDataBase.eliminar("1561651651");
                 

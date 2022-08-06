@@ -31,8 +31,8 @@ public class AdmPersonasDataBase {
     private static final String ACTUALIZAR = " UPDATE PERSONA "
             + "SET "
             + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
-            + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ?"
-            + "WHERE id_persona = ? ";
+            + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
+            + "WHERE identificador = ? ";
     
     private static final String ELIMINAR = " UPDATE PERSONA "
             + "SET "
@@ -69,7 +69,8 @@ public class AdmPersonasDataBase {
     }
     
     //Actualizar registro en BD 
-    public static void actualizar(int id, Persona persona) {
+    public static void actualizar(String identificadorPersona, Persona persona) {
+        System.out.println(identificadorPersona + " " + persona.toString());
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
@@ -81,7 +82,7 @@ public class AdmPersonasDataBase {
                 ps.setInt(6, persona.getTipoId());
                 ps.setInt(7, persona.getSexo());
                 ps.setInt(8, persona.getNacionalidad());
-                ps.setInt(9, id);
+                ps.setString(9, identificadorPersona);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
