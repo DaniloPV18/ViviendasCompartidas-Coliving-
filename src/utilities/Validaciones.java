@@ -5,6 +5,8 @@
  */
 package utilities;
 
+import controller.AdmPersonas;
+import javax.swing.JOptionPane;
 import model.Habitacion;
 import model.Persona;
 import model.Propiedad;
@@ -101,6 +103,16 @@ public class Validaciones {
         //return (num >= 10000) ?  false : true;
     }
     
+    public static boolean existePersona(String cedula){
+        Persona o = AdmPersonas.buscarCedula(cedula);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "La cedula ingresada ya existe: "+cedula);
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
     //Validar que los datos ingresado de la entidad Persona sean correctos
     public static boolean vPersona(Persona persona) {
         boolean nombres = vWords(persona.getNombres());
@@ -108,7 +120,7 @@ public class Validaciones {
         boolean tipoId = vInt(persona.getTipoId());
         boolean sexoId = vInt(persona.getSexo());
         boolean mayorEdad = vEdad(Conversiones.getEdad(persona.getFechaNac()));
-        return nombres && apellidos && tipoId && sexoId && mayorEdad;
+        return  nombres && apellidos && tipoId && sexoId && mayorEdad;
     }
     
     //Validar que los datos ingresado de la entidad Propiedad sean correctos
