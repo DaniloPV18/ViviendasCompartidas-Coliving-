@@ -5,6 +5,8 @@
  */
 package utilities;
 
+import controller.AdmPersonas;
+import javax.swing.JOptionPane;
 import model.Habitacion;
 import model.Persona;
 import model.Propiedad;
@@ -14,7 +16,8 @@ import model.Propiedad;
  * @author N1L0XD
  */
 public class Validaciones {
-
+    
+    /*Validar que la cadena ingresada sean solo números desde una Cadena*/
     public static boolean vInt(String cadena) {
         try {
             int num = Integer.parseInt(cadena);
@@ -25,9 +28,10 @@ public class Validaciones {
         }
     }
 
-    public static boolean vInt(int cadena) {
+    /*Validar que la cadena ingresada sean solo números desde Enteros*/
+    public static boolean vInt(int numero) {
         try {
-            int num = cadena;
+            int num = numero;
             return true;
         } catch (Exception e) {
             System.out.println("Error: la cadena debe contener solo números.");
@@ -35,8 +39,9 @@ public class Validaciones {
         }
     }
 
+    /*Validar que la cadena sean solos letras o espacios*/
     public static boolean vWords(String cadena) {
-        if (!cadena.isBlank()) {
+        if (!cadena.isBlank() && !cadena.isEmpty()) {
             for (int x = 0; x < cadena.length(); x++) {
                 char c = cadena.charAt(x);
                 // Si no está entre a y z, ni entre A y Z, ni es un espacio
@@ -52,6 +57,7 @@ public class Validaciones {
         return true;
     }
 
+    /*Validar que la persona sea mayor de edad*/
     public static boolean vEdad(long edad) {
         if(edad >=18){
             System.out.println("Mayor de edad admitido.");
@@ -97,15 +103,27 @@ public class Validaciones {
         //return (num >= 10000) ?  false : true;
     }
     
+    public static boolean existePersona(String cedula){
+        Persona o = AdmPersonas.buscarCedula(cedula);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "La cedula ingresada ya existe: "+cedula);
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    //Validar que los datos ingresado de la entidad Persona sean correctos
     public static boolean vPersona(Persona persona) {
         boolean nombres = vWords(persona.getNombres());
         boolean apellidos = vWords(persona.getApellidos());
         boolean tipoId = vInt(persona.getTipoId());
         boolean sexoId = vInt(persona.getSexo());
         boolean mayorEdad = vEdad(Conversiones.getEdad(persona.getFechaNac()));
-        return nombres && apellidos && tipoId && sexoId && mayorEdad;
+        return  nombres && apellidos && tipoId && sexoId && mayorEdad;
     }
     
+    //Validar que los datos ingresado de la entidad Propiedad sean correctos
     public static boolean vPropiedad(Propiedad propiedad) {
         boolean nombres = vWords(propiedad.getNombre());
         boolean numHab = vNumHab(propiedad.getNumHab());
@@ -116,6 +134,7 @@ public class Validaciones {
         return nombres && numHab && anfitrion && tipoPropiedad && estadoPropiedad && ciudad;
     }
 
+    //Validar que los datos ingresado de la entidad Habitacion sean correctos
     public static boolean vHabitacion(Habitacion habitacion) {
         boolean precio = vPrecioHab(habitacion.getPrecio());
         boolean numPer = vMaxPerHab(habitacion.getNumMax());

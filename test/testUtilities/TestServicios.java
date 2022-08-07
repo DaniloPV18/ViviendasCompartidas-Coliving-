@@ -5,9 +5,6 @@
  */
 package testUtilities;
 
-import java.util.Date;
-import model.Persona;
-import utilities.Servicios;
 
 /**
  *
@@ -15,7 +12,6 @@ import utilities.Servicios;
  */
 public class TestServicios {
     public static void main(String[] args) {
-        Persona p = Servicios.personaUpperCase(new Persona("00000001", "melant sedasd", "weeee PRUEBA", new Date(), "test@GMAIL.COM", "habilitado", 1, 1, 1));
-        System.out.println(p.toString());
+        
     }
 }

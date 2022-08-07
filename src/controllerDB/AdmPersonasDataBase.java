@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controllerDB;
 
 import connection.Conexion;
 import java.sql.Connection;
@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Persona;
 import utilities.Conversiones;
 
@@ -30,8 +31,8 @@ public class AdmPersonasDataBase {
     private static final String ACTUALIZAR = " UPDATE PERSONA "
             + "SET "
             + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
-            + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ?"
-            + "WHERE id_persona = ? ";
+            + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
+            + "WHERE identificador = ? ";
     
     private static final String ELIMINAR = " UPDATE PERSONA "
             + "SET "
@@ -60,6 +61,7 @@ public class AdmPersonasDataBase {
                 ps.setInt(9, persona.getSexo());
                 ps.setInt(10, persona.getNacionalidad());                
                 ps.execute();
+                JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -67,7 +69,8 @@ public class AdmPersonasDataBase {
     }
     
     //Actualizar registro en BD 
-    public static void actualizar(int id, Persona persona) {
+    public static void actualizar(String identificadorPersona, Persona persona) {
+        System.out.println(identificadorPersona + " " + persona.toString());
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
@@ -79,7 +82,7 @@ public class AdmPersonasDataBase {
                 ps.setInt(6, persona.getTipoId());
                 ps.setInt(7, persona.getSexo());
                 ps.setInt(8, persona.getNacionalidad());
-                ps.setInt(9, id);
+                ps.setString(9, identificadorPersona);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);

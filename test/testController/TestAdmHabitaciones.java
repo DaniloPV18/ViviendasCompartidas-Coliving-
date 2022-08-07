@@ -5,7 +5,7 @@
  */
 package testController;
 
-import controller.AdmHabitacionesDataBase;
+import controllerDB.AdmHabitacionesDataBase;
 import java.util.ArrayList;
 import model.Habitacion;
 
@@ -15,7 +15,7 @@ import model.Habitacion;
  */
 public class TestAdmHabitaciones {
     public static void main(String[] args) {
-        insertarDatosPrueba();      
+//        insertarDatosPrueba();      
         
 //        consultarTabla();
                
@@ -23,12 +23,12 @@ public class TestAdmHabitaciones {
 //        
 //        AdmPropiedadesDataBase.eliminar("000000003");
 //                
-//        consultarTabla();
+        consultarTabla();
     }
 
     private static void insertarDatosPrueba() {
         AdmHabitacionesDataBase.insertar(new Habitacion
-        (1, 4, true, 50,  1, 1, 1, 0));
+        (1, 4, true, 50,  1, 1, 1, 1));
     }
 
     private static void consultarTabla() {

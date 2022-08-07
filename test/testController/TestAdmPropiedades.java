@@ -5,7 +5,7 @@
  */
 package testController;
 
-import controller.AdmPropiedadesDataBase;
+import controllerDB.AdmPropiedadesDataBase;
 import java.util.ArrayList;
 import model.Propiedad;
 

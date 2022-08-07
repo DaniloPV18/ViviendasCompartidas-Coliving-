@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controllerDB;
 
 import connection.Conexion;
 import java.sql.Connection;
@@ -30,7 +30,7 @@ public class AdmHabitacionesDataBase {
     private static final String ACTUALIZAR = " UPDATE HABITACION "
             + "SET "
             + "     identificador = ?, num_max_per = ?, tiene_banio = ?, precio = ?, "
-            + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ?"
+            + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ? "
             + "WHERE id_habitacion = ? ";
     
     private static final String ELIMINAR = " UPDATE HABITACION "
@@ -117,9 +117,9 @@ public class AdmHabitacionesDataBase {
                             rs.getBoolean(4),//tiene_banio
                             rs.getDouble(5),//precio
                             rs.getInt(7),//tipohabitacion_id_tipohab
-                            rs.getInt(9),//propiedad_id_propiedad
-                            rs.getInt(10),//estadohabitacion_id_estadohab
-                            rs.getInt(11)//promocion_id_promocion
+                            rs.getInt(8),//propiedad_id_propiedad
+                            rs.getInt(9),//estadohabitacion_id_estadohab
+                            rs.getInt(10)//promocion_id_promocion
                     );
                     p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(6));
