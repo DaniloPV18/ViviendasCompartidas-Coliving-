@@ -30,7 +30,7 @@ public class AdmHabitacionesDataBase {
     private static final String ACTUALIZAR = " UPDATE HABITACION "
             + "SET "
             + "     identificador = ?, num_max_per = ?, tiene_banio = ?, precio = ?, "
-            + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ?"
+            + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ? "
             + "WHERE id_habitacion = ? ";
     
     private static final String ELIMINAR = " UPDATE HABITACION "

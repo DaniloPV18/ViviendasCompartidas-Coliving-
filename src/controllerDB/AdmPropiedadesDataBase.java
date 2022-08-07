@@ -30,7 +30,7 @@ public class AdmPropiedadesDataBase {
     private static final String ACTUALIZAR = " UPDATE PROPIEDAD "
             + "SET "
             + "     identificador = ?, nombre = ?, email = ?, direccion = ?, num_hab = ?, "
-            + "     anfitrion_id_persona = ?, tipopropiedad_id_tipopropiedad = ?, estadopropiedad_id_estadopropiedad = ?, ciudad_id_ciudad = ?"
+            + "     anfitrion_id_persona = ?, tipopropiedad_id_tipopropiedad = ?, estadopropiedad_id_estadopropiedad = ?, ciudad_id_ciudad = ? "
             + "WHERE id_propiedad = ? ";
     
     private static final String ELIMINAR = " UPDATE PROPIEDAD "
