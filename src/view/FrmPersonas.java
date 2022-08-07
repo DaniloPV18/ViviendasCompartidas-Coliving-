@@ -6,6 +6,7 @@
 package view;
 
 import components.JSwingUtils;
+import connection.Conexion;
 import controller.AdmPersonas;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -414,6 +415,7 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Conexion.desconectar();
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
