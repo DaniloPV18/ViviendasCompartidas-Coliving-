@@ -7,6 +7,9 @@ package view;
 
 //import configSQL.Conexion;
 
+import connection.Conexion;
+
+
 /**
  *
  * @author N1L0XD
@@ -344,7 +347,7 @@ public class FrmMenus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarAppActionPerformed
-//        Conexion.desconectar();
+        Conexion.desconectar();
         this.dispose();
     }//GEN-LAST:event_btnCerrarAppActionPerformed
 
