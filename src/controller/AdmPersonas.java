@@ -50,6 +50,11 @@ public class AdmPersonas {
         AdmPersonasDataBase.actualizar(identificadorPersona, p);
     }
     
+    /* Eliminar registro a la Base de datos */
+    public static void eliminarRegistro(String identificadorPersona, int indice){
+        AdmPersonasDataBase.eliminar(identificadorPersona);
+    }
+    
     /* Limpiar los campos del formulario */
     public static void limpiarCampos(JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail, JDateChooser dtcFechaNac) {
         txtCedula.setText(" ");

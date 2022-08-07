@@ -373,7 +373,9 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        
+        this.dispose();
+        FrmMenus frmMenu = new FrmMenus();
+        frmMenu.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
@@ -385,17 +387,30 @@ public class FrmPersonas extends javax.swing.JFrame {
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
         String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();     
         if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
-            AdmPersonas.actualizarRegistro(identificadorPersona);
-            JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-            AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
-            AdmPersonas.actualizarTabla(tblPersonas);            
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                AdmPersonas.actualizarRegistro(identificadorPersona);
+                JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
+                AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
+                AdmPersonas.actualizarTabla(tblPersonas);                  
+            }          
         }else{
-            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
+            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
         }
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        if(AdmPersonas.getIndexTable(tblPersonas) != -1 ){
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                indice = AdmPersonas.getIndexTable(tblPersonas);
+                identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
+                AdmPersonas.eliminarRegistro(identificadorPersona, indice);
+                AdmPersonas.actualizarTabla(tblPersonas);
+            }            
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -403,9 +418,13 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
-        indice = AdmPersonas.getIndexTable(tblPersonas);
-        identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
-        AdmPersonas.cargarRegistro(identificadorPersona,txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac,cmbSexo,cmbTipoId,cmbNacionalidad);
+        if(AdmPersonas.getIndexTable(tblPersonas) != -1){
+            indice = AdmPersonas.getIndexTable(tblPersonas);
+            identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
+            AdmPersonas.cargarRegistro(identificadorPersona,txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac,cmbSexo,cmbTipoId,cmbNacionalidad);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
+        }
     }//GEN-LAST:event_tblPersonasMouseClicked
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
