@@ -29,7 +29,7 @@ public class AdmPersonas {
     public static boolean validarDatos(String identificador, String nombres, String apellidos, String email, String fkSexo, String fkTipoID, String fkNacionalidad, JDateChooser dtcFechaNac) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
         int idSexo = ArrayListsFK.getSexoFK(fkSexo);
-        int idTipoId = ArrayListsFK.getTipoIdentificacionFK(fkTipoID);
+        int idTipoId = ArrayListsFK.getIdentificacionTipoFK(fkTipoID);
         int idNacionalidad = ArrayListsFK.getNacionalidadFK(fkNacionalidad);
         /* Validar que los datos ingresados sean los solicitados */
         p = new Persona(identificador, nombres, apellidos, dtcFechaNac.getDate(), email, "HABILITADO", idTipoId, idSexo, idNacionalidad);
@@ -75,7 +75,7 @@ public class AdmPersonas {
             rowData[0] = x.getIdentificador();
             rowData[1] = x.getNombres();
             rowData[2] = x.getApellidos();
-            rowData[3] = ArrayListsFK.getTipoIdentificacion(x.getTipoId());
+            rowData[3] = ArrayListsFK.getIdentificacionTipo(x.getTipoId());
             rowData[4] = ArrayListsFK.getSexo(x.getSexo());
             model.addRow(rowData);
         }

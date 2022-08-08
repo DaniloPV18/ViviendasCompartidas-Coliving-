@@ -9,7 +9,7 @@ import components.JSwingUtils;
 import java.util.ArrayList;
 import model.Nacionalidad;
 import model.Sexo;
-import model.TipoIdentificacion;
+import model.IdentificacionTipo;
 
 /**
  *
@@ -40,9 +40,9 @@ public class ArrayListsFK {
     }
     
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
-    public static int getTipoIdentificacionFK(String nombre){
-        ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
-        for (TipoIdentificacion x : lista) {
+    public static int getIdentificacionTipoFK(String nombre){
+        ArrayList<IdentificacionTipo> lista = JSwingUtils.getInstance().getListaTipoIdBD();
+        for (IdentificacionTipo x : lista) {
             if(nombre.compareToIgnoreCase(x.getNombre()) == 0){
                 return x.getId();
             }
@@ -51,9 +51,9 @@ public class ArrayListsFK {
     } 
     
     /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */
-    public static String getTipoIdentificacion(int id){
-        ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
-        for (TipoIdentificacion x : lista) {
+    public static String getIdentificacionTipo(int id){
+        ArrayList<IdentificacionTipo> lista = JSwingUtils.getInstance().getListaTipoIdBD();
+        for (IdentificacionTipo x : lista) {
             if(id == x.getId()){
                 return x.getNombre();
             }

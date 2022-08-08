@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Nacionalidad;
 import model.Sexo;
-import model.TipoIdentificacion;
+import model.IdentificacionTipo;
 
 /**
  *
@@ -79,14 +79,14 @@ public class Servicios {
         return lista;
     }
     
-    public static ArrayList<TipoIdentificacion> consultarTTipoId() {
-        ArrayList<TipoIdentificacion> lista = new ArrayList<>();
+    public static ArrayList<IdentificacionTipo> consultarTTipoId() {
+        ArrayList<IdentificacionTipo> lista = new ArrayList<>();
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(LISTARTIPOID);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    TipoIdentificacion o = new TipoIdentificacion(
+                    IdentificacionTipo o = new IdentificacionTipo(
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4)

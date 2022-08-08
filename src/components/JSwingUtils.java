@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import model.Nacionalidad;
 import model.Sexo;
-import model.TipoIdentificacion;
+import model.IdentificacionTipo;
 import utilities.Servicios;
 
 /**
@@ -17,7 +17,7 @@ public class JSwingUtils {
     private static JSwingUtils myInstance;
     private static ArrayList<Sexo> listaSexoBD = null;
     private static ArrayList<Nacionalidad> listaNacionalidadBD = null;
-    private static ArrayList<TipoIdentificacion> listaTipoIdBD = null;
+    private static ArrayList<IdentificacionTipo> listaTipoIdBD = null;
 
     private JSwingUtils() {
         listaSexoBD = new ArrayList<>();
@@ -48,11 +48,11 @@ public class JSwingUtils {
         JSwingUtils.listaNacionalidadBD = listaNacionalidadBD;
     }
 
-    public ArrayList<TipoIdentificacion> getListaTipoIdBD() {
+    public ArrayList<IdentificacionTipo> getListaTipoIdBD() {
         return listaTipoIdBD;
     }
 
-    public void setListaTipoIdBD(ArrayList<TipoIdentificacion> listaTipoIdBD) {
+    public void setListaTipoIdBD(ArrayList<IdentificacionTipo> listaTipoIdBD) {
         JSwingUtils.listaTipoIdBD = listaTipoIdBD;
     }
     
@@ -81,7 +81,7 @@ public class JSwingUtils {
 
     public static void cargarComboTipoId(JComboBox<String> cmbTipoId) {
         getInstance().setListaTipoIdBD(Servicios.consultarTTipoId());
-        for (TipoIdentificacion elemento : getInstance().getListaTipoIdBD()) {
+        for (IdentificacionTipo elemento : getInstance().getListaTipoIdBD()) {
             cmbTipoId.addItem(elemento.getNombre());
         }
     }
