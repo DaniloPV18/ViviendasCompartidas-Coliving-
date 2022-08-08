@@ -25,13 +25,13 @@ public class AdmPersonasDataBase {
 
     private static final String INSERTAR = "  INSERT INTO PERSONA ("
             + "     identificador, nombres, apellidos , fecha_nac, email, estado, fecha_reg, "
-            + "     tipoidentificacion_id_tipoid, sexo_id_sexo, nacionalidad_id_nacionalidad "
+            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexo, nacionalidad_id_nacionalidad "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE PERSONA "
             + "SET "
             + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
-            + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
+            + "     identificacion_tipo_id_identificacion_tipo = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
             + "WHERE identificador = ? ";
     
     private static final String ELIMINAR = " UPDATE PERSONA "
