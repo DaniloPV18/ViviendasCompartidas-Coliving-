@@ -11,21 +11,19 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class TipoHabitacion {
+public class Servicio {
 
     private int id;
-    private String identificador;
-    private String tipoHabitacion;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
-    public TipoHabitacion() {
+    public Servicio() {
         this.fechaReg = new Date();
     }
 
-    public TipoHabitacion(String identificador, String tipoHabitacion, String estado) {
-        this.identificador = identificador;
-        this.tipoHabitacion = tipoHabitacion;
+    public Servicio(String nombre, String estado) {
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -38,20 +36,12 @@ public class TipoHabitacion {
         this.id = id;
     }
 
-    public String getIdentificador() {
-        return identificador;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
-    public String getTipoHabitacion() {
-        return tipoHabitacion;
-    }
-
-    public void setTipoHabitacion(String tipoHabitacion) {
-        this.tipoHabitacion = tipoHabitacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +62,7 @@ public class TipoHabitacion {
 
     @Override
     public String toString() {
-        return "TipoHabitacion{" + "identificador=" + identificador + ", tipoHabitacion=" + tipoHabitacion + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "Servicio{" + "nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

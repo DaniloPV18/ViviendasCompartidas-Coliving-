@@ -11,19 +11,19 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class MetodoPago {
+public class PagoTipo {
 
     private int id;
-    private String identificador;
+    private int identificador;
     private String nombre;
     private String estado;
     private Date fechaReg;
 
-    public MetodoPago() {
+    public PagoTipo() {
         this.fechaReg = new Date();
     }
 
-    public MetodoPago(String identificador, String nombre, String estado) {
+    public PagoTipo(int identificador, String nombre, String estado) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.estado = estado;
@@ -38,11 +38,11 @@ public class MetodoPago {
         this.id = id;
     }
 
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 
@@ -72,7 +72,7 @@ public class MetodoPago {
 
     @Override
     public String toString() {
-        return "MetodoPago{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "PagoTipo{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }
