@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class Propiedad {
+public class Vivienda {
 
     private int id;
     private String identificador;
@@ -21,23 +21,23 @@ public class Propiedad {
     private int numHab;
     private Date fechaReg;/*Colocar BD*/
     private int anfitrion;
-    private int tipoPropiedad;
-    private int estadoPropiedad;
+    private int tipoVivienda;
+    private int estadoVivienda;
     private int ciudad;
 
-    public Propiedad() {
+    public Vivienda() {
         this.fechaReg = new Date();
     }
 
-    public Propiedad(String identificador, String nombre, String email, String direccion, int numHab, int anfitrion, int tipoPropiedad, int estadoPropiedad, int ciudad) {
+    public Vivienda(String identificador, String nombre, String email, String direccion, int numHab, int anfitrion, int tipoVivienda, int estadoVivienda, int ciudad) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.email = email;
         this.direccion = direccion;
         this.numHab = numHab;
         this.anfitrion = anfitrion;
-        this.tipoPropiedad = tipoPropiedad;
-        this.estadoPropiedad = estadoPropiedad;
+        this.tipoVivienda = tipoVivienda;
+        this.estadoVivienda = estadoVivienda;
         this.ciudad = ciudad;
         this.fechaReg = new Date();
     }
@@ -98,20 +98,20 @@ public class Propiedad {
         this.anfitrion = anfitrion;
     }
 
-    public int getTipoPropiedad() {
-        return tipoPropiedad;
+    public int getTipoVivienda() {
+        return tipoVivienda;
     }
 
-    public void setTipoPropiedad(int tipoPropiedad) {
-        this.tipoPropiedad = tipoPropiedad;
+    public void setTipoVivienda(int tipoVivienda) {
+        this.tipoVivienda = tipoVivienda;
     }
 
-    public int getEstadoPropiedad() {
-        return estadoPropiedad;
+    public int getEstadoVivienda() {
+        return estadoVivienda;
     }
 
-    public void setEstadoPropiedad(int estadoPropiedad) {
-        this.estadoPropiedad = estadoPropiedad;
+    public void setEstadoVivienda(int estadoVivienda) {
+        this.estadoVivienda = estadoVivienda;
     }
 
     public int getCiudad() {
@@ -132,7 +132,7 @@ public class Propiedad {
 
     @Override
     public String toString() {
-        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoPropiedad=" + tipoPropiedad + ", estadoPropidad=" + estadoPropiedad + ", ciudad=" + ciudad + '}';
+        return "Propiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", email=" + email + ", direccion=" + direccion + ", numHab=" + numHab + ", fechaReg=" + fechaReg + ", anfitrion=" + anfitrion + ", tipoVivienda=" + tipoVivienda + ", estadoPropidad=" + estadoVivienda + ", ciudad=" + ciudad + '}';
     }
 
 }
