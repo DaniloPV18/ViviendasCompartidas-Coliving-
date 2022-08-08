@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class TelefonoVivienda {
+public class ViviendaTelefono {
 
     private int id;
     private String numTelefono;
@@ -19,11 +19,11 @@ public class TelefonoVivienda {
     private Date fechaReg;
     private Vivienda vivienda;
 
-    public TelefonoVivienda() {
+    public ViviendaTelefono() {
         this.fechaReg = new Date();
     }
 
-    public TelefonoVivienda(String numTelefono, String estado, Vivienda vivienda) {
+    public ViviendaTelefono(String numTelefono, String estado, Vivienda vivienda) {
         this.numTelefono = numTelefono;
         this.estado = estado;
         this.vivienda = vivienda;

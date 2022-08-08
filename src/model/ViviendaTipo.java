@@ -11,21 +11,21 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class EstadoHabitacion {
+public class ViviendaTipo {
 
     private int id;
     private String identificador;
-    private String estadoHabitacion;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
-    public EstadoHabitacion() {
+    public ViviendaTipo() {
         this.fechaReg = new Date();
     }
 
-    public EstadoHabitacion(String identificador, String estadoHabitacion, String estado) {
+    public ViviendaTipo(String identificador, String nombre, String estado) {
         this.identificador = identificador;
-        this.estadoHabitacion = estadoHabitacion;
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -46,12 +46,12 @@ public class EstadoHabitacion {
         this.identificador = identificador;
     }
 
-    public String getEstadoHabitacion() {
-        return estadoHabitacion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEstadoHabitacion(String estadoHabitacion) {
-        this.estadoHabitacion = estadoHabitacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +72,7 @@ public class EstadoHabitacion {
 
     @Override
     public String toString() {
-        return "EstadoHabitacion{" + "identificador=" + identificador + ", estadoHabitacion=" + estadoHabitacion + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "TipoPropiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

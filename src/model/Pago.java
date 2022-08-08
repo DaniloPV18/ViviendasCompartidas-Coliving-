@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class Pagos {
+public class Pago {
 
     private int id;
     private String identificador;
@@ -26,11 +26,11 @@ public class Pagos {
     private int habitacion;
     private int propiedad;
 
-    public Pagos() {
+    public Pago() {
         this.fechaReg = new Date();
     }
 
-    public Pagos(String identificador, double monto, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
+    public Pago(String identificador, double monto, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
         this.identificador = identificador;
         this.monto = monto;
         this.estado = estado;
@@ -42,7 +42,7 @@ public class Pagos {
         this.fechaReg = new Date();
     }
 
-    public Pagos(String identificador, double monto, Date fechaInicio, Date fechaFinal, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
+    public Pago(String identificador, double monto, Date fechaInicio, Date fechaFinal, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
         this.identificador = identificador;
         this.monto = monto;
         this.fechaInicio = fechaInicio;
@@ -154,7 +154,7 @@ public class Pagos {
 
     @Override
     public String toString() {
-        return "Pagos{" + "identificador=" + identificador + ", monto=" + monto + ", fechaReg=" + fechaReg + ", fechaInicio=" + fechaInicio + ", fechaFinal=" + fechaFinal + ", estado=" + estado + ", metodoPago=" + metodoPago + ", huesped=" + huesped + ", tipoPago=" + tipoPago + ", habitacion=" + habitacion + ", propiedad=" + propiedad + '}';
+        return "Pago{" + "identificador=" + identificador + ", monto=" + monto + ", fechaReg=" + fechaReg + ", fechaInicio=" + fechaInicio + ", fechaFinal=" + fechaFinal + ", estado=" + estado + ", metodoPago=" + metodoPago + ", huesped=" + huesped + ", tipoPago=" + tipoPago + ", habitacion=" + habitacion + ", propiedad=" + propiedad + '}';
     }
 
 }

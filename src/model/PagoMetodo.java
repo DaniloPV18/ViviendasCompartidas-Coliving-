@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class TipoVivienda {
+public class PagoMetodo {
 
     private int id;
     private String identificador;
@@ -19,11 +19,11 @@ public class TipoVivienda {
     private String estado;
     private Date fechaReg;
 
-    public TipoVivienda() {
+    public PagoMetodo() {
         this.fechaReg = new Date();
     }
 
-    public TipoVivienda(String identificador, String nombre, String estado) {
+    public PagoMetodo(String identificador, String nombre, String estado) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.estado = estado;
@@ -72,7 +72,7 @@ public class TipoVivienda {
 
     @Override
     public String toString() {
-        return "TipoPropiedad{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "PagoMetodo{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }
