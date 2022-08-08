@@ -22,25 +22,25 @@ public class AdmViviendasDataBase {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO PROPIEDAD ("
+    private static final String INSERTAR = "  INSERT INTO VIVIENDA ("
             + "     identificador, nombre, email, direccion, num_hab, fecha_reg, "
-            + "     anfitrion_id_persona, tipovivienda_id_tipovivienda, estadovivienda_id_estadovivienda, ciudad_id_ciudad"
+            + "     anfitrion_id_persona, vivienda_tipo_id_vivienda_tipo, vivienda_estado_id_vivienda_estado, ciudad_id_ciudad"
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE PROPIEDAD "
+    private static final String ACTUALIZAR = " UPDATE VIVIENDA "
             + "SET "
             + "     identificador = ?, nombre = ?, email = ?, direccion = ?, num_hab = ?, "
-            + "     anfitrion_id_persona = ?, tipovivienda_id_tipovivienda = ?, estadovivienda_id_estadovivienda = ?, ciudad_id_ciudad = ? "
+            + "     anfitrion_id_persona = ?, vivienda_tipo_id_vivienda_tipo = ?, vivienda_estado_id_vivienda_estado = ?, ciudad_id_ciudad = ? "
             + "WHERE identificador = ? ";
     
-    private static final String ELIMINAR = " UPDATE PROPIEDAD "
+    private static final String ELIMINAR = " UPDATE VIVIENDA "
             + "SET "
-            + "     estadovivienda_id_estadovivienda = ? "
+            + "     vivienda_estado_id_vivienda_estado = ? "
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM PROPIEDAD "
-            + "WHERE estadovivienda_id_estadovivienda = 1 or "
-            + "estadovivienda_id_estadovivienda = 3 ";
+    private static final String LISTAR = " SELECT * FROM VIVIENDA "
+            + "WHERE vivienda_estado_id_vivienda_estado = 1 or "
+            + "vivienda_estado_id_vivienda_estado = 3 ";
 
     public static Connection getCn() {
         return cn;
