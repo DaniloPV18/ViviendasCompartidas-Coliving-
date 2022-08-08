@@ -25,7 +25,7 @@ public class Servicios {
     
     private static final String LISTARSEXO          = "SELECT * FROM sexo WHERE estado = 'HABILITADO' ";
     private static final String LISTARNACIONALIDAD  = "SELECT * FROM nacionalidad WHERE estado = 'HABILITADO' ";
-    private static final String LISTARTIPOID        = "SELECT * FROM tipoidentificacion WHERE estado = 'HABILITADO' ";
+    private static final String LISTARTIPOID        = "SELECT * FROM identificacion_tipo WHERE estado = 'HABILITADO' ";
     
     public static void ActualizarListas(){
         consultarTSexo();
