@@ -1,5 +1,6 @@
 package components;
 
+import controllerDB.AdmPersonasDataBase;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import model.*;
@@ -65,8 +66,12 @@ public class JSwingUtilsVivienda {
         //Obtener los registros de la tabla de la base de datos
         getInstance().setListaAnfitrionBD(Servicios.consultarTAnfitrion());
         //Setear elementos del combo con la tabla de la Base de datos
-        for (Anfitrion elemento : getInstance().getListaAnfitrionBD()) {
-            cmbCedulaAnfitrion.addItem(elemento.getIdentificador());
+        for (Anfitrion a : getInstance().getListaAnfitrionBD()) {
+            for (Persona p : AdmPersonasDataBase.consultar()) {
+                if(a.getIdentificador() == p.getId()){
+                    cmbCedulaAnfitrion.addItem(p.getIdentificador());
+                }
+            }
         }
     }
     
@@ -80,7 +85,7 @@ public class JSwingUtilsVivienda {
     public static void cargarComboViviendaTipo(JComboBox<String> cmbViviendaTipo) {
         getInstance().setListaViviendaTipoBD(Servicios.consultarTViviendaTipo());
         for (ViviendaTipo elemento : getInstance().getListaViviendaTipoBD()) {
-            cmbViviendaTipo.addItem(elemento.getEstado());
+            cmbViviendaTipo.addItem(elemento.getNombre());
         }
     }
 
