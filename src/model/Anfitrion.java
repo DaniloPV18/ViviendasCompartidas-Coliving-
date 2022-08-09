@@ -13,11 +13,11 @@ import java.util.Date;
  */
 public class Anfitrion{
     private int id;
-    private String identificador;
+    private int identificador;
     private String estado;
     private Date fechaReg;
 
-    public Anfitrion(String identificador, String estado) {
+    public Anfitrion(int identificador, String estado) {
         this.identificador = identificador;
         this.estado = estado;
         this.fechaReg = new Date();
@@ -31,11 +31,11 @@ public class Anfitrion{
         this.id = id;
     }
 
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 
@@ -53,7 +53,7 @@ public class Anfitrion{
 
     public void setFechaReg(Date fechaReg) {
         this.fechaReg = fechaReg;
-    }    
+    }
 
     @Override
     public String toString() {

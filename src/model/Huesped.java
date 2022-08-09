@@ -13,11 +13,11 @@ import java.util.Date;
  */
 public class Huesped{
     private int id;
-    private String identificador;
+    private int identificador;
     private String estado;
     private Date fechaReg;
 
-    public Huesped(String identificador, String estado) {
+    public Huesped(int identificador, String estado) {
         this.identificador = identificador;
         this.estado = estado;
         this.fechaReg = new Date();
@@ -31,11 +31,11 @@ public class Huesped{
         this.id = id;
     }
 
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 
@@ -54,6 +54,7 @@ public class Huesped{
     public void setFechaReg(Date fechaReg) {
         this.fechaReg = fechaReg;
     }
+
 
     @Override
     public String toString() {
