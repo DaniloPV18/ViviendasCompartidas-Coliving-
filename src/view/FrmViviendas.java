@@ -5,18 +5,23 @@
  */
 package view;
 
+import components.JSwingUtilsVivienda;
 import connection.Conexion;
-
+import controller.AdmViviendas;
+import javax.swing.JOptionPane;
+import utilities.Validaciones;
 /**
  *
  * @author N1L0XD
  */
 public class FrmViviendas extends javax.swing.JFrame {
 
-
     public FrmViviendas() {
         initComponents();
-        
+        /*Cargar combos con valores obtenidos de la BD*/
+//        JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario,cmbCiudad,cmbTipoVivienda);
+        /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
+        AdmViviendas.actualizarTabla(tblVivienda);
     }
 
     /**
@@ -52,8 +57,6 @@ public class FrmViviendas extends javax.swing.JFrame {
         cmbCiudad = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         cmbCedulaPropietario = new javax.swing.JComboBox<>();
-        jLabel21 = new javax.swing.JLabel();
-        cmbEstVivienda = new javax.swing.JComboBox<>();
         txtPropietario = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -211,9 +214,6 @@ public class FrmViviendas extends javax.swing.JFrame {
             }
         });
 
-        jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel21.setText("Estado de la Vivienda");
-
         txtPropietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPropietarioActionPerformed(evt);
@@ -242,43 +242,42 @@ public class FrmViviendas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel21))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(cmbTipoVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbCedulaPropietario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtIDVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(222, 222, 222)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbEstVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel15))
-                        .addGap(86, 86, 86)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmail)
-                            .addComponent(txtDireccion)
-                            .addComponent(txtNumHabt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNombreVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(28, 28, 28)
-                        .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel15))
+                            .addGap(86, 86, 86)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEmail)
+                                .addComponent(txtDireccion)
+                                .addComponent(txtNumHabt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel20)
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel9))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGap(103, 103, 103)
+                                    .addComponent(cmbTipoVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                    .addGap(93, 93, 93)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cmbCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbCedulaPropietario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtIDVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -308,11 +307,7 @@ public class FrmViviendas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(cmbTipoVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(cmbEstVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +321,7 @@ public class FrmViviendas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(txtNumHabt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
+                .addGap(102, 102, 102))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -369,14 +364,13 @@ public class FrmViviendas extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                        .addGap(62, 62, 62))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(12, 12, 12)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -401,13 +395,13 @@ public class FrmViviendas extends javax.swing.JFrame {
     }//GEN-LAST:event_tblViviendaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        if(AdmPersonas.getIndexTable(tblPersonas) != -1 ){
+//        if(AdmViviendas.getIndexTable(tblPersonas) != -1 ){
 //            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
 //                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//            indice = AdmPersonas.getIndexTable(tblPersonas);
-//            identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
-//            AdmPersonas.eliminarRegistro(identificadorPersona, indice);
-//            AdmPersonas.actualizarTabla(tblPersonas);
+//            indice = AdmViviendas.getIndexTable(tblPersonas);
+//            identificadorPersona = AdmViviendas.getIdentificador(tblPersonas,indice);
+//            AdmViviendas.eliminarRegistro(identificadorPersona, indice);
+//            AdmViviendas.actualizarTabla(tblPersonas);
 //        }
 //        }else{
 //            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
@@ -422,13 +416,13 @@ public class FrmViviendas extends javax.swing.JFrame {
 //        String fkSexo = (String) cmbSexo.getSelectedItem();
 //        String fkTipoID = (String) cmbTipoId.getSelectedItem();
 //        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
-//        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
+//        if(AdmViviendas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
 //            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
 //                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//            AdmPersonas.actualizarRegistro(identificadorPersona);
+//            AdmViviendas.actualizarRegistro(identificadorPersona);
 //            JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-//            AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
-//            AdmPersonas.actualizarTabla(tblPersonas);
+//            AdmViviendas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
+//            AdmViviendas.actualizarTabla(tblPersonas);
 //        }
 //        }else{
 //            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
@@ -441,21 +435,22 @@ public class FrmViviendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-//        String identificador = txtCedula.getText().trim();
-//        String nombres = txtNombres.getText().trim();
-//        String apellidos = txtApellidos.getText().trim();
-//        String email = txtEmail.getText().trim();
-//        String fkSexo = (String) cmbSexo.getSelectedItem();
-//        String fkTipoID = (String) cmbTipoId.getSelectedItem();
-//        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
-//        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)  && Validaciones.existePersona(identificador)){
-//            AdmPersonas.insertarRegistro();
-//            JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-//            AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
-//            AdmPersonas.actualizarTabla(tblPersonas);
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
-//        }
+        String propietario = (String) cmbCedulaPropietario.getSelectedItem();
+        String identificador = txtIDVivienda.getText().trim();
+        String ciudad = (String) cmbCiudad.getSelectedItem();
+        String nombre = txtNombreVivienda.getText().trim();
+        String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
+        String email = txtEmail.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+        String numHab = txtNumHabt.getText().trim();
+        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, propietario, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
+            AdmViviendas.insertarRegistro();
+            JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
+            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+            AdmViviendas.actualizarTabla(tblVivienda);
+        } else {
+            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
@@ -515,7 +510,7 @@ public class FrmViviendas extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -537,14 +532,12 @@ public class FrmViviendas extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbCedulaPropietario;
     private javax.swing.JComboBox<String> cmbCiudad;
-    private javax.swing.JComboBox<String> cmbEstVivienda;
     private javax.swing.JComboBox<String> cmbTipoVivienda;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;

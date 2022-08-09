@@ -15,12 +15,12 @@ public class JSwingUtilsVivienda {
     private static JSwingUtilsVivienda myInstance;
     private static ArrayList<Anfitrion> listaAnfitrionBD = null;
     private static ArrayList<Ciudad> listaCiudadBD = null;
-    private static ArrayList<ViviendaEstado> listaEstadoViviendaBD = null;
+    private static ArrayList<ViviendaTipo> listaViviendaTipoBD = null;
 
     private JSwingUtilsVivienda() {
         listaAnfitrionBD = new ArrayList<>();
         listaCiudadBD = new ArrayList<>();
-        listaEstadoViviendaBD = new ArrayList<>();
+        listaViviendaTipoBD = new ArrayList<>();
     }
 
     public static JSwingUtilsVivienda getInstance() {
@@ -46,12 +46,12 @@ public class JSwingUtilsVivienda {
         JSwingUtilsVivienda.listaCiudadBD = listaCiudadBD;
     }
 
-    public ArrayList<ViviendaEstado> getListaEstadoViviendaBD() {
-        return listaEstadoViviendaBD;
+    public ArrayList<ViviendaTipo> getListaViviendaTipoBD() {
+        return listaViviendaTipoBD;
     }
 
-    public void setListaEstadoViviendaBD(ArrayList<ViviendaEstado> listaEstadoViviendaBD) {
-        JSwingUtilsVivienda.listaEstadoViviendaBD = listaEstadoViviendaBD;
+    public void setListaViviendaTipoBD(ArrayList<ViviendaTipo> listaViviendaTipoBD) {
+        JSwingUtilsVivienda.listaViviendaTipoBD = listaViviendaTipoBD;
     }
     
     public static void cargarCombos(JComboBox<String> cmbCedulaAnfitrion, JComboBox<String> cmbCiudad, JComboBox<String> cmbViviendaTipo) {        
@@ -78,8 +78,8 @@ public class JSwingUtilsVivienda {
     }
 
     public static void cargarComboViviendaTipo(JComboBox<String> cmbViviendaTipo) {
-        getInstance().setListaEstadoViviendaBD(Servicios.consultarTViviendaTipo());
-        for (ViviendaEstado elemento : getInstance().getListaEstadoViviendaBD()) {
+        getInstance().setListaViviendaTipoBD(Servicios.consultarTViviendaTipo());
+        for (ViviendaTipo elemento : getInstance().getListaViviendaTipoBD()) {
             cmbViviendaTipo.addItem(elemento.getEstado());
         }
     }
