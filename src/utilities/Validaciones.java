@@ -6,6 +6,7 @@
 package utilities;
 
 import controller.AdmPersonas;
+import controller.AdmViviendas;
 import javax.swing.JOptionPane;
 import model.Habitacion;
 import model.Persona;
@@ -139,5 +140,15 @@ public class Validaciones {
         boolean precio = vPrecioHab(habitacion.getPrecio());
         boolean numPer = vMaxPerHab(habitacion.getNumMax());
         return precio && numPer;
+    }
+
+    public static boolean existeVivienda(String identificador) {
+        Vivienda o = AdmViviendas.buscarVivienda(identificador);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "Vivienda ingresada ya existe: "+identificador);
+            return false;
+        }else{
+            return true;
+        }
     }
 }
