@@ -19,7 +19,7 @@ public class FrmViviendas extends javax.swing.JFrame {
     public FrmViviendas() {
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
-//        JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario,cmbCiudad,cmbTipoVivienda);
+        JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario,cmbCiudad,cmbTipoVivienda);
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
         AdmViviendas.actualizarTabla(tblVivienda);
     }
@@ -435,7 +435,7 @@ public class FrmViviendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String propietario = (String) cmbCedulaPropietario.getSelectedItem();
+        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
         String identificador = txtIDVivienda.getText().trim();
         String ciudad = (String) cmbCiudad.getSelectedItem();
         String nombre = txtNombreVivienda.getText().trim();
@@ -443,7 +443,7 @@ public class FrmViviendas extends javax.swing.JFrame {
         String email = txtEmail.getText().trim();
         String direccion = txtDireccion.getText().trim();
         String numHab = txtNumHabt.getText().trim();
-        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, propietario, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
+        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
             AdmViviendas.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
             AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
