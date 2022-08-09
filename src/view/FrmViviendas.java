@@ -444,9 +444,9 @@ public class FrmViviendas extends javax.swing.JFrame {
         String direccion = txtDireccion.getText().trim();
         String numHab = txtNumHabt.getText().trim();
         if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
-            AdmViviendas.insertarRegistro();
+//            AdmViviendas.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+//            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
             AdmViviendas.actualizarTabla(tblVivienda);
         } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");

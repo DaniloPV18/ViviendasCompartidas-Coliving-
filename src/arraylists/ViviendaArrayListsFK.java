@@ -22,8 +22,8 @@ public class ViviendaArrayListsFK {
     public static int getAnfitrionFK(String anfitrion) {
         ArrayList<Anfitrion> lista = JSwingUtilsVivienda.getInstance().getListaAnfitrionBD();
         for (Anfitrion x : lista) {
-            if(anfitrion.compareToIgnoreCase(x.getIdentificador()) == 0){
-                return x.getId();
+            if(anfitrion.compareToIgnoreCase(x.getIdentificadorPersona()) == 0){
+                return x.getIdentificador();
             }
         }
         return 0;
@@ -44,7 +44,7 @@ public class ViviendaArrayListsFK {
     public static int getTipoViviendaFK(String tipoVivienda) {
         ArrayList<ViviendaTipo> lista = JSwingUtilsVivienda.getInstance().getListaViviendaTipoBD();
         for (ViviendaTipo x : lista) {
-            if(tipoVivienda.compareToIgnoreCase(x.getIdentificador()) == 0){
+            if(tipoVivienda.compareToIgnoreCase(x.getNombre()) == 0){
                 return x.getId();
             }
         }

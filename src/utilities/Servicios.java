@@ -25,7 +25,7 @@ public class Servicios {
     private static final String LISTARNACIONALIDAD  = "SELECT * FROM nacionalidad WHERE estado = 'HABILITADO' ";
     private static final String LISTARTIPOID        = "SELECT * FROM identificacion_tipo WHERE estado = 'HABILITADO' ";
     
-    private static final String LISTARANFITRION        = "SELECT a.id_anfitrion, a.id_persona, a.estado, a.fecha_reg FROM anfitrion a "
+    private static final String LISTARANFITRION        = "SELECT a.id_anfitrion, a.id_persona, a.estado, a.fecha_reg, p.identificador FROM anfitrion a "
                                                             + "INNER JOIN persona p ON a.id_persona = p.id_persona AND a.estado = 'HABILITADO' AND p.estado = 'HABILITADO' ";
     private static final String LISTARCIUDAD           = "SELECT * FROM ciudad WHERE estado = 'HABILITADO' ";
     private static final String LISTARVIVIENDATIPO     = "SELECT * FROM vivienda_tipo WHERE estado = 'HABILITADO' ";
@@ -114,7 +114,8 @@ public class Servicios {
                 while (rs.next()) {
                     Anfitrion o = new Anfitrion(
                             rs.getInt(2),
-                            rs.getString(3)
+                            rs.getString(3),
+                            rs.getString(5)
                     );
                     o.setFechaReg(rs.getTimestamp(4));
                     o.setId(rs.getInt(1));
