@@ -11,14 +11,17 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class Huesped{
+public class Huesped {
+
     private int id;
     private int identificador;
+    private String identificadorPersona;
     private String estado;
     private Date fechaReg;
 
-    public Huesped(int identificador, String estado) {
+    public Huesped(int identificador, String estado, String identificadorPersona) {
         this.identificador = identificador;
+        this.identificadorPersona = identificadorPersona;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -39,6 +42,14 @@ public class Huesped{
         this.identificador = identificador;
     }
 
+    public String getIdentificadorPersona() {
+        return identificadorPersona;
+    }
+
+    public void setIdentificadorPersona(String identificadorPersona) {
+        this.identificadorPersona = identificadorPersona;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -55,10 +66,9 @@ public class Huesped{
         this.fechaReg = fechaReg;
     }
 
-
     @Override
     public String toString() {
-        return "Huesped{" + "id=" + id + ", identificador=" + identificador + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
-    }
-    
+        return "Huesped{" + "id=" + id + ", identificador=" + identificador + ", identificadorPersona=" + identificadorPersona + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+    }    
+
 }

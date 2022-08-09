@@ -14,11 +14,13 @@ import java.util.Date;
 public class Anfitrion{
     private int id;
     private int identificador;
+    private String identificadorPersona;
     private String estado;
     private Date fechaReg;
 
-    public Anfitrion(int identificador, String estado) {
+    public Anfitrion(int identificador, String estado, String identificadorPersona) {
         this.identificador = identificador;
+        this.identificadorPersona = identificadorPersona;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -39,6 +41,14 @@ public class Anfitrion{
         this.identificador = identificador;
     }
 
+    public String getIdentificadorPersona() {
+        return identificadorPersona;
+    }
+
+    public void setIdentificadorPersona(String identificadorPersona) {
+        this.identificadorPersona = identificadorPersona;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -57,7 +67,7 @@ public class Anfitrion{
 
     @Override
     public String toString() {
-        return "Anfitrion{" + "id=" + id + ", identificador=" + identificador + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
-    }
+        return "Anfitrion{" + "id=" + id + ", identificador=" + identificador + ", identificadorPersona=" + identificadorPersona + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+    }    
     
 }
