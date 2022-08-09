@@ -5,7 +5,7 @@
  */
 package view;
 
-import components.JSwingUtils;
+import components.JSwingUtilsPersona;
 import connection.Conexion;
 import controller.AdmPersonas;
 import java.util.Date;
@@ -24,7 +24,7 @@ public class FrmPersonas extends javax.swing.JFrame {
     public FrmPersonas() {        
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
-        JSwingUtils.cargarCombos(cmbSexo,cmbNacionalidad,cmbTipoId);
+        JSwingUtilsPersona.cargarCombos(cmbSexo,cmbNacionalidad,cmbTipoId);
         /*Setear dateChooser con una fecha del 2000*/
         dtcFechaNac.setDate(new Date(2000-1900, 0, 1));
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
@@ -410,13 +410,9 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
-        if(AdmPersonas.getIndexTable(tblPersonas) != -1){
-            indice = AdmPersonas.getIndexTable(tblPersonas);
-            identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
-            AdmPersonas.cargarRegistro(identificadorPersona,txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac,cmbSexo,cmbTipoId,cmbNacionalidad);
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
-        }
+        indice = AdmPersonas.getIndexTable(tblPersonas);
+        identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
+        AdmPersonas.cargarRegistro(identificadorPersona,txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac,cmbSexo,cmbTipoId,cmbNacionalidad);
     }//GEN-LAST:event_tblPersonasMouseClicked
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
