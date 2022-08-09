@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controllerDB;
 
 import connection.Conexion;
 import java.sql.Connection;
@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Persona;
 import utilities.Conversiones;
 
@@ -24,14 +25,14 @@ public class AdmPersonasDataBase {
 
     private static final String INSERTAR = "  INSERT INTO PERSONA ("
             + "     identificador, nombres, apellidos , fecha_nac, email, estado, fecha_reg, "
-            + "     tipoidentificacion_id_tipoid, sexo_id_sexo, nacionalidad_id_nacionalidad "
+            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexo, nacionalidad_id_nacionalidad "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE PERSONA "
             + "SET "
             + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
-            + "     tipoidentificacion_id_tipoid = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ?"
-            + "WHERE id_persona = ? ";
+            + "     identificacion_tipo_id_identificacion_tipo = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
+            + "WHERE identificador = ? ";
     
     private static final String ELIMINAR = " UPDATE PERSONA "
             + "SET "
@@ -43,7 +44,8 @@ public class AdmPersonasDataBase {
     public static Connection getCn() {
         return cn;
     }
-
+    
+    //Insertar registro en BD 
     public static void insertar(Persona persona) {
         if (cn != null) {
             try {
@@ -59,13 +61,16 @@ public class AdmPersonasDataBase {
                 ps.setInt(9, persona.getSexo());
                 ps.setInt(10, persona.getNacionalidad());                
                 ps.execute();
+                JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
             } catch (SQLException e) {
                 System.out.println(e);
             }
         }
     }
-
-    public static void actualizar(int id, Persona persona) {
+    
+    //Actualizar registro en BD 
+    public static void actualizar(String identificadorPersona, Persona persona) {
+        System.out.println(identificadorPersona + " " + persona.toString());
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
@@ -77,14 +82,15 @@ public class AdmPersonasDataBase {
                 ps.setInt(6, persona.getTipoId());
                 ps.setInt(7, persona.getSexo());
                 ps.setInt(8, persona.getNacionalidad());
-                ps.setInt(9, id);
+                ps.setString(9, identificadorPersona);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
             }
         }
     }
-
+    
+    //Eliminado logico en BD 
     public static void eliminar(String cedula){
         String newEstado = "ELIMINADO";
         if (cn != null) {
@@ -99,6 +105,7 @@ public class AdmPersonasDataBase {
         }
     }
     
+    //Consulta de los registros almacenados en la tabla de la BD
     public static ArrayList<Persona> consultar() {
         ArrayList<Persona> lista = new ArrayList<>();
         if (cn != null) {
@@ -117,6 +124,7 @@ public class AdmPersonasDataBase {
                             rs.getInt(10),//sexo
                             rs.getInt(11)//nacionalidad
                     );
+                    p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(8));
                     lista.add(p);
                 }

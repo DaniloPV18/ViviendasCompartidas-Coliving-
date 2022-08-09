@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TestUtilities;
+package testUtilities;
 
-import utilities.Conversiones;
 
 /**
  *
  * @author N1L0XD
  */
-public class TestConversiones {
+public class TestServicios {
     public static void main(String[] args) {
-        System.out.println(Conversiones.getFecha(new java.util.Date()));
-        System.out.println(Conversiones.getFecha(Conversiones.getFecha(new java.util.Date())));
         
     }
 }
