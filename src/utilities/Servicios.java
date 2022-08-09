@@ -25,7 +25,8 @@ public class Servicios {
     private static final String LISTARNACIONALIDAD  = "SELECT * FROM nacionalidad WHERE estado = 'HABILITADO' ";
     private static final String LISTARTIPOID        = "SELECT * FROM identificacion_tipo WHERE estado = 'HABILITADO' ";
     
-    private static final String LISTARANFITRION        = "SELECT * FROM anfitrion WHERE estado = 'HABILITADO' ";
+    private static final String LISTARANFITRION        = "SELECT a.id_anfitrion, a.id_persona, a.estado, a.fecha_reg FROM anfitrion a "
+                                                            + "INNER JOIN persona p ON a.id_persona = p.id_persona AND a.estado = 'HABILITADO' AND p.estado = 'HABILITADO' ";
     private static final String LISTARCIUDAD           = "SELECT * FROM ciudad WHERE estado = 'HABILITADO' ";
     private static final String LISTARVIVIENDATIPO     = "SELECT * FROM vivienda_tipo WHERE estado = 'HABILITADO' ";
     
@@ -108,10 +109,56 @@ public class Servicios {
         ArrayList<Anfitrion> lista = new ArrayList<>();
         if (cn != null) {
             try {
-                PreparedStatement ps = cn.prepareStatement(LISTARTIPOID);
+                PreparedStatement ps = cn.prepareStatement(LISTARANFITRION);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     Anfitrion o = new Anfitrion(
+                            rs.getInt(2),
+                            rs.getString(3)
+                    );
+                    o.setFechaReg(rs.getTimestamp(4));
+                    o.setId(rs.getInt(1));
+                    lista.add(o);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return lista;
+    }
+
+    public static ArrayList<Ciudad> consultarTCiudad() {
+        ArrayList<Ciudad> lista = new ArrayList<>();
+        if (cn != null) {
+            try {
+                PreparedStatement ps = cn.prepareStatement(LISTARCIUDAD);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Ciudad o = new Ciudad(
+                            rs.getInt(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getInt(6)
+                    );
+                    o.setFechaReg(rs.getTimestamp(5));
+                    o.setId(rs.getInt(1));
+                    lista.add(o);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return lista;
+    }
+
+    public static ArrayList<ViviendaTipo> consultarTViviendaTipo() {
+        ArrayList<ViviendaTipo> lista = new ArrayList<>();
+        if (cn != null) {
+            try {
+                PreparedStatement ps = cn.prepareStatement(LISTARVIVIENDATIPO);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    ViviendaTipo o = new ViviendaTipo(
                             rs.getString(2),
                             rs.getString(3),
                             rs.getString(4)
@@ -125,13 +172,5 @@ public class Servicios {
             }
         }
         return lista;
-    }
-
-    public static ArrayList<Ciudad> consultarTCiudad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static ArrayList<ViviendaTipo> consultarTViviendaTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
