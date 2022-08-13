@@ -12,26 +12,25 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import utilities.Validaciones;
 
-
 /**
  *
  * @author N1L0XD
  */
 public class FrmPersonas extends javax.swing.JFrame {
+
     private int indice;
-    private String identificadorPersona;    
-    
-    public FrmPersonas() {        
+    private String identificadorPersona;
+
+    public FrmPersonas() {
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
-        JSwingUtilsPersona.cargarCombos(cmbSexo,cmbNacionalidad,cmbTipoId);
+        JSwingUtilsPersona.cargarCombos(cmbSexo, cmbNacionalidad, cmbTipoId);
         /*Setear dateChooser con una fecha del 2000*/
-        dtcFechaNac.setDate(new Date(2000-1900, 0, 1));
+        dtcFechaNac.setDate(new Date(2000 - 1900, 0, 1));
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
         AdmPersonas.actualizarTabla(tblPersonas);
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -347,18 +346,18 @@ public class FrmPersonas extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String identificador = txtCedula.getText().trim();
-        String nombres = txtNombres.getText().trim();        
+        String nombres = txtNombres.getText().trim();
         String apellidos = txtApellidos.getText().trim();
         String email = txtEmail.getText().trim();
         String fkSexo = (String) cmbSexo.getSelectedItem();
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
-        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();        
-        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)  && Validaciones.existePersona(identificador)){
+        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
+        if (AdmPersonas.validarDatos(identificador, nombres, apellidos, email, fkSexo, fkTipoID, fkNacionalidad, dtcFechaNac) && Validaciones.existePersona(identificador)) {
             AdmPersonas.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-            AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
+            AdmPersonas.limpiarCampos(txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac);
             AdmPersonas.actualizarTabla(tblPersonas);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -371,35 +370,35 @@ public class FrmPersonas extends javax.swing.JFrame {
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
         String identificador = txtCedula.getText().trim();
-        String nombres = txtNombres.getText().trim();        
+        String nombres = txtNombres.getText().trim();
         String apellidos = txtApellidos.getText().trim();
         String email = txtEmail.getText().trim();
         String fkSexo = (String) cmbSexo.getSelectedItem();
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
-        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();     
-        if(AdmPersonas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
+        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
+        if (AdmPersonas.validarDatos(identificador, nombres, apellidos, email, fkSexo, fkTipoID, fkNacionalidad, dtcFechaNac)) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmPersonas.actualizarRegistro(identificadorPersona);
                 JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-                AdmPersonas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
-                AdmPersonas.actualizarTabla(tblPersonas);                  
-            }          
-        }else{
+                AdmPersonas.limpiarCampos(txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac);
+                AdmPersonas.actualizarTabla(tblPersonas);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
         }
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(AdmPersonas.getIndexTable(tblPersonas) != -1 ){
+        if (AdmPersonas.getIndexTable(tblPersonas) != -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 indice = AdmPersonas.getIndexTable(tblPersonas);
-                identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
+                identificadorPersona = AdmPersonas.getIdentificador(tblPersonas, indice);
                 AdmPersonas.eliminarRegistro(identificadorPersona, indice);
                 AdmPersonas.actualizarTabla(tblPersonas);
-            }            
-        }else{
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -411,28 +410,28 @@ public class FrmPersonas extends javax.swing.JFrame {
 
     private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
         indice = AdmPersonas.getIndexTable(tblPersonas);
-        identificadorPersona = AdmPersonas.getIdentificador(tblPersonas,indice);
-        AdmPersonas.cargarRegistro(identificadorPersona,txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac,cmbSexo,cmbTipoId,cmbNacionalidad);
+        identificadorPersona = AdmPersonas.getIdentificador(tblPersonas, indice);
+        AdmPersonas.cargarRegistro(identificadorPersona, txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac, cmbSexo, cmbTipoId, cmbNacionalidad);
     }//GEN-LAST:event_tblPersonasMouseClicked
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        
+
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void dtcFechaNacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMouseClicked
-        
+
     }//GEN-LAST:event_dtcFechaNacMouseClicked
 
     private void dtcFechaNacMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMouseEntered
-        
+
     }//GEN-LAST:event_dtcFechaNacMouseEntered
 
     private void dtcFechaNacMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMousePressed
-        
+
     }//GEN-LAST:event_dtcFechaNacMousePressed
 
     private void dtcFechaNacMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMouseReleased
-        
+
     }//GEN-LAST:event_dtcFechaNacMouseReleased
 
     /**

@@ -6,9 +6,7 @@
 package view;
 
 //import configSQL.Conexion;
-
 import connection.Conexion;
-
 
 /**
  *
