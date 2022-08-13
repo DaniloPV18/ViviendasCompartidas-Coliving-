@@ -401,15 +401,15 @@ public class FrmViviendas extends javax.swing.JFrame {
     }//GEN-LAST:event_tblViviendaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(AdmViviendas.getIndexTable(tblVivienda) != -1 ){
+        if (AdmViviendas.getIndexTable(tblVivienda) != -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            indice = AdmViviendas.getIndexTable(tblVivienda);
-            identificadorVivienda = AdmViviendas.getIdentificador(tblVivienda,indice);
-            AdmViviendas.eliminarRegistro(identificadorVivienda, indice);
-            AdmViviendas.actualizarTabla(tblVivienda);
-        }
-        }else{
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                indice = AdmViviendas.getIndexTable(tblVivienda);
+                identificadorVivienda = AdmViviendas.getIdentificador(tblVivienda, indice);
+                AdmViviendas.eliminarRegistro(identificadorVivienda, indice);
+                AdmViviendas.actualizarTabla(tblVivienda);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -423,15 +423,15 @@ public class FrmViviendas extends javax.swing.JFrame {
         String email = txtEmail.getText().trim();
         String direccion = txtDireccion.getText().trim();
         String numHab = txtNumHabt.getText().trim();
-        if(AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda)){
+        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda)) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            AdmViviendas.actualizarRegistro(identificadorVivienda);
-            JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
-            AdmViviendas.actualizarTabla(tblVivienda);
-        }
-        }else{
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                AdmViviendas.actualizarRegistro(identificadorVivienda);
+                JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
+                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+                AdmViviendas.actualizarTabla(tblVivienda);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
         }
     }//GEN-LAST:event_btnModificarActionPerformed

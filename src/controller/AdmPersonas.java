@@ -44,17 +44,17 @@ public class AdmPersonas {
     public static void insertarRegistro() {
         AdmPersonasDataBase.insertar(p);
     }
-    
+
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(String identificadorPersona) {
         AdmPersonasDataBase.actualizar(identificadorPersona, p);
     }
-    
+
     /* Eliminar registro a la Base de datos */
-    public static void eliminarRegistro(String identificadorPersona, int indice){
+    public static void eliminarRegistro(String identificadorPersona, int indice) {
         AdmPersonasDataBase.eliminar(identificadorPersona);
     }
-    
+
     /* Limpiar los campos del formulario */
     public static void limpiarCampos(JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail, JDateChooser dtcFechaNac) {
         txtCedula.setText(" ");
@@ -109,9 +109,9 @@ public class AdmPersonas {
         txtNombres.setText(x.getNombres());
         txtApellidos.setText(x.getApellidos());
         txtEmail.setText(x.getEmail());
-        cmbNacionalidad.setSelectedIndex(x.getNacionalidad()-1);
-        cmbSexo.setSelectedIndex(x.getSexo()-1);
-        cmbTipoId.setSelectedIndex(x.getTipoId()-1);
+        cmbNacionalidad.setSelectedIndex(x.getNacionalidad() - 1);
+        cmbSexo.setSelectedIndex(x.getSexo() - 1);
+        cmbTipoId.setSelectedIndex(x.getTipoId() - 1);
         dtcFechaNac.setDate(Conversiones.getDate(x.getFechaNac().toString()));
     }
 
@@ -124,6 +124,6 @@ public class AdmPersonas {
             }
         }
         return null;
-    }   
+    }
 
 }

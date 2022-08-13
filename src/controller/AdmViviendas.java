@@ -116,12 +116,12 @@ public class AdmViviendas {
         txtNombreVivienda.setText(x.getNombre());
         txtEmail.setText(x.getEmail());
         txtDireccion.setText(x.getDireccion());
-        txtNumHabt.setText(x.getNumHab()+"");
-        cmbCedulaPropietario.setSelectedIndex(x.getAnfitrion()-1);
-        cmbCiudad.setSelectedIndex(x.getCiudad()- 1);
-        cmbTipoVivienda.setSelectedIndex(x.getTipoVivienda()- 1);
+        txtNumHabt.setText(x.getNumHab() + "");
+        cmbCedulaPropietario.setSelectedIndex(x.getAnfitrion() - 1);
+        cmbCiudad.setSelectedIndex(x.getCiudad() - 1);
+        cmbTipoVivienda.setSelectedIndex(x.getTipoVivienda() - 1);
     }
-    
+
     /* Cargar los datos de la anfitrion de la vivienda seleccionada */
     public static void cargarAnfitrion(String identificadorVivienda, JTextField txtAnfitrion) {
         Vivienda x = buscarVivienda(identificadorVivienda);
@@ -138,6 +138,6 @@ public class AdmViviendas {
             }
         }
         return null;
-    }    
+    }
 
 }
