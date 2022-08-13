@@ -11,56 +11,56 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.Propiedad;
+import model.Vivienda;
 import utilities.Conversiones;
 
 /**
  *
  * @author N1L0XD
  */
-public class AdmPropiedadesDataBase {
+public class AdmViviendasDataBase {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO PROPIEDAD ("
+    private static final String INSERTAR = "  INSERT INTO VIVIENDA ("
             + "     identificador, nombre, email, direccion, num_hab, fecha_reg, "
-            + "     anfitrion_id_persona, tipopropiedad_id_tipopropiedad, estadopropiedad_id_estadopropiedad, ciudad_id_ciudad"
+            + "     anfitrion_id_persona, vivienda_tipo_id_vivienda_tipo, vivienda_estado_id_vivienda_estado, ciudad_id_ciudad"
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE PROPIEDAD "
+    private static final String ACTUALIZAR = " UPDATE VIVIENDA "
             + "SET "
             + "     identificador = ?, nombre = ?, email = ?, direccion = ?, num_hab = ?, "
-            + "     anfitrion_id_persona = ?, tipopropiedad_id_tipopropiedad = ?, estadopropiedad_id_estadopropiedad = ?, ciudad_id_ciudad = ? "
-            + "WHERE id_propiedad = ? ";
+            + "     anfitrion_id_persona = ?, vivienda_tipo_id_vivienda_tipo = ?, vivienda_estado_id_vivienda_estado = ?, ciudad_id_ciudad = ? "
+            + "WHERE identificador = ? ";
     
-    private static final String ELIMINAR = " UPDATE PROPIEDAD "
+    private static final String ELIMINAR = " UPDATE VIVIENDA "
             + "SET "
-            + "     estadopropiedad_id_estadopropiedad = ? "
+            + "     vivienda_estado_id_vivienda_estado = ? "
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM PROPIEDAD "
-            + "WHERE estadopropiedad_id_estadopropiedad = 1 or "
-            + "estadopropiedad_id_estadopropiedad = 3 ";
+    private static final String LISTAR = " SELECT * FROM VIVIENDA "
+            + "WHERE vivienda_estado_id_vivienda_estado = 1 or "
+            + "vivienda_estado_id_vivienda_estado = 3 ";
 
     public static Connection getCn() {
         return cn;
     }
     
     //Insertar registro en BD 
-    public static void insertar(Propiedad propiedad) {
+    public static void insertar(Vivienda vivienda) {
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(INSERTAR);
-                ps.setString(1, propiedad.getIdentificador());
-                ps.setString(2, propiedad.getNombre());
-                ps.setString(3, propiedad.getEmail());
-                ps.setString(4, propiedad.getDireccion());
-                ps.setInt   (5, propiedad.getNumHab());
-                ps.setTimestamp(6, Conversiones.getFecha(Conversiones.getFecha(propiedad.getFechaReg())));                
-                ps.setInt(7, propiedad.getAnfitrion());
-                ps.setInt(8, propiedad.getTipoPropiedad());
-                ps.setInt(9, propiedad.getEstadoPropiedad());                
-                ps.setInt(10, propiedad.getCiudad());                
+                ps.setString(1, vivienda.getIdentificador());
+                ps.setString(2, vivienda.getNombre());
+                ps.setString(3, vivienda.getEmail());
+                ps.setString(4, vivienda.getDireccion());
+                ps.setInt   (5, vivienda.getNumHab());
+                ps.setTimestamp(6, Conversiones.getFecha(Conversiones.getFecha(vivienda.getFechaReg())));                
+                ps.setInt(7, vivienda.getAnfitrion());
+                ps.setInt(8, vivienda.getTipoVivienda());
+                ps.setInt(9, vivienda.getEstadoVivienda());                
+                ps.setInt(10, vivienda.getCiudad());                
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -69,20 +69,20 @@ public class AdmPropiedadesDataBase {
     }
     
     //Actualizar registro en BD 
-    public static void actualizar(int id, Propiedad propiedad) {
+    public static void actualizar(String identificador, Vivienda vivienda) {
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
-                ps.setString(1, propiedad.getIdentificador());
-                ps.setString(2, propiedad.getNombre());
-                ps.setString(3, propiedad.getEmail());
-                ps.setString(4, propiedad.getDireccion());
-                ps.setInt   (5, propiedad.getNumHab());            
-                ps.setInt(6, propiedad.getAnfitrion());
-                ps.setInt(7, propiedad.getTipoPropiedad());
-                ps.setInt(8, propiedad.getEstadoPropiedad());                
-                ps.setInt(9, propiedad.getCiudad());
-                ps.setInt(10, id);
+                ps.setString(1, vivienda.getIdentificador());
+                ps.setString(2, vivienda.getNombre());
+                ps.setString(3, vivienda.getEmail());
+                ps.setString(4, vivienda.getDireccion());
+                ps.setInt   (5, vivienda.getNumHab());            
+                ps.setInt(6, vivienda.getAnfitrion());
+                ps.setInt(7, vivienda.getTipoVivienda());
+                ps.setInt(8, vivienda.getEstadoVivienda());                
+                ps.setInt(9, vivienda.getCiudad());
+                ps.setString(10, identificador);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -106,22 +106,22 @@ public class AdmPropiedadesDataBase {
     }
     
     //Consulta de los registros almacenados en la tabla de la BD
-    public static ArrayList<Propiedad> consultar() {
-        ArrayList<Propiedad> lista = new ArrayList<>();
+    public static ArrayList<Vivienda> consultar() {
+        ArrayList<Vivienda> lista = new ArrayList<>();
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(LISTAR);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Propiedad p = new Propiedad(
+                    Vivienda p = new Vivienda(
                             rs.getString(2),//identificador
                             rs.getString(3),//nombre
                             rs.getString(4),//email
                             rs.getString(5),//direccion
                             rs.getInt(6),//numHab
                             rs.getInt(8),//anfitrion
-                            rs.getInt(9),//tipoPropiedad
-                            rs.getInt(10),//estadoPropiedad
+                            rs.getInt(9),//tipoVivienda
+                            rs.getInt(10),//estadoVivienda
                             rs.getInt(11)//ciudad
                     );
                     p.setId(rs.getInt(1));

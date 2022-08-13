@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import model.Persona;
+import model.Vivienda;
 
 /**
  *
@@ -23,6 +24,11 @@ public class Conversiones {
         return new Persona(persona.getIdentificador(), persona.getNombres().toUpperCase(), persona.getApellidos().toUpperCase(), persona.getFechaNac(), persona.getEmail().toUpperCase(), persona.getEstado().toUpperCase(), persona.getTipoId(), persona.getSexo(), persona.getNacionalidad());
     }
 
+    /* Convertir los textos ingresados en los datos del objeto Vivienda en Mayusculas */
+    public static Vivienda viviendaUpperCase(Vivienda vivienda){
+        return new Vivienda(vivienda.getIdentificador(), vivienda.getNombre().toUpperCase(), vivienda.getEmail().toUpperCase(), vivienda.getDireccion().toUpperCase(),vivienda.getNumHab(),vivienda.getAnfitrion(),vivienda.getTipoVivienda(),vivienda.getEstadoVivienda(),vivienda.getCiudad());
+    }
+    
     /* Convertir la fecha de JDatechooser en String*/
     public static String getFecha(JDateChooser jd) {
         SimpleDateFormat Formato = new SimpleDateFormat("dd/MM/yyyy");

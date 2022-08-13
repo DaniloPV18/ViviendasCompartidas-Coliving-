@@ -5,7 +5,7 @@
  */
 package controller;
 
-import arraylists.ArrayListsFK;
+import arraylists.PersonaArrayListsFK;
 import com.toedter.calendar.JDateChooser;
 import controllerDB.AdmPersonasDataBase;
 import java.util.ArrayList;
@@ -28,9 +28,9 @@ public class AdmPersonas {
 
     public static boolean validarDatos(String identificador, String nombres, String apellidos, String email, String fkSexo, String fkTipoID, String fkNacionalidad, JDateChooser dtcFechaNac) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
-        int idSexo = ArrayListsFK.getSexoFK(fkSexo);
-        int idTipoId = ArrayListsFK.getTipoIdentificacionFK(fkTipoID);
-        int idNacionalidad = ArrayListsFK.getNacionalidadFK(fkNacionalidad);
+        int idSexo = PersonaArrayListsFK.getSexoFK(fkSexo);
+        int idTipoId = PersonaArrayListsFK.getIdentificacionTipoFK(fkTipoID);
+        int idNacionalidad = PersonaArrayListsFK.getNacionalidadFK(fkNacionalidad);
         /* Validar que los datos ingresados sean los solicitados */
         p = new Persona(identificador, nombres, apellidos, dtcFechaNac.getDate(), email, "HABILITADO", idTipoId, idSexo, idNacionalidad);
         if (Validaciones.vPersona(p)) {
@@ -75,8 +75,8 @@ public class AdmPersonas {
             rowData[0] = x.getIdentificador();
             rowData[1] = x.getNombres();
             rowData[2] = x.getApellidos();
-            rowData[3] = ArrayListsFK.getTipoIdentificacion(x.getTipoId());
-            rowData[4] = ArrayListsFK.getSexo(x.getSexo());
+            rowData[3] = PersonaArrayListsFK.getIdentificacionTipo(x.getTipoId());
+            rowData[4] = PersonaArrayListsFK.getSexo(x.getSexo());
             model.addRow(rowData);
         }
     }

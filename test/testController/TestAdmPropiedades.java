@@ -5,9 +5,9 @@
  */
 package testController;
 
-import controllerDB.AdmPropiedadesDataBase;
+import controllerDB.AdmViviendasDataBase;
 import java.util.ArrayList;
-import model.Propiedad;
+import model.Vivienda;
 
 /**
  *
@@ -27,14 +27,14 @@ public class TestAdmPropiedades {
     }
 
     private static void insertarDatosPrueba() {
-        AdmPropiedadesDataBase.insertar(new Propiedad
+        AdmViviendasDataBase.insertar(new Vivienda
         ("000000004", "TOUR INTERNATIONAL", "TOURINTERNATIONAL@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1));
     }
 
     private static void consultarTabla() {
-        ArrayList<Propiedad> ls1 = AdmPropiedadesDataBase.consultar();
+        ArrayList<Vivienda> ls1 = AdmViviendasDataBase.consultar();
         if(ls1!=null && ls1.size()>0){
-            for (Propiedad persona : ls1) {
+            for (Vivienda persona : ls1) {
                 System.out.println(persona.toString());
             }
         }else{

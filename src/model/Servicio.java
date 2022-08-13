@@ -11,20 +11,18 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class TipoPago {
+public class Servicio {
 
     private int id;
-    private int identificador;
     private String nombre;
     private String estado;
     private Date fechaReg;
 
-    public TipoPago() {
+    public Servicio() {
         this.fechaReg = new Date();
     }
 
-    public TipoPago(int identificador, String nombre, String estado) {
-        this.identificador = identificador;
+    public Servicio(String nombre, String estado) {
         this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
@@ -36,14 +34,6 @@ public class TipoPago {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
     }
 
     public String getNombre() {
@@ -72,7 +62,7 @@ public class TipoPago {
 
     @Override
     public String toString() {
-        return "TipoPago{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "Servicio{" + "nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

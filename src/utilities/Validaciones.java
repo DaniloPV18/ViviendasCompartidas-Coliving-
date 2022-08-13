@@ -6,10 +6,11 @@
 package utilities;
 
 import controller.AdmPersonas;
+import controller.AdmViviendas;
 import javax.swing.JOptionPane;
 import model.Habitacion;
 import model.Persona;
-import model.Propiedad;
+import model.Vivienda;
 
 /**
  *
@@ -69,7 +70,7 @@ public class Validaciones {
         //return (edad >= 18) ? true : false;
     }
 
-    //Establecer el numero de habitaciones permitidas por propiedad
+    //Establecer el numero de habitaciones permitidas por vivienda
     public static boolean vNumHab(int num) {
         if(num>= 10 && num<=100){
             return true;
@@ -123,15 +124,15 @@ public class Validaciones {
         return  nombres && apellidos && tipoId && sexoId && mayorEdad;
     }
     
-    //Validar que los datos ingresado de la entidad Propiedad sean correctos
-    public static boolean vPropiedad(Propiedad propiedad) {
-        boolean nombres = vWords(propiedad.getNombre());
-        boolean numHab = vNumHab(propiedad.getNumHab());
-        boolean anfitrion = vInt(propiedad.getAnfitrion());
-        boolean tipoPropiedad = vInt(propiedad.getTipoPropiedad());
-        boolean estadoPropiedad = vInt(propiedad.getEstadoPropiedad());
-        boolean ciudad = vInt(propiedad.getCiudad());
-        return nombres && numHab && anfitrion && tipoPropiedad && estadoPropiedad && ciudad;
+    //Validar que los datos ingresado de la entidad Vivienda sean correctos
+    public static boolean vVivienda(Vivienda vivienda) {
+        boolean nombres = vWords(vivienda.getNombre());
+        boolean numHab = vNumHab(vivienda.getNumHab());
+        boolean anfitrion = vInt(vivienda.getAnfitrion());
+        boolean tipoVivienda = vInt(vivienda.getTipoVivienda());
+        boolean estadoVivienda = vInt(vivienda.getEstadoVivienda());
+        boolean ciudad = vInt(vivienda.getCiudad());
+        return nombres && numHab && anfitrion && tipoVivienda && estadoVivienda && ciudad;
     }
 
     //Validar que los datos ingresado de la entidad Habitacion sean correctos
@@ -139,5 +140,15 @@ public class Validaciones {
         boolean precio = vPrecioHab(habitacion.getPrecio());
         boolean numPer = vMaxPerHab(habitacion.getNumMax());
         return precio && numPer;
+    }
+
+    public static boolean existeVivienda(String identificador) {
+        Vivienda o = AdmViviendas.buscarVivienda(identificador);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "Vivienda ingresada ya existe: "+identificador);
+            return false;
+        }else{
+            return true;
+        }
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import model.Nacionalidad;
 import model.Sexo;
-import model.TipoIdentificacion;
+import model.IdentificacionTipo;
 import utilities.Servicios;
 
 /**
@@ -12,22 +12,22 @@ import utilities.Servicios;
  * @author N1L0XD
  */
 //Clase para cargar los combobox desde la BD.
-public class JSwingUtils {
+public class JSwingUtilsPersona {
 
-    private static JSwingUtils myInstance;
+    private static JSwingUtilsPersona myInstance;
     private static ArrayList<Sexo> listaSexoBD = null;
     private static ArrayList<Nacionalidad> listaNacionalidadBD = null;
-    private static ArrayList<TipoIdentificacion> listaTipoIdBD = null;
+    private static ArrayList<IdentificacionTipo> listaTipoIdBD = null;
 
-    private JSwingUtils() {
+    private JSwingUtilsPersona() {
         listaSexoBD = new ArrayList<>();
         listaNacionalidadBD = new ArrayList<>();
         listaTipoIdBD = new ArrayList<>();
     }
 
-    public static JSwingUtils getInstance() {
+    public static JSwingUtilsPersona getInstance() {
         if (myInstance == null) {
-            myInstance = new JSwingUtils();
+            myInstance = new JSwingUtilsPersona();
         }
         return myInstance;
     }
@@ -37,7 +37,7 @@ public class JSwingUtils {
     }
 
     public void setListaSexoBD(ArrayList<Sexo> listaSexoBD) {
-        JSwingUtils.listaSexoBD = listaSexoBD;
+        JSwingUtilsPersona.listaSexoBD = listaSexoBD;
     }    
 
     public ArrayList<Nacionalidad> getListaNacionalidadBD() {
@@ -45,15 +45,15 @@ public class JSwingUtils {
     }
 
     public void setListaNacionalidadBD(ArrayList<Nacionalidad> listaNacionalidadBD) {
-        JSwingUtils.listaNacionalidadBD = listaNacionalidadBD;
+        JSwingUtilsPersona.listaNacionalidadBD = listaNacionalidadBD;
     }
 
-    public ArrayList<TipoIdentificacion> getListaTipoIdBD() {
+    public ArrayList<IdentificacionTipo> getListaTipoIdBD() {
         return listaTipoIdBD;
     }
 
-    public void setListaTipoIdBD(ArrayList<TipoIdentificacion> listaTipoIdBD) {
-        JSwingUtils.listaTipoIdBD = listaTipoIdBD;
+    public void setListaTipoIdBD(ArrayList<IdentificacionTipo> listaTipoIdBD) {
+        JSwingUtilsPersona.listaTipoIdBD = listaTipoIdBD;
     }
     
     public static void cargarCombos(JComboBox<String> cmbSexo, JComboBox<String> cmbNacionalidad, JComboBox<String> cmbTipoId) {        
@@ -81,10 +81,8 @@ public class JSwingUtils {
 
     public static void cargarComboTipoId(JComboBox<String> cmbTipoId) {
         getInstance().setListaTipoIdBD(Servicios.consultarTTipoId());
-        for (TipoIdentificacion elemento : getInstance().getListaTipoIdBD()) {
+        for (IdentificacionTipo elemento : getInstance().getListaTipoIdBD()) {
             cmbTipoId.addItem(elemento.getNombre());
         }
     }
-    
-
 }

@@ -381,9 +381,9 @@ public class FrmMenus extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromoActionPerformed
 
     private void btnViviendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViviendasActionPerformed
-//        this.dispose();
-//        FrmViviendas frmV = new FrmViviendas();
-//        frmV.setVisible(true);
+        this.dispose();
+        FrmViviendas frmV = new FrmViviendas();
+        frmV.setVisible(true);
     }//GEN-LAST:event_btnViviendasActionPerformed
 
     /**

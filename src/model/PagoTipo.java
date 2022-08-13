@@ -11,21 +11,21 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class EstadoPropiedad {
+public class PagoTipo {
 
     private int id;
-    private String identificador;
-    private String estadoPropiedad;
+    private int identificador;
+    private String nombre;
     private String estado;
     private Date fechaReg;
 
-    public EstadoPropiedad() {
+    public PagoTipo() {
         this.fechaReg = new Date();
     }
 
-    public EstadoPropiedad(String identificador, String estadoPropiedad, String estado) {
+    public PagoTipo(int identificador, String nombre, String estado) {
         this.identificador = identificador;
-        this.estadoPropiedad = estadoPropiedad;
+        this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
     }
@@ -38,20 +38,20 @@ public class EstadoPropiedad {
         this.id = id;
     }
 
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 
-    public String getEstadoPropiedad() {
-        return estadoPropiedad;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEstadoPropiedad(String estadoPropiedad) {
-        this.estadoPropiedad = estadoPropiedad;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -72,7 +72,7 @@ public class EstadoPropiedad {
 
     @Override
     public String toString() {
-        return "EstadoPropiedad{" + "identificador=" + identificador + ", estadoPropiedad=" + estadoPropiedad + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "PagoTipo{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

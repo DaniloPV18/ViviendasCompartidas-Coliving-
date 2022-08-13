@@ -8,7 +8,7 @@ package testUtilities;
 import java.util.Date;
 import model.Habitacion;
 import model.Persona;
-import model.Propiedad;
+import model.Vivienda;
 import utilities.Validaciones;
 /**
  *
@@ -27,7 +27,7 @@ public class TestValidaciones {
         System.out.println(Validaciones.vEdad(15));
         
         testPersonas();
-        testPropiedades();
+        testViviendas();
         testHabitaciones();
     }
 
@@ -64,33 +64,33 @@ public class TestValidaciones {
         System.out.println(Validaciones.vPersona(new Persona("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
     }
 
-    private static void testPropiedades() {
-        //Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS");
-        System.out.println(new Propiedad
+    private static void testViviendas() {
+        //Comprobar datos de objeto Vivienda -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Vivienda -> ESCENARIO NOMBRES DE PROPIEDAD NO CONTIENEN NUMEROS");
+        System.out.println(new Vivienda
         ("000000003", "COLIVING TURISTICO",  "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPropiedad(new Propiedad
+        System.out.println(Validaciones.vVivienda(new Vivienda
         ("000000003", "COLIVING TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1) ));
         
-        //Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS");
-        System.out.println(new Propiedad
+        //Comprobar datos de objeto Vivienda -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Vivienda -> ESCENARIO NOMBRES DE PROPIEDAD CONTIENEN NUMEROS");
+        System.out.println(new Vivienda
         ("000000003", "12312321 TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPropiedad(new Propiedad
+        System.out.println(Validaciones.vVivienda(new Vivienda
         ("000000003", "12312321 TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1)));
         
-        //Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100
-        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100");
-        System.out.println(new Propiedad
+        //Comprobar datos de objeto Vivienda -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100
+        System.out.println("Comprobar datos de objeto Vivienda -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 100");
+        System.out.println(new Vivienda
         ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 100, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPropiedad(new Propiedad
+        System.out.println(Validaciones.vVivienda(new Vivienda
         ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 100, 1, 1, 3, 1)));
         
-        //Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MENOR QUE 100
-        System.out.println("Comprobar datos de objeto Propiedad -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 10");
-        System.out.println(new Propiedad
+        //Comprobar datos de objeto Vivienda -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MENOR QUE 100
+        System.out.println("Comprobar datos de objeto Vivienda -> ESCENARIO NUMERO DE HABITACIONES DE UNA PROPIEDAD MAYOR O IGUAL A 10");
+        System.out.println(new Vivienda
         ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 9, 1, 1, 3, 1).toString());
-        System.out.println(Validaciones.vPropiedad(new Propiedad
+        System.out.println(Validaciones.vVivienda(new Vivienda
         ("000000003", "CENTRO TURISTICO", "COLIVINGTURISTICO@GMAIL.COM", "SUR GUAYAQUIL", 9, 1, 1, 3, 1)) );
     }
 

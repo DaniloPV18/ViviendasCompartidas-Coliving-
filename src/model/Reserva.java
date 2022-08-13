@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class Reservas {
+public class Reserva {
 
     private int id;
     private String identificador;
@@ -22,11 +22,11 @@ public class Reservas {
     private int pago;
     private int huesped;
 
-    public Reservas() {
+    public Reserva() {
         this.fechaReg = new Date();
     }
 
-    public Reservas(String identificador, Date fechaInicial, Date fechaFinal, String estado, int pago, int huesped) {
+    public Reserva(String identificador, Date fechaInicial, Date fechaFinal, String estado, int pago, int huesped) {
         this.identificador = identificador;
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
@@ -102,7 +102,7 @@ public class Reservas {
 
     @Override
     public String toString() {
-        return "Reservas{" + "identificador=" + identificador + ", fechaInicial=" + fechaInicial + ", fechaFinal=" + fechaFinal + ", fechaReg=" + fechaReg + ", estado=" + estado + ", pago=" + pago + ", huesped=" + huesped + '}';
+        return "Reserva{" + "identificador=" + identificador + ", fechaInicial=" + fechaInicial + ", fechaFinal=" + fechaFinal + ", fechaReg=" + fechaReg + ", estado=" + estado + ", pago=" + pago + ", huesped=" + huesped + '}';
     }
 
 }

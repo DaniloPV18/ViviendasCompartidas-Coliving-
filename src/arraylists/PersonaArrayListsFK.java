@@ -5,21 +5,21 @@
  */
 package arraylists;
 
-import components.JSwingUtils;
+import components.JSwingUtilsPersona;
 import java.util.ArrayList;
 import model.Nacionalidad;
 import model.Sexo;
-import model.TipoIdentificacion;
+import model.IdentificacionTipo;
 
 /**
  *
  * @author N1L0XD
  */
-public class ArrayListsFK {
+public class PersonaArrayListsFK {
     
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getSexoFK(String nombre){
-        ArrayList<Sexo> lista = JSwingUtils.getInstance().getListaSexoBD();
+        ArrayList<Sexo> lista = JSwingUtilsPersona.getInstance().getListaSexoBD();
         for (Sexo x : lista) {
             if(nombre.compareToIgnoreCase(x.getNombre()) == 0){
                 return x.getId();
@@ -30,7 +30,7 @@ public class ArrayListsFK {
     
     /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */
     public static String getSexo(int id){
-        ArrayList<Sexo> lista = JSwingUtils.getInstance().getListaSexoBD();
+        ArrayList<Sexo> lista = JSwingUtilsPersona.getInstance().getListaSexoBD();
         for (Sexo x : lista) {
             if(id == x.getId()){
                 return x.getNombre();
@@ -40,9 +40,9 @@ public class ArrayListsFK {
     }
     
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
-    public static int getTipoIdentificacionFK(String nombre){
-        ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
-        for (TipoIdentificacion x : lista) {
+    public static int getIdentificacionTipoFK(String nombre){
+        ArrayList<IdentificacionTipo> lista = JSwingUtilsPersona.getInstance().getListaTipoIdBD();
+        for (IdentificacionTipo x : lista) {
             if(nombre.compareToIgnoreCase(x.getNombre()) == 0){
                 return x.getId();
             }
@@ -51,9 +51,9 @@ public class ArrayListsFK {
     } 
     
     /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */
-    public static String getTipoIdentificacion(int id){
-        ArrayList<TipoIdentificacion> lista = JSwingUtils.getInstance().getListaTipoIdBD();
-        for (TipoIdentificacion x : lista) {
+    public static String getIdentificacionTipo(int id){
+        ArrayList<IdentificacionTipo> lista = JSwingUtilsPersona.getInstance().getListaTipoIdBD();
+        for (IdentificacionTipo x : lista) {
             if(id == x.getId()){
                 return x.getNombre();
             }
@@ -63,12 +63,12 @@ public class ArrayListsFK {
     
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getNacionalidadFK(String nombre){
-        ArrayList<Nacionalidad> lista = JSwingUtils.getInstance().getListaNacionalidadBD();
+        ArrayList<Nacionalidad> lista = JSwingUtilsPersona.getInstance().getListaNacionalidadBD();
         for (Nacionalidad x : lista) {
             if(nombre.compareToIgnoreCase(x.getNombre()) == 0){
                 return x.getId();
             }
         }
         return 0;
-    }
+    }    
 }

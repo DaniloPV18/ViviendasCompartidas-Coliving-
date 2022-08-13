@@ -11,22 +11,22 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class TelefonoPropiedad {
+public class ViviendaTelefono {
 
     private int id;
     private String numTelefono;
     private String estado;
     private Date fechaReg;
-    private Propiedad propiedad;
+    private Vivienda vivienda;
 
-    public TelefonoPropiedad() {
+    public ViviendaTelefono() {
         this.fechaReg = new Date();
     }
 
-    public TelefonoPropiedad(String numTelefono, String estado, Propiedad propiedad) {
+    public ViviendaTelefono(String numTelefono, String estado, Vivienda vivienda) {
         this.numTelefono = numTelefono;
         this.estado = estado;
-        this.propiedad = propiedad;
+        this.vivienda = vivienda;
         this.fechaReg = new Date();
     }
 
@@ -54,12 +54,12 @@ public class TelefonoPropiedad {
         this.estado = estado;
     }
 
-    public Propiedad getPropiedad() {
-        return propiedad;
+    public Vivienda getVivienda() {
+        return vivienda;
     }
 
-    public void setPropiedad(Propiedad propiedad) {
-        this.propiedad = propiedad;
+    public void setVivienda(Vivienda vivienda) {
+        this.vivienda = vivienda;
     }
 
     public Date getFechaReg() {
@@ -72,7 +72,7 @@ public class TelefonoPropiedad {
 
     @Override
     public String toString() {
-        return "TelefonoPropiedad{" + "numTelefono=" + numTelefono + ", estado=" + estado + ", fechaReg=" + fechaReg + ", propiedad=" + propiedad + '}';
+        return "TelefonoPropiedad{" + "numTelefono=" + numTelefono + ", estado=" + estado + ", fechaReg=" + fechaReg + ", vivienda=" + vivienda + '}';
     }
 
 }
