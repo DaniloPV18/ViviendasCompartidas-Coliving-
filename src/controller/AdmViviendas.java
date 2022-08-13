@@ -7,12 +7,14 @@ package controller;
 
 import arraylists.ViviendaArrayListsFK;
 import com.toedter.calendar.JDateChooser;
+import static controller.AdmPersonas.buscarCedula;
 import controllerDB.AdmViviendasDataBase;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import model.Persona;
 import model.Vivienda;
 import utilities.Conversiones;
 import utilities.Validaciones;
@@ -32,8 +34,8 @@ public class AdmViviendas {
             int idTipoVivienda = ViviendaArrayListsFK.getTipoViviendaFK(tipoVivienda);
 
             /* Validar que los datos ingresados sean los solicitados */
-            p = new Vivienda(identificador, nombre, email, direccion, 
-                    Integer.parseInt(numHab), idAnfitrion, idTipoVivienda, 1,1);
+            p = new Vivienda(identificador, nombre, email, direccion,
+                    Integer.parseInt(numHab), idAnfitrion, idTipoVivienda, 1, 1);
             if (Validaciones.vVivienda(p)) {
                 p = Conversiones.viviendaUpperCase(p);
                 return true;
@@ -74,19 +76,21 @@ public class AdmViviendas {
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
         for (Vivienda x : lista) {
-            Object[] rowData = new Object[5];
-//            rowData[0] = x.getIdentificador();
-//            rowData[1] = x.getNombres();
-//            rowData[2] = x.getApellidos();
-//            rowData[3] = PersonaArrayListsFK.getIdentificacionTipo(x.getTipoId());
-//            rowData[4] = PersonaArrayListsFK.getSexo(x.getSexo());
+            Object[] rowData = new Object[7];
+            rowData[0] = x.getIdentificador();
+            rowData[1] = x.getNombre();
+            rowData[2] = x.getEmail();
+            rowData[3] = x.getDireccion();
+            rowData[4] = ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion());
+            rowData[5] = ViviendaArrayListsFK.getCiudad(x.getCiudad());
+            rowData[6] = ViviendaArrayListsFK.getTipoVivienda(x.getTipoVivienda());
             model.addRow(rowData);
         }
     }
 
     /* Modificar el ancho de las columnas de la tabla */
     public static void tamanoColumnasTabla(JTable tblPersonas) {
-        int[] anchos = {6, 70, 70, 150, 10, 10, 10, 10, 10};
+        int[] anchos = {7, 70, 90, 70, 30, 7, 7};
         for (int i = 0; i < tblPersonas.getColumnCount(); i++) {
             tblPersonas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
@@ -106,16 +110,23 @@ public class AdmViviendas {
     }
 
     /* Cargar los datos de la fila seleccionada y actualizar el formulario */
-    public static void cargarRegistro(String identificador, JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail, JDateChooser dtcFechaNac, JComboBox<String> cmbSexo, JComboBox<String> cmbTipoId, JComboBox<String> cmbNacionalidad) {
-        Vivienda x = buscarVivienda(identificador);
-//        txtCedula.setText(x.getIdentificador());
-//        txtNombres.setText(x.getNombres());
-//        txtApellidos.setText(x.getApellidos());
-//        txtEmail.setText(x.getEmail());
-//        cmbNacionalidad.setSelectedIndex(x.getNacionalidad() - 1);
-//        cmbSexo.setSelectedIndex(x.getSexo() - 1);
-//        cmbTipoId.setSelectedIndex(x.getTipoId() - 1);
-//        dtcFechaNac.setDate(Conversiones.getDate(x.getFechaNac().toString()));
+    public static void cargarRegistro(String identificadorVivienda, JTextField txtIDVivienda, JTextField txtNombreVivienda, JTextField txtEmail, JTextField txtDireccion, JTextField txtNumHabt, JComboBox<String> cmbCedulaPropietario, JComboBox<String> cmbCiudad, JComboBox<String> cmbTipoVivienda) {
+        Vivienda x = buscarVivienda(identificadorVivienda);
+        txtIDVivienda.setText(x.getIdentificador());
+        txtNombreVivienda.setText(x.getNombre());
+        txtEmail.setText(x.getEmail());
+        txtDireccion.setText(x.getDireccion());
+        txtNumHabt.setText(x.getNumHab()+"");
+        cmbCedulaPropietario.setSelectedIndex(x.getAnfitrion()-1);
+        cmbCiudad.setSelectedIndex(x.getCiudad()- 1);
+        cmbTipoVivienda.setSelectedIndex(x.getTipoVivienda()- 1);
+    }
+    
+    /* Cargar los datos de la anfitrion de la vivienda seleccionada */
+    public static void cargarAnfitrion(String identificadorVivienda, JTextField txtAnfitrion) {
+        Vivienda x = buscarVivienda(identificadorVivienda);
+        Persona o = buscarCedula(ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion()));
+        txtAnfitrion.setText(o.getNombres() + " " + o.getApellidos());
     }
 
     /* Buscar una cedula que se encuentre registrada */
@@ -127,6 +138,6 @@ public class AdmViviendas {
             }
         }
         return null;
-    }
+    }    
 
 }

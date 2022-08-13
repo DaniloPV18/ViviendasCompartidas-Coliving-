@@ -10,16 +10,20 @@ import connection.Conexion;
 import controller.AdmViviendas;
 import javax.swing.JOptionPane;
 import utilities.Validaciones;
+
 /**
  *
  * @author N1L0XD
  */
 public class FrmViviendas extends javax.swing.JFrame {
 
+    private int indice;
+    private String identificadorVivienda;
+
     public FrmViviendas() {
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
-        JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario,cmbCiudad,cmbTipoVivienda);
+        JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
         AdmViviendas.actualizarTabla(tblVivienda);
     }
@@ -57,7 +61,7 @@ public class FrmViviendas extends javax.swing.JFrame {
         cmbCiudad = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         cmbCedulaPropietario = new javax.swing.JComboBox<>();
-        txtPropietario = new javax.swing.JTextField();
+        txtAnfitrion = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtIDVivienda = new javax.swing.JTextField();
@@ -74,11 +78,11 @@ public class FrmViviendas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CÓDIGO", "NOMBRE", "EMAIL", "NUM HABITACIONES", "DIRECCION", "ID. PROPIETARIO", "CIUDAD", "TIPO", "ESTADO"
+                "CÓDIGO", "NOMBRE", "EMAIL", "DIRECCION", "ID. ANFITRION", "CIUDAD", "TIPO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -214,9 +218,9 @@ public class FrmViviendas extends javax.swing.JFrame {
             }
         });
 
-        txtPropietario.addActionListener(new java.awt.event.ActionListener() {
+        txtAnfitrion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPropietarioActionPerformed(evt);
+                txtAnfitrionActionPerformed(evt);
             }
         });
 
@@ -249,7 +253,7 @@ public class FrmViviendas extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(28, 28, 28)
-                        .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +289,7 @@ public class FrmViviendas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAnfitrion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -390,43 +394,46 @@ public class FrmViviendas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblViviendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViviendaMouseClicked
-//        admVi.cargarDatosFormulario(txtDireccion, txtEmail, txtIDVivienda, txtMaxPer, txtNombreVivienda, txtNumHabt, txtNumHbtDis, txtNumHbtOc,
-//                cmbCedulaPropietario, cmbCiudad, cmbEstVivienda, cmbTipoVivienda, tblVivienda);
+        indice = AdmViviendas.getIndexTable(tblVivienda);
+        identificadorVivienda = AdmViviendas.getIdentificador(tblVivienda, indice);
+        AdmViviendas.cargarRegistro(identificadorVivienda, txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt, cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
+        AdmViviendas.cargarAnfitrion(identificadorVivienda, txtAnfitrion);
     }//GEN-LAST:event_tblViviendaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        if(AdmViviendas.getIndexTable(tblPersonas) != -1 ){
-//            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
-//                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//            indice = AdmViviendas.getIndexTable(tblPersonas);
-//            identificadorPersona = AdmViviendas.getIdentificador(tblPersonas,indice);
-//            AdmViviendas.eliminarRegistro(identificadorPersona, indice);
-//            AdmViviendas.actualizarTabla(tblPersonas);
-//        }
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
-//        }
+        if(AdmViviendas.getIndexTable(tblVivienda) != -1 ){
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            indice = AdmViviendas.getIndexTable(tblVivienda);
+            identificadorVivienda = AdmViviendas.getIdentificador(tblVivienda,indice);
+            AdmViviendas.eliminarRegistro(identificadorVivienda, indice);
+            AdmViviendas.actualizarTabla(tblVivienda);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-//        String identificador = txtCedula.getText().trim();
-//        String nombres = txtNombres.getText().trim();
-//        String apellidos = txtApellidos.getText().trim();
-//        String email = txtEmail.getText().trim();
-//        String fkSexo = (String) cmbSexo.getSelectedItem();
-//        String fkTipoID = (String) cmbTipoId.getSelectedItem();
-//        String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
-//        if(AdmViviendas.validarDatos(identificador,nombres,apellidos,email,fkSexo,fkTipoID,fkNacionalidad,dtcFechaNac)){
-//            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
-//                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//            AdmViviendas.actualizarRegistro(identificadorPersona);
-//            JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-//            AdmViviendas.limpiarCampos(txtCedula,txtNombres,txtApellidos,txtEmail,dtcFechaNac);
-//            AdmViviendas.actualizarTabla(tblPersonas);
-//        }
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
-//        }
+        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
+        String identificador = txtIDVivienda.getText().trim();
+        String ciudad = (String) cmbCiudad.getSelectedItem();
+        String nombre = txtNombreVivienda.getText().trim();
+        String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
+        String email = txtEmail.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+        String numHab = txtNumHabt.getText().trim();
+        if(AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda)){
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            AdmViviendas.actualizarRegistro(identificadorVivienda);
+            JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
+            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+            AdmViviendas.actualizarTabla(tblVivienda);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -444,9 +451,9 @@ public class FrmViviendas extends javax.swing.JFrame {
         String direccion = txtDireccion.getText().trim();
         String numHab = txtNumHabt.getText().trim();
         if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
-//            AdmViviendas.insertarRegistro();
+            AdmViviendas.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-//            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
             AdmViviendas.actualizarTabla(tblVivienda);
         } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
@@ -469,9 +476,9 @@ public class FrmViviendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCedulaPropietarioMouseEntered
 
-    private void txtPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPropietarioActionPerformed
+    private void txtAnfitrionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnfitrionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPropietarioActionPerformed
+    }//GEN-LAST:event_txtAnfitrionActionPerformed
 
     private void txtIDViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDViviendaActionPerformed
         // TODO add your handling code here:
@@ -549,11 +556,11 @@ public class FrmViviendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblVivienda;
+    private javax.swing.JTextField txtAnfitrion;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIDVivienda;
     private javax.swing.JTextField txtNombreVivienda;
     private javax.swing.JTextField txtNumHabt;
-    private javax.swing.JTextField txtPropietario;
     // End of variables declaration//GEN-END:variables
 }

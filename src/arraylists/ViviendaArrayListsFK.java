@@ -29,6 +29,17 @@ public class ViviendaArrayListsFK {
         return 0;
     }
     
+    /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */
+    public static String getAnfitrion(int anfitrion){
+        ArrayList<Anfitrion> lista = JSwingUtilsVivienda.getInstance().getListaAnfitrionBD();
+        for (Anfitrion x : lista) {
+            if(anfitrion == x.getId()){
+                return x.getIdentificadorPersona();
+            }
+        }
+        return "-";
+    }
+    
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getCiudadFK(String ciudad) {
         ArrayList<Ciudad> lista = JSwingUtilsVivienda.getInstance().getListaCiudadBD();
@@ -40,6 +51,17 @@ public class ViviendaArrayListsFK {
         return 0;
     }
 
+    /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */    
+    public static String getCiudad(int ciudad){
+        ArrayList<Ciudad> lista = JSwingUtilsVivienda.getInstance().getListaCiudadBD();
+        for (Ciudad x : lista) {
+            if(ciudad == x.getId()){
+                return x.getNombre();
+            }
+        }
+        return "-";
+    }
+    
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getTipoViviendaFK(String tipoVivienda) {
         ArrayList<ViviendaTipo> lista = JSwingUtilsVivienda.getInstance().getListaViviendaTipoBD();
@@ -49,5 +71,16 @@ public class ViviendaArrayListsFK {
             }
         }
         return 0;
-    }    
+    } 
+    
+    /* Metodo para recuperar la cadena partir de la llave foránea(ID) ingresada */    
+    public static String getTipoVivienda(int tipoVivienda){
+        ArrayList<ViviendaTipo> lista = JSwingUtilsVivienda.getInstance().getListaViviendaTipoBD();
+        for (ViviendaTipo x : lista) {
+            if(tipoVivienda == x.getId()){
+                return x.getNombre();
+            }
+        }
+        return "-";
+    }
 }
