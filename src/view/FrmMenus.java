@@ -373,9 +373,9 @@ public class FrmMenus extends javax.swing.JFrame {
 //        frmRes.setVisible(true);
     }//GEN-LAST:event_btnReservasActionPerformed
     private void btnPromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromoActionPerformed
-//        this.dispose();
-//        FrmPromocion frmPrm = new FrmPromocion();
-//        frmPrm.setVisible(true);
+        this.dispose();
+        FrmPromociones frmPrm = new FrmPromociones();
+        frmPrm.setVisible(true);
     }//GEN-LAST:event_btnPromoActionPerformed
 
     private void btnViviendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViviendasActionPerformed
