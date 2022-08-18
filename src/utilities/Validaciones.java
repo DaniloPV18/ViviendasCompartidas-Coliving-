@@ -7,9 +7,11 @@ package utilities;
 
 import controller.AdmPersonas;
 import controller.AdmViviendas;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Habitacion;
 import model.Persona;
+import model.Promocion;
 import model.Vivienda;
 
 /**
@@ -150,5 +152,19 @@ public class Validaciones {
         }else{
             return true;
         }
+    }
+
+    public static boolean validarFecha(Date fecha){
+        return fecha.before(new Date(System.currentTimeMillis()));
+    }
+    
+    public static boolean validarFecha(Date fechaI, Date fechaF){
+        return fechaI.before(fechaF);
+    }
+    
+    public static boolean vPromocion(Promocion p) {
+        boolean fechaI = validarFecha(p.getFechaInicio());
+        boolean fechaF = validarFecha(p.getFechaInicio(), p.getFechaFinal());
+        return fechaI && fechaF;
     }
 }
