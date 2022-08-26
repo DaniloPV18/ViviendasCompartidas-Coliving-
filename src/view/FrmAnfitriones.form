@@ -361,7 +361,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="GESTI&#xd3;N DE PERSONAS"/>
+            <Property name="text" type="java.lang.String" value="GESTI&#xd3;N DE ANFITRIONES"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
@@ -369,7 +369,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="REGISTROS DE PERSONAS"/>
+            <Property name="text" type="java.lang.String" value="REGISTROS DE ANFITRIONES"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistrar">

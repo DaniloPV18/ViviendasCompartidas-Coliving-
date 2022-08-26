@@ -7,7 +7,7 @@ package view;
 
 import components.JSwingUtilsPersona;
 import connection.Conexion;
-import controller.AdmPersonas;
+import controller.AdmHuespedes;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import utilities.Validaciones;
@@ -16,19 +16,19 @@ import utilities.Validaciones;
  *
  * @author N1L0XD
  */
-public class FrmPersonas extends javax.swing.JFrame {
+public class FrmHuespedes extends javax.swing.JFrame {
 
     private int indice;
     private String identificadorPersona;
 
-    public FrmPersonas() {
+    public FrmHuespedes() {
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
         JSwingUtilsPersona.cargarCombos(cmbSexo, cmbNacionalidad, cmbTipoId);
         /*Setear dateChooser con una fecha del 2000*/
         dtcFechaNac.setDate(new Date(2000 - 1900, 0, 1));
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
-        AdmPersonas.actualizarTabla(tblPersonas);
+        AdmHuespedes.actualizarTabla(tblPersonas);
     }
 
     @SuppressWarnings("unchecked")
@@ -200,10 +200,10 @@ public class FrmPersonas extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("GESTIÓN DE PERSONAS");
+        jLabel2.setText("GESTIÓN DE HUÉSPEDES");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("REGISTROS DE PERSONAS");
+        jLabel11.setText("REGISTROS DE HUÉSPEDES");
 
         btnRegistrar.setBackground(new java.awt.Color(153, 204, 255));
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -352,11 +352,11 @@ public class FrmPersonas extends javax.swing.JFrame {
         String fkSexo = (String) cmbSexo.getSelectedItem();
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
         String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
-        if (AdmPersonas.validarDatos(identificador, nombres, apellidos, email, fkSexo, fkTipoID, fkNacionalidad, dtcFechaNac) && Validaciones.existePersona(identificador)) {
-            AdmPersonas.insertarRegistro();
+        if (AdmHuespedes.validarDatos(identificador, nombres, apellidos, email, fkSexo, fkTipoID, fkNacionalidad, dtcFechaNac) && Validaciones.existeHuesped(identificador)) {
+            AdmHuespedes.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-            AdmPersonas.limpiarCampos(txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac);
-            AdmPersonas.actualizarTabla(tblPersonas);
+            AdmHuespedes.limpiarCampos(txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac);
+            AdmHuespedes.actualizarTabla(tblPersonas);
         } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
         }
@@ -376,13 +376,13 @@ public class FrmPersonas extends javax.swing.JFrame {
         String fkSexo = (String) cmbSexo.getSelectedItem();
         String fkTipoID = (String) cmbTipoId.getSelectedItem();
         String fkNacionalidad = (String) cmbNacionalidad.getSelectedItem();
-        if (AdmPersonas.validarDatos(identificador, nombres, apellidos, email, fkSexo, fkTipoID, fkNacionalidad, dtcFechaNac)) {
+        if (AdmHuespedes.validarDatos(identificador, nombres, apellidos, email, fkSexo, fkTipoID, fkNacionalidad, dtcFechaNac)) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                AdmPersonas.actualizarRegistro(identificadorPersona);
+                AdmHuespedes.actualizarRegistro(identificadorPersona);
                 JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-                AdmPersonas.limpiarCampos(txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac);
-                AdmPersonas.actualizarTabla(tblPersonas);
+                AdmHuespedes.limpiarCampos(txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac);
+                AdmHuespedes.actualizarTabla(tblPersonas);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
@@ -390,13 +390,13 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (AdmPersonas.getIndexTable(tblPersonas) != -1) {
+        if (AdmHuespedes.getIndexTable(tblPersonas) != -1) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                indice = AdmPersonas.getIndexTable(tblPersonas);
-                identificadorPersona = AdmPersonas.getIdentificador(tblPersonas, indice);
-                AdmPersonas.eliminarRegistro(identificadorPersona, indice);
-                AdmPersonas.actualizarTabla(tblPersonas);
+                indice = AdmHuespedes.getIndexTable(tblPersonas);
+                identificadorPersona = AdmHuespedes.getIdentificador(tblPersonas, indice);
+                AdmHuespedes.eliminarRegistro(identificadorPersona, indice);
+                AdmHuespedes.actualizarTabla(tblPersonas);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
@@ -409,9 +409,9 @@ public class FrmPersonas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
-        indice = AdmPersonas.getIndexTable(tblPersonas);
-        identificadorPersona = AdmPersonas.getIdentificador(tblPersonas, indice);
-        AdmPersonas.cargarRegistro(identificadorPersona, txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac, cmbSexo, cmbTipoId, cmbNacionalidad);
+        indice = AdmHuespedes.getIndexTable(tblPersonas);
+        identificadorPersona = AdmHuespedes.getIdentificador(tblPersonas, indice);
+        AdmHuespedes.cargarRegistro(identificadorPersona, txtCedula, txtNombres, txtApellidos, txtEmail, dtcFechaNac, cmbSexo, cmbTipoId, cmbNacionalidad);
     }//GEN-LAST:event_tblPersonasMouseClicked
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
@@ -451,21 +451,23 @@ public class FrmPersonas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmHuespedes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmHuespedes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmHuespedes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPersonas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmHuespedes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmPersonas().setVisible(true);
+                new FrmHuespedes().setVisible(true);
             }
         });
     }
