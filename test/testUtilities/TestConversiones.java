@@ -6,7 +6,7 @@
 package testUtilities;
 
 import java.util.Date;
-import model.Persona;
+import model.Anfitrion;
 import utilities.Conversiones;
 
 /**
@@ -25,7 +25,7 @@ public class TestConversiones {
         java.util.Date date = new java.util.GregorianCalendar(2014, java.util.Calendar.FEBRUARY, 11).getTime();
         System.out.println(Conversiones.getEdad(date));
         //Conversion UpperPersona
-        Persona p = Conversiones.personaUpperCase(new Persona("00000001", "melant sedasd", "weeee PRUEBA", new Date(), "test@GMAIL.COM", "habilitado", 1, 1, 1));
+        Anfitrion p = Conversiones.anfitrionUpperCase(new Anfitrion("00000001", "melant sedasd", "weeee PRUEBA", new Date(), "test@GMAIL.COM", "habilitado", 1, 1, 1));
         System.out.println(p.toString());
         
     }
