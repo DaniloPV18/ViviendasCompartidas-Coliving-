@@ -12,54 +12,54 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import model.Persona;
+import model.Huesped;
 import utilities.Conversiones;
 
 /**
  *
  * @author N1L0XD
  */
-public class AdmPersonasDataBase {
+public class AdmHuespedesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO PERSONA ("
+    private static final String INSERTAR = "  INSERT INTO HUESPED ("
             + "     identificador, nombres, apellidos , fecha_nac, email, estado, fecha_reg, "
-            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexo, nacionalidad_id_nacionalidad "
+            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexHo, nacionalidad_id_nacionalidad "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE PERSONA "
+    private static final String ACTUALIZAR = " UPDATE HUESPED "
             + "SET "
             + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
             + "     identificacion_tipo_id_identificacion_tipo = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
             + "WHERE identificador = ? ";
     
-    private static final String ELIMINAR = " UPDATE PERSONA "
+    private static final String ELIMINAR = " UPDATE HUESPED "
             + "SET "
             + "     estado = ?"
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM PERSONA WHERE estado = 'HABILITADO' ";
+    private static final String LISTAR = " SELECT * FROM HUESPED WHERE estado = 'HABILITADO' ";
 
     public static Connection getCn() {
         return cn;
     }
     
     //Insertar registro en BD 
-    public static void insertar(Persona persona) {
+    public static void insertar(Huesped huesped) {
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(INSERTAR);
-                ps.setString(1, persona.getIdentificador());
-                ps.setString(2, persona.getNombres());
-                ps.setString(3, persona.getApellidos());
-                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaNac())));
-                ps.setString(5, persona.getEmail());
-                ps.setString(6, persona.getEstado());
-                ps.setTimestamp(7, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaReg())));
-                ps.setInt(8, persona.getTipoId());
-                ps.setInt(9, persona.getSexo());
-                ps.setInt(10, persona.getNacionalidad());                
+                ps.setString(1, huesped.getIdentificador());
+                ps.setString(2, huesped.getNombres());
+                ps.setString(3, huesped.getApellidos());
+                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(huesped.getFechaNac())));
+                ps.setString(5, huesped.getEmail());
+                ps.setString(6, huesped.getEstado());
+                ps.setTimestamp(7, Conversiones.getFecha(Conversiones.getFecha(huesped.getFechaReg())));
+                ps.setInt(8, huesped.getTipoId());
+                ps.setInt(9, huesped.getSexo());
+                ps.setInt(10, huesped.getNacionalidad());                
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
             } catch (SQLException e) {
@@ -69,20 +69,20 @@ public class AdmPersonasDataBase {
     }
     
     //Actualizar registro en BD 
-    public static void actualizar(String identificadorPersona, Persona persona) {
-        System.out.println(identificadorPersona + " " + persona.toString());
+    public static void actualizar(String identificadorHuesped, Huesped huesped) {
+        System.out.println(identificadorHuesped + " " + huesped.toString());
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
-                ps.setString(1, persona.getIdentificador());
-                ps.setString(2, persona.getNombres());
-                ps.setString(3, persona.getApellidos());
-                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(persona.getFechaNac())));
-                ps.setString(5, persona.getEmail());
-                ps.setInt(6, persona.getTipoId());
-                ps.setInt(7, persona.getSexo());
-                ps.setInt(8, persona.getNacionalidad());
-                ps.setString(9, identificadorPersona);
+                ps.setString(1, huesped.getIdentificador());
+                ps.setString(2, huesped.getNombres());
+                ps.setString(3, huesped.getApellidos());
+                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(huesped.getFechaNac())));
+                ps.setString(5, huesped.getEmail());
+                ps.setInt(6, huesped.getTipoId());
+                ps.setInt(7, huesped.getSexo());
+                ps.setInt(8, huesped.getNacionalidad());
+                ps.setString(9, identificadorHuesped);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -106,14 +106,14 @@ public class AdmPersonasDataBase {
     }
     
     //Consulta de los registros almacenados en la tabla de la BD
-    public static ArrayList<Persona> consultar() {
-        ArrayList<Persona> lista = new ArrayList<>();
+    public static ArrayList<Huesped> consultar() {
+        ArrayList<Huesped> lista = new ArrayList<>();
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(LISTAR);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Persona p = new Persona(
+                    Huesped p = new Huesped(
                             rs.getString(2),//identificador
                             rs.getString(3),//nombres
                             rs.getString(4),//apellidos

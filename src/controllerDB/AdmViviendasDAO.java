@@ -18,7 +18,7 @@ import utilities.Conversiones;
  *
  * @author N1L0XD
  */
-public class AdmViviendasDataBase {
+public class AdmViviendasDAO {
 
     private static final Connection cn = Conexion.getConnection();
 

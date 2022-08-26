@@ -18,7 +18,7 @@ import utilities.Conversiones;
  *
  * @author N1L0XD
  */
-public class AdmPromocionesDataBase {
+public class AdmPromocionesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
