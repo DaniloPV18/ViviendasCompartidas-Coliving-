@@ -11,17 +11,34 @@ import java.util.Date;
  *
  * @author N1L0XD
  */
-public class Anfitrion{
+public class Anfitrion {
+
     private int id;
-    private int identificador;
-    private String identificadorPersona;
+    private String identificador;
+    private String nombres;
+    private String apellidos;
+    private Date fechaNac;
+    private String email;
     private String estado;
     private Date fechaReg;
+    private int tipoId;
+    private int sexo;
+    private int nacionalidad;
 
-    public Anfitrion(int identificador, String estado, String identificadorPersona) {
+    public Anfitrion() {
+        this.fechaReg = new Date();
+    }
+
+    public Anfitrion(String identificador, String nombres, String apellidos, Date fechaNac, String email, String estado, int tipoId, int sexo, int nacionalidad) {
         this.identificador = identificador;
-        this.identificadorPersona = identificadorPersona;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fechaNac = fechaNac;
+        this.email = email;
         this.estado = estado;
+        this.tipoId = tipoId;
+        this.sexo = sexo;
+        this.nacionalidad = nacionalidad;
         this.fechaReg = new Date();
     }
 
@@ -33,20 +50,44 @@ public class Anfitrion{
         this.id = id;
     }
 
-    public int getIdentificador() {
+    public String getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(int identificador) {
+    public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
 
-    public String getIdentificadorPersona() {
-        return identificadorPersona;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setIdentificadorPersona(String identificadorPersona) {
-        this.identificadorPersona = identificadorPersona;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getEstado() {
@@ -55,6 +96,30 @@ public class Anfitrion{
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getTipoId() {
+        return tipoId;
+    }
+
+    public void setTipoId(int tipoId) {
+        this.tipoId = tipoId;
+    }
+
+    public int getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(int sexo) {
+        this.sexo = sexo;
+    }
+
+    public int getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(int nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
     public Date getFechaReg() {
@@ -67,7 +132,8 @@ public class Anfitrion{
 
     @Override
     public String toString() {
-        return "Anfitrion{" + "id=" + id + ", identificador=" + identificador + ", identificadorPersona=" + identificadorPersona + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
-    }    
+        return "Anfitrion{" + "id=" + id + ", identificador=" + identificador + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNac=" + fechaNac + ", email=" + email + ", estado=" + estado + ", fechaReg=" + fechaReg + ", tipoId=" + tipoId + ", sexo=" + sexo + ", nacionalidad=" + nacionalidad + '}';
+    }
+    
     
 }
