@@ -105,29 +105,6 @@ public class Servicios {
         return lista;
     }
 
-    public static ArrayList<Anfitrion> consultarTAnfitrion() {
-        ArrayList<Anfitrion> lista = new ArrayList<>();
-        if (cn != null) {
-            try {
-                PreparedStatement ps = cn.prepareStatement(LISTARANFITRION);
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    Anfitrion o = new Anfitrion(
-                            rs.getInt(2),
-                            rs.getString(3),
-                            rs.getString(5)
-                    );
-                    o.setFechaReg(rs.getTimestamp(4));
-                    o.setId(rs.getInt(1));
-                    lista.add(o);
-                }
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
-        }
-        return lista;
-    }
-
     public static ArrayList<Ciudad> consultarTCiudad() {
         ArrayList<Ciudad> lista = new ArrayList<>();
         if (cn != null) {
