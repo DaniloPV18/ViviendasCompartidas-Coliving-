@@ -5,16 +5,17 @@
  */
 package controller;
 
-import arraylists.PersonaArrayListsFK;
+import arraylists.AnfitrionArrayListsFK;
+import arraylists.HuespedArrayListsFK;
 import com.toedter.calendar.JDateChooser;
-import controllerDB.AdmPersonasDataBase;
+import controllerDB.AdmHuespedesDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import model.Persona;
+import model.Huesped;
 import utilities.Conversiones;
 import utilities.Validaciones;
 
@@ -22,19 +23,19 @@ import utilities.Validaciones;
  *
  * @author N1L0XD
  */
-public class AdmPersonas {
+public class AdmHuespedes {
 
-    private static Persona p = null;
+    private static Huesped p = null;
 
     public static boolean validarDatos(String identificador, String nombres, String apellidos, String email, String fkSexo, String fkTipoID, String fkNacionalidad, JDateChooser dtcFechaNac) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
-        int idSexo = PersonaArrayListsFK.getSexoFK(fkSexo);
-        int idTipoId = PersonaArrayListsFK.getIdentificacionTipoFK(fkTipoID);
-        int idNacionalidad = PersonaArrayListsFK.getNacionalidadFK(fkNacionalidad);
+        int idSexo = HuespedArrayListsFK.getSexoFK(fkSexo);
+        int idTipoId = HuespedArrayListsFK.getIdentificacionTipoFK(fkTipoID);
+        int idNacionalidad = HuespedArrayListsFK.getNacionalidadFK(fkNacionalidad);
         /* Validar que los datos ingresados sean los solicitados */
-        p = new Persona(identificador, nombres, apellidos, dtcFechaNac.getDate(), email, "HABILITADO", idTipoId, idSexo, idNacionalidad);
-        if (Validaciones.vPersona(p)) {
-            p = Conversiones.personaUpperCase(p);
+        p = new Huesped(identificador, nombres, apellidos, dtcFechaNac.getDate(), email, "HABILITADO", idTipoId, idSexo, idNacionalidad);
+        if (Validaciones.vHuesped(p)) {
+            p = Conversiones.huespedUpperCase(p);
             return true;
         }
         return false;
@@ -42,17 +43,17 @@ public class AdmPersonas {
 
     /* Insertar registro a la Base de datos */
     public static void insertarRegistro() {
-        AdmPersonasDataBase.insertar(p);
+        AdmHuespedesDAO.insertar(p);
     }
 
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(String identificadorPersona) {
-        AdmPersonasDataBase.actualizar(identificadorPersona, p);
+        AdmHuespedesDAO.actualizar(identificadorPersona, p);
     }
 
     /* Eliminar registro a la Base de datos */
     public static void eliminarRegistro(String identificadorPersona, int indice) {
-        AdmPersonasDataBase.eliminar(identificadorPersona);
+        AdmHuespedesDAO.eliminar(identificadorPersona);
     }
 
     /* Limpiar los campos del formulario */
@@ -66,17 +67,17 @@ public class AdmPersonas {
     /* Metodo para actualizar los registros de la tabla del formulario */
     public static void actualizarTabla(JTable tblPersonas) {
         tamanoColumnasTabla(tblPersonas);
-        ArrayList<Persona> lista = AdmPersonasDataBase.consultar();
+        ArrayList<Huesped> lista = AdmHuespedesDAO.consultar();
         DefaultTableModel model = (DefaultTableModel) tblPersonas.getModel();
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
-        for (Persona x : lista) {
+        for (Huesped x : lista) {
             Object[] rowData = new Object[5];
             rowData[0] = x.getIdentificador();
             rowData[1] = x.getNombres();
             rowData[2] = x.getApellidos();
-            rowData[3] = PersonaArrayListsFK.getIdentificacionTipo(x.getTipoId());
-            rowData[4] = PersonaArrayListsFK.getSexo(x.getSexo());
+            rowData[3] = AnfitrionArrayListsFK.getIdentificacionTipo(x.getTipoId());
+            rowData[4] = AnfitrionArrayListsFK.getSexo(x.getSexo());
             model.addRow(rowData);
         }
     }
@@ -104,7 +105,7 @@ public class AdmPersonas {
 
     /* Cargar los datos de la fila seleccionada y actualizar el formulario */
     public static void cargarRegistro(String identificador, JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail, JDateChooser dtcFechaNac, JComboBox<String> cmbSexo, JComboBox<String> cmbTipoId, JComboBox<String> cmbNacionalidad) {
-        Persona x = buscarCedula(identificador);
+        Huesped x = buscarCedula(identificador);
         txtCedula.setText(x.getIdentificador());
         txtNombres.setText(x.getNombres());
         txtApellidos.setText(x.getApellidos());
@@ -116,9 +117,9 @@ public class AdmPersonas {
     }
 
     /* Buscar una cedula que se encuentre registrada */
-    public static Persona buscarCedula(String identificador) {
-        ArrayList<Persona> listaPersonas = AdmPersonasDataBase.consultar();
-        for (Persona x : listaPersonas) {
+    public static Huesped buscarCedula(String identificador) {
+        ArrayList<Huesped> listaPersonas = AdmHuespedesDAO.consultar();
+        for (Huesped x : listaPersonas) {
             if (x.getIdentificador().compareToIgnoreCase(identificador) == 0) {
                 return x;
             }

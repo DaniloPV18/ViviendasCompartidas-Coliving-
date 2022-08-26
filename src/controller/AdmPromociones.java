@@ -6,7 +6,7 @@
 package controller;
 
 import com.toedter.calendar.JDateChooser;
-import controllerDB.AdmPromocionesDataBase;
+import controllerDB.AdmPromocionesDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JTable;
@@ -37,17 +37,17 @@ public class AdmPromociones {
 
     /* Insertar registro a la Base de datos */
     public static void insertarRegistro() {
-        AdmPromocionesDataBase.insertar(p);
+        AdmPromocionesDAO.insertar(p);
     }
 
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(int identificadorPersona) {
-        AdmPromocionesDataBase.actualizar(identificadorPersona, p);
+        AdmPromocionesDAO.actualizar(identificadorPersona, p);
     }
 
     /* Eliminar registro a la Base de datos */
     public static void eliminarRegistro(int identificadorPersona, int indice) {
-        AdmPromocionesDataBase.eliminar(identificadorPersona);
+        AdmPromocionesDAO.eliminar(identificadorPersona);
     }
 
     /* Limpiar los campos del formulario */
@@ -60,7 +60,7 @@ public class AdmPromociones {
     /* Metodo para actualizar los registros de la tabla del formulario */
     public static void actualizarTabla(JTable tblPromociones) {
         tamanoColumnasTabla(tblPromociones);
-        ArrayList<Promocion> lista = AdmPromocionesDataBase.consultar();
+        ArrayList<Promocion> lista = AdmPromocionesDAO.consultar();
         DefaultTableModel model = (DefaultTableModel) tblPromociones.getModel();
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
@@ -105,7 +105,7 @@ public class AdmPromociones {
 
     /* Cargar los datos de la anfitrion de la vivienda seleccionada */
     public static Promocion buscarPromocion(int identificador) {
-        ArrayList<Promocion> listaPersonas = AdmPromocionesDataBase.consultar();
+        ArrayList<Promocion> listaPersonas = AdmPromocionesDAO.consultar();
         for (Promocion x : listaPersonas) {
             if (x.getId() == identificador) {
                 return x;

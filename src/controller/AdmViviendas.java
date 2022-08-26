@@ -6,14 +6,14 @@
 package controller;
 
 import arraylists.ViviendaArrayListsFK;
-import com.toedter.calendar.JDateChooser;
-import static controller.AdmPersonas.buscarCedula;
-import controllerDB.AdmViviendasDataBase;
+import static controller.AdmAnfitriones.buscarCedula;
+import controllerDB.AdmViviendasDAO;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import model.Anfitrion;
 import model.Persona;
 import model.Vivienda;
 import utilities.Conversiones;
@@ -47,17 +47,17 @@ public class AdmViviendas {
 
     /* Insertar registro a la Base de datos */
     public static void insertarRegistro() {
-        AdmViviendasDataBase.insertar(p);
+        AdmViviendasDAO.insertar(p);
     }
 
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(String identificadorPersona) {
-        AdmViviendasDataBase.actualizar(identificadorPersona, p);
+        AdmViviendasDAO.actualizar(identificadorPersona, p);
     }
 
     /* Eliminar registro a la Base de datos */
     public static void eliminarRegistro(String identificadorPersona, int indice) {
-        AdmViviendasDataBase.eliminar(identificadorPersona);
+        AdmViviendasDAO.eliminar(identificadorPersona);
     }
 
     /* Limpiar los campos del formulario */
@@ -71,7 +71,7 @@ public class AdmViviendas {
     /* Metodo para actualizar los registros de la tabla del formulario */
     public static void actualizarTabla(JTable tblPersonas) {
         tamanoColumnasTabla(tblPersonas);
-        ArrayList<Vivienda> lista = AdmViviendasDataBase.consultar();
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
         DefaultTableModel model = (DefaultTableModel) tblPersonas.getModel();
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
@@ -125,13 +125,13 @@ public class AdmViviendas {
     /* Cargar los datos de la anfitrion de la vivienda seleccionada */
     public static void cargarAnfitrion(String identificadorVivienda, JTextField txtAnfitrion) {
         Vivienda x = buscarVivienda(identificadorVivienda);
-        Persona o = buscarCedula(ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion()));
+        Anfitrion o = buscarCedula(ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion()));
         txtAnfitrion.setText(o.getNombres() + " " + o.getApellidos());
     }
 
     /* Buscar una cedula que se encuentre registrada */
     public static Vivienda buscarVivienda(String identificador) {
-        ArrayList<Vivienda> lista = AdmViviendasDataBase.consultar();
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
         for (Vivienda x : lista) {
             if (x.getIdentificador().compareToIgnoreCase(identificador) == 0) {
                 return x;
