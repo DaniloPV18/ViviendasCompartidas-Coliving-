@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.Anfitrion;
-import model.Persona;
 import model.Vivienda;
 import utilities.Conversiones;
 import utilities.Validaciones;

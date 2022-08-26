@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import model.Anfitrion;
 import model.Huesped;
-import model.Persona;
 import model.Vivienda;
 
 /**

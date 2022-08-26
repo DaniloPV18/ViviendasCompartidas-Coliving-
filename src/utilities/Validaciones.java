@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import model.Anfitrion;
 import model.Habitacion;
 import model.Huesped;
-import model.Persona;
 import model.Promocion;
 import model.Vivienda;
 
