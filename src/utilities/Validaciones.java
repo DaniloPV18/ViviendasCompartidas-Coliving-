@@ -5,11 +5,14 @@
  */
 package utilities;
 
-import controller.AdmPersonas;
+import controller.AdmAnfitriones;
+import controller.AdmHuespedes;
 import controller.AdmViviendas;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import model.Anfitrion;
 import model.Habitacion;
+import model.Huesped;
 import model.Persona;
 import model.Promocion;
 import model.Vivienda;
@@ -106,8 +109,18 @@ public class Validaciones {
         //return (num >= 10000) ?  false : true;
     }
     
-    public static boolean existePersona(String cedula){
-        Persona o = AdmPersonas.buscarCedula(cedula);
+    public static boolean existeAnfitrion(String cedula){
+        Anfitrion o = AdmAnfitriones.buscarCedula(cedula);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "La cedula ingresada ya existe: "+cedula);
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public static boolean existeHuesped(String cedula){
+        Huesped o = AdmHuespedes.buscarCedula(cedula);
         if( o != null){
             JOptionPane.showMessageDialog(null, "La cedula ingresada ya existe: "+cedula);
             return false;
@@ -117,7 +130,17 @@ public class Validaciones {
     }
     
     //Validar que los datos ingresado de la entidad Persona sean correctos
-    public static boolean vPersona(Persona persona) {
+    public static boolean vAnfitrion(Anfitrion persona) {
+        boolean nombres = vWords(persona.getNombres());
+        boolean apellidos = vWords(persona.getApellidos());
+        boolean tipoId = vInt(persona.getTipoId());
+        boolean sexoId = vInt(persona.getSexo());
+        boolean mayorEdad = vEdad(Conversiones.getEdad(persona.getFechaNac()));
+        return  nombres && apellidos && tipoId && sexoId && mayorEdad;
+    }
+    
+    //Validar que los datos ingresado de la entidad Persona sean correctos
+    public static boolean vHuesped(Huesped persona) {
         boolean nombres = vWords(persona.getNombres());
         boolean apellidos = vWords(persona.getApellidos());
         boolean tipoId = vInt(persona.getTipoId());

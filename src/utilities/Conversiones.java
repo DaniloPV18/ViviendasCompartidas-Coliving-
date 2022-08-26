@@ -10,6 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import model.Anfitrion;
+import model.Huesped;
 import model.Persona;
 import model.Vivienda;
 
@@ -20,8 +22,13 @@ import model.Vivienda;
 public class Conversiones {
     
     /* Convertir los textos ingresados en los datos del objeto Persona en Mayusculas */
-    public static Persona personaUpperCase(Persona persona){
-        return new Persona(persona.getIdentificador(), persona.getNombres().toUpperCase(), persona.getApellidos().toUpperCase(), persona.getFechaNac(), persona.getEmail().toUpperCase(), persona.getEstado().toUpperCase(), persona.getTipoId(), persona.getSexo(), persona.getNacionalidad());
+    public static Anfitrion anfitrionUpperCase(Anfitrion persona){
+        return new Anfitrion(persona.getIdentificador(), persona.getNombres().toUpperCase(), persona.getApellidos().toUpperCase(), persona.getFechaNac(), persona.getEmail().toUpperCase(), persona.getEstado().toUpperCase(), persona.getTipoId(), persona.getSexo(), persona.getNacionalidad());
+    }
+    
+    /* Convertir los textos ingresados en los datos del objeto Persona en Mayusculas */
+    public static Huesped huespedUpperCase(Huesped persona){
+        return new Huesped(persona.getIdentificador(), persona.getNombres().toUpperCase(), persona.getApellidos().toUpperCase(), persona.getFechaNac(), persona.getEmail().toUpperCase(), persona.getEstado().toUpperCase(), persona.getTipoId(), persona.getSexo(), persona.getNacionalidad());
     }
 
     /* Convertir los textos ingresados en los datos del objeto Vivienda en Mayusculas */
