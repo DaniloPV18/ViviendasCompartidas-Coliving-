@@ -42,12 +42,11 @@ public class Vivienda {
         this.fechaReg = new Date();
     }
 
-    public Vivienda(String identificador, String nombre, String email, String direccion, Date fechaReg, int anfitrion, int tipoVivienda, int ciudad) {
+    public Vivienda(String identificador, String nombre, String email, String direccion, int anfitrion, int tipoVivienda, int ciudad) {
         this.identificador = identificador;
         this.nombre = nombre;
         this.email = email;
         this.direccion = direccion;
-        this.fechaReg = fechaReg;
         this.anfitrion = anfitrion;
         this.tipoVivienda = tipoVivienda;
         this.ciudad = ciudad;
