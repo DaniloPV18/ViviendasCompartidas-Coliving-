@@ -5,7 +5,7 @@
  */
 package testController;
 
-import controllerDB.AdmAnfitrionesDAO;
+import controllerDAO.AdmAnfitrionesDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import model.Anfitrion;

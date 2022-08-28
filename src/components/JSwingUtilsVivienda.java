@@ -1,6 +1,6 @@
 package components;
 
-import controllerDB.AdmAnfitrionesDAO;
+import controllerDAO.AdmAnfitrionesDAO;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import model.*;

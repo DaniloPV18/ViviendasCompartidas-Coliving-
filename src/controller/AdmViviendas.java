@@ -7,7 +7,7 @@ package controller;
 
 import arraylists.ViviendaArrayListsFK;
 import static controller.AdmAnfitriones.buscarCedula;
-import controllerDB.AdmViviendasDAO;
+import controllerDAO.AdmViviendasDAO;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;

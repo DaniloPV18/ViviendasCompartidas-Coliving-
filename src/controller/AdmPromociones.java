@@ -6,7 +6,7 @@
 package controller;
 
 import com.toedter.calendar.JDateChooser;
-import controllerDB.AdmPromocionesDAO;
+import controllerDAO.AdmPromocionesDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JTable;

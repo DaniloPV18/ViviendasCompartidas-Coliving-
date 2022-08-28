@@ -5,7 +5,7 @@
  */
 package testController;
 
-import controllerDB.AdmHabitacionesDAO;
+import controllerDAO.AdmHabitacionesDAO;
 import java.util.ArrayList;
 import model.Habitacion;
 

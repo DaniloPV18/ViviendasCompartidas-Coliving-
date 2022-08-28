@@ -8,7 +8,7 @@ package controller;
 import arraylists.AnfitrionArrayListsFK;
 import arraylists.HuespedArrayListsFK;
 import com.toedter.calendar.JDateChooser;
-import controllerDB.AdmHuespedesDAO;
+import controllerDAO.AdmHuespedesDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
