@@ -22,23 +22,23 @@ public class AdmViviendasDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO VIVIENDA ("
+    private static final String INSERTAR = "  INSERT INTO vivienda ("
             + "     identificador, nombre, email, direccion, num_hab, fecha_reg, "
             + "     anfitrion_id_persona, vivienda_tipo_id_vivienda_tipo, vivienda_estado_id_vivienda_estado, ciudad_id_ciudad"
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE VIVIENDA "
+    private static final String ACTUALIZAR = " UPDATE vivienda "
             + "SET "
             + "     identificador = ?, nombre = ?, email = ?, direccion = ?, num_hab = ?, "
             + "     anfitrion_id_persona = ?, vivienda_tipo_id_vivienda_tipo = ?, vivienda_estado_id_vivienda_estado = ?, ciudad_id_ciudad = ? "
             + "WHERE identificador = ? ";
     
-    private static final String ELIMINAR = " UPDATE VIVIENDA "
+    private static final String ELIMINAR = " UPDATE vivienda "
             + "SET "
             + "     vivienda_estado_id_vivienda_estado = ? "
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM VIVIENDA "
+    private static final String LISTAR = " SELECT * FROM vivienda "
             + "WHERE vivienda_estado_id_vivienda_estado = 1 or "
             + "vivienda_estado_id_vivienda_estado = 3 ";
 

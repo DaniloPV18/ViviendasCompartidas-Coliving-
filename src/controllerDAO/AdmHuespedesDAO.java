@@ -23,23 +23,23 @@ public class AdmHuespedesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO HUESPED ("
+    private static final String INSERTAR = "  INSERT INTO huesped ("
             + "     identificador, nombres, apellidos , fecha_nac, email, estado, fecha_reg, "
             + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexHo, nacionalidad_id_nacionalidad "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE HUESPED "
+    private static final String ACTUALIZAR = " UPDATE huesped "
             + "SET "
             + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
             + "     identificacion_tipo_id_identificacion_tipo = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
             + "WHERE identificador = ? ";
     
-    private static final String ELIMINAR = " UPDATE HUESPED "
+    private static final String ELIMINAR = " UPDATE huesped "
             + "SET "
             + "     estado = ?"
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM HUESPED WHERE estado = 'HABILITADO' ";
+    private static final String LISTAR = " SELECT * FROM huesped WHERE estado = 'HABILITADO' ";
 
     public static Connection getCn() {
         return cn;

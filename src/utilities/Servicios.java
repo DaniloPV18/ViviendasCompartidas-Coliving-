@@ -45,10 +45,9 @@ public class Servicios {
                 while (rs.next()) {
                     Sexo o = new Sexo(
                             rs.getString(2),
-                            rs.getString(3),
-                            rs.getString(4)
+                            rs.getString(3)
                     );
-                    o.setFechaReg(rs.getTimestamp(5));
+                    o.setFechaReg(rs.getTimestamp(4));
                     o.setId(rs.getInt(1));
                     lista.add(o);
                 }
@@ -68,10 +67,9 @@ public class Servicios {
                 while (rs.next()) {
                     Nacionalidad o = new Nacionalidad(
                             rs.getString(2),
-                            rs.getString(3),
                             rs.getString(4)
                     );
-                    o.setFechaReg(rs.getTimestamp(5));
+                    o.setFechaReg(rs.getTimestamp(3));
                     o.setId(rs.getInt(1));
                     lista.add(o);
                 }
@@ -91,10 +89,9 @@ public class Servicios {
                 while (rs.next()) {
                     IdentificacionTipo o = new IdentificacionTipo(
                             rs.getString(2),
-                            rs.getString(3),
-                            rs.getString(4)
+                            rs.getString(3)
                     );
-                    o.setFechaReg(rs.getTimestamp(5));
+                    o.setFechaReg(rs.getTimestamp(4));
                     o.setId(rs.getInt(1));
                     lista.add(o);
                 }
@@ -113,12 +110,11 @@ public class Servicios {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     Ciudad o = new Ciudad(
-                            rs.getInt(2),
+                            rs.getString(2),
                             rs.getString(3),
-                            rs.getString(4),
-                            rs.getInt(6)
+                            rs.getInt(5)
                     );
-                    o.setFechaReg(rs.getTimestamp(5));
+                    o.setFechaReg(rs.getTimestamp(4));
                     o.setId(rs.getInt(1));
                     lista.add(o);
                 }
@@ -138,10 +134,9 @@ public class Servicios {
                 while (rs.next()) {
                     ViviendaTipo o = new ViviendaTipo(
                             rs.getString(2),
-                            rs.getString(3),
-                            rs.getString(4)
+                            rs.getString(3)
                     );
-                    o.setFechaReg(rs.getTimestamp(5));
+                    o.setFechaReg(rs.getTimestamp(4));
                     o.setId(rs.getInt(1));
                     lista.add(o);
                 }
