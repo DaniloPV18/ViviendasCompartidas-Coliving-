@@ -14,7 +14,6 @@ import java.util.Date;
 public class Pais {
 
     private int id;
-    private String identificador;
     private String nombre;
     private Date fechaReg;
     private String estado;
@@ -23,8 +22,7 @@ public class Pais {
         this.fechaReg = new Date();
     }
 
-    public Pais(String identificador, String nombre, String estado) {
-        this.identificador = identificador;
+    public Pais(String nombre, String estado) {
         this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
@@ -36,14 +34,6 @@ public class Pais {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
     }
 
     public String getNombre() {
@@ -72,7 +62,7 @@ public class Pais {
 
     @Override
     public String toString() {
-        return "Pais{" + "identificador=" + identificador + ", nombre=" + nombre + ", fechaReg=" + fechaReg + ", estado=" + estado + '}';
+        return "Pais{nombre=" + nombre + ", fechaReg=" + fechaReg + ", estado=" + estado + '}';
     }
 
 }

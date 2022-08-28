@@ -14,7 +14,6 @@ import java.util.Date;
 public class Sexo {
 
     private int id;
-    private String identificador;
     private String nombre;
     private String estado;
     private Date fechaReg;
@@ -23,8 +22,7 @@ public class Sexo {
         this.fechaReg = new Date();
     }
 
-    public Sexo(String identificador, String nombre, String estado) {
-        this.identificador = identificador;
+    public Sexo(String nombre, String estado) {
         this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
@@ -36,14 +34,6 @@ public class Sexo {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
     }
 
     public String getNombre() {
@@ -72,7 +62,7 @@ public class Sexo {
 
     @Override
     public String toString() {
-        return "Sexo{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "Sexo{nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }
