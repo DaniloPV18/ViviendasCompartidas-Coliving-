@@ -25,7 +25,7 @@ public class AdmHuespedesDAO {
 
     private static final String INSERTAR = "  INSERT INTO huesped ("
             + "     identificador, nombres, apellidos , fecha_nac, email, estado, fecha_reg, "
-            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexHo, nacionalidad_id_nacionalidad "
+            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexo, nacionalidad_id_nacionalidad "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE huesped "
