@@ -26,6 +26,8 @@ public class FrmViviendas extends javax.swing.JFrame {
         JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
         AdmViviendas.actualizarTabla(tblVivienda);
+        /*Negar edición de Caja de texto */
+        txtAnfitrion.setEditable(false);
     }
 
     /**
@@ -53,8 +55,6 @@ public class FrmViviendas extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtNumHabt = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         cmbTipoVivienda = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
@@ -175,7 +175,7 @@ public class FrmViviendas extends javax.swing.JFrame {
         jLabel4.setText("GESTIÓN DE VIVIENDAS");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel13.setText("REGISTROS DE PROPIEDADES");
+        jLabel13.setText("REGISTROS DE VIVIENDAS");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
@@ -191,9 +191,6 @@ public class FrmViviendas extends javax.swing.JFrame {
                 txtDireccionActionPerformed(evt);
             }
         });
-
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel15.setText("Numero de habitaciones");
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel18.setText("Tipo de Vivienda");
@@ -258,13 +255,11 @@ public class FrmViviendas extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel15))
-                            .addGap(86, 86, 86)
+                                .addComponent(jLabel8))
+                            .addGap(167, 167, 167)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtEmail)
-                                .addComponent(txtDireccion)
-                                .addComponent(txtNumHabt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                                .addComponent(txtDireccion)))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel20)
@@ -321,11 +316,7 @@ public class FrmViviendas extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(txtNumHabt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102))
+                .addGap(142, 142, 142))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -396,8 +387,8 @@ public class FrmViviendas extends javax.swing.JFrame {
     private void tblViviendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViviendaMouseClicked
         indice = AdmViviendas.getIndexTable(tblVivienda);
         identificadorVivienda = AdmViviendas.getIdentificador(tblVivienda, indice);
-        AdmViviendas.cargarRegistro(identificadorVivienda, txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt, cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
-        AdmViviendas.cargarAnfitrion(identificadorVivienda, txtAnfitrion);
+        AdmViviendas.cargarRegistro(identificadorVivienda, txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
+        AdmViviendas.cargarAnfitrion(identificadorVivienda, txtAnfitrion, 1);
     }//GEN-LAST:event_tblViviendaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -422,13 +413,12 @@ public class FrmViviendas extends javax.swing.JFrame {
         String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
         String email = txtEmail.getText().trim();
         String direccion = txtDireccion.getText().trim();
-        String numHab = txtNumHabt.getText().trim();
-        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda)) {
+        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, anfitrion, tipoVivienda)) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmViviendas.actualizarRegistro(identificadorVivienda);
                 JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion);
                 AdmViviendas.actualizarTabla(tblVivienda);
             }
         } else {
@@ -449,11 +439,10 @@ public class FrmViviendas extends javax.swing.JFrame {
         String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
         String email = txtEmail.getText().trim();
         String direccion = txtDireccion.getText().trim();
-        String numHab = txtNumHabt.getText().trim();
-        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
+        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
             AdmViviendas.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
+            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion);
             AdmViviendas.actualizarTabla(tblVivienda);
         } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
@@ -465,7 +454,8 @@ public class FrmViviendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void cmbCedulaPropietarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCedulaPropietarioItemStateChanged
-        // TODO add your handling code here:
+        String identificadorAnfitrion = cmbCedulaPropietario.getSelectedItem().toString();
+        AdmViviendas.cargarAnfitrion(identificadorAnfitrion, txtAnfitrion, 2);
     }//GEN-LAST:event_cmbCedulaPropietarioItemStateChanged
 
     private void cmbCedulaPropietarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbCedulaPropietarioMouseClicked
@@ -541,7 +531,6 @@ public class FrmViviendas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbCiudad;
     private javax.swing.JComboBox<String> cmbTipoVivienda;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
@@ -561,6 +550,5 @@ public class FrmViviendas extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIDVivienda;
     private javax.swing.JTextField txtNombreVivienda;
-    private javax.swing.JTextField txtNumHabt;
     // End of variables declaration//GEN-END:variables
 }

@@ -151,12 +151,11 @@ public class Validaciones {
     //Validar que los datos ingresado de la entidad Vivienda sean correctos
     public static boolean vVivienda(Vivienda vivienda) {
         boolean nombres = vWords(vivienda.getNombre());
-        boolean numHab = vNumHab(vivienda.getNumHab());
         boolean anfitrion = vInt(vivienda.getAnfitrion());
         boolean tipoVivienda = vInt(vivienda.getTipoVivienda());
         boolean estadoVivienda = vInt(vivienda.getEstadoVivienda());
         boolean ciudad = vInt(vivienda.getCiudad());
-        return nombres && numHab && anfitrion && tipoVivienda && estadoVivienda && ciudad;
+        return nombres && anfitrion && tipoVivienda && estadoVivienda && ciudad;
     }
 
     //Validar que los datos ingresado de la entidad Habitacion sean correctos
