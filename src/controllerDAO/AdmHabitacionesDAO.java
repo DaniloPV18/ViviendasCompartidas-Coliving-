@@ -22,23 +22,23 @@ public class AdmHabitacionesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO HABITACION ("
-            + "     identificador, num_max_per, tiene_banio , precio, fecha_reg, "
+    private static final String INSERTAR = "  INSERT INTO habitacion ("
+            + "     identificador, num_max_per, banio , precio, fecha_reg, "
             + "     tipohabitacion_id_tipohab, propiedad_id_propiedad, estadohabitacion_id_estadohab, promocion_id_promocion"
             + ")VALUES(?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE HABITACION "
+    private static final String ACTUALIZAR = " UPDATE habitacion "
             + "SET "
-            + "     identificador = ?, num_max_per = ?, tiene_banio = ?, precio = ?, "
+            + "     identificador = ?, num_max_per = ?, banio = ?, precio = ?, "
             + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ? "
             + "WHERE id_habitacion = ? ";
     
-    private static final String ELIMINAR = " UPDATE HABITACION "
+    private static final String ELIMINAR = " UPDATE habitacion "
             + "SET "
             + "     estadohabitacion_id_estadohab = ? "
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM HABITACION "
+    private static final String LISTAR = " SELECT * FROM habitacion "
             + "WHERE estadohabitacion_id_estadohab = 1 or "
             + "estadohabitacion_id_estadohab = 3 ";
 
@@ -114,7 +114,7 @@ public class AdmHabitacionesDAO {
                     Habitacion p = new Habitacion(
                             rs.getInt(2),//identificador
                             rs.getInt(3),//num_max_per
-                            rs.getBoolean(4),//tiene_banio
+                            rs.getBoolean(4),//banio
                             rs.getDouble(5),//precio
                             rs.getInt(7),//tipohabitacion_id_tipohab
                             rs.getInt(8),//propiedad_id_propiedad
