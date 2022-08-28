@@ -113,7 +113,6 @@ public class AdmAnfitriones {
         cmbSexo.setSelectedIndex(x.getSexo() - 1);
         cmbTipoId.setSelectedIndex(x.getTipoId() - 1);
         dtcFechaNac.setDate(Conversiones.getDate(x.getFechaNac().toString()));
-        System.out.println(x.toString());
     }
 
     /* Buscar una cedula que se encuentre registrada */
