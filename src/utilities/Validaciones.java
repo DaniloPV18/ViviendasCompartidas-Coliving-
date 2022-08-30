@@ -32,6 +32,16 @@ public class Validaciones {
             return false;
         }
     }
+    
+    public static boolean vDouble(String cadena) {
+        try {
+            double num = Double.parseDouble(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: la cadena debe contener solo números.");
+            return false;
+        }
+    }
 
     /*Validar que la cadena ingresada sean solo números desde Enteros*/
     public static boolean vInt(int numero) {
@@ -187,5 +197,9 @@ public class Validaciones {
         boolean fechaI = validarFecha(p.getFechaInicio());
         boolean fechaF = validarFecha(p.getFechaInicio(), p.getFechaFinal());
         return fechaI && fechaF;
+    }
+
+    public static boolean existeHabitacion(String idVivienda, String identificador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

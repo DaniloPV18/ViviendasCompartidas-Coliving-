@@ -6,6 +6,9 @@
 package view;
 
 import connection.Conexion;
+import controller.AdmHabitaciones;
+import javax.swing.JOptionPane;
+import utilities.Validaciones;
 
 
 /**
@@ -19,10 +22,9 @@ public class FrmHabitaciones extends javax.swing.JFrame {
 
     public FrmHabitaciones() {
         initComponents();
-//        /*Cargar combos con valores obtenidos de la BD*/
-//        JSwingUtilsVivienda.cargarCombos(cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
-//        /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
-//        AdmViviendas.actualizarTabla(tblVivienda);
+        /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
+        AdmHabitaciones.actualizarTabla(tblHabitaciones);
+        txtNombrePrp.setEditable(false);
     }
 
     /**
@@ -51,13 +53,13 @@ public class FrmHabitaciones extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txtNumMaxHbt = new javax.swing.JTextField();
-        cmbTipoHabt = new javax.swing.JComboBox<>();
-        cmbPropiedades = new javax.swing.JComboBox<>();
-        txtCodHabt = new javax.swing.JTextField();
+        txtIdentificador = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         chcBano = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        txtCodHabt = new javax.swing.JTextField();
+        txtNombrePrp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -181,21 +183,27 @@ public class FrmHabitaciones extends javax.swing.JFrame {
 
         jLabel7.setText("CODIGO");
 
-        jLabel8.setText("TIPO HABITACIÓN:");
-
         txtNumMaxHbt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumMaxHbtKeyTyped(evt);
             }
         });
 
+        txtIdentificador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdentificadorKeyReleased(evt);
+            }
+        });
+
+        chcBano.setText("Marcar si dispone");
+
+        jLabel2.setText("ID PROPIEDAD");
+
         txtCodHabt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodHabtKeyTyped(evt);
             }
         });
-
-        chcBano.setText("Marcar si dispone");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -206,30 +214,28 @@ public class FrmHabitaciones extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtCodHabt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                        .addComponent(txtNumMaxHbt)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(cmbTipoHabt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(chcBano)
+                            .addComponent(txtNumMaxHbt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodHabt, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtIdentificador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(chcBano)))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(txtNombrePrp, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -238,12 +244,16 @@ public class FrmHabitaciones extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cmbPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtNombrePrp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtCodHabt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodHabt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNumMaxHbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -255,11 +265,7 @@ public class FrmHabitaciones extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTipoHabt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -305,9 +311,10 @@ public class FrmHabitaciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
                 .addGap(62, 62, 62)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -376,22 +383,19 @@ public class FrmHabitaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-//        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
-//        String identificador = txtIDVivienda.getText().trim();
-//        String ciudad = (String) cmbCiudad.getSelectedItem();
-//        String nombre = txtNombreVivienda.getText().trim();
-//        String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
-//        String email = txtEmail.getText().trim();
-//        String direccion = txtDireccion.getText().trim();
-//        String numHab = txtNumHabt.getText().trim();
-//        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
-//            AdmViviendas.insertarRegistro();
-//            JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-//            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
-//            AdmViviendas.actualizarTabla(tblVivienda);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
-//        }
+        String idVivienda = txtIdentificador.getText().trim();
+        String identificador = txtCodHabt.getText().trim();
+        String max = txtNumMaxHbt.getText().trim();
+        boolean bano = chcBano.isSelected();
+        String precio = txtPrecio.getText().trim();
+        if (AdmHabitaciones.validarDatos(idVivienda, identificador, max, bano, precio) && Validaciones.existeHabitacion(idVivienda, identificador)) {
+            AdmHabitaciones.insertarRegistro();
+            JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
+            AdmHabitaciones.limpiarCampos(txtIdentificador,txtCodHabt,txtNumMaxHbt,txtPrecio,chcBano);
+            AdmHabitaciones.actualizarTabla(tblHabitaciones);
+        } else {
+            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -411,6 +415,11 @@ public class FrmHabitaciones extends javax.swing.JFrame {
         if (!Character.isDigit(c))
         evt.consume();
     }//GEN-LAST:event_txtCodHabtKeyTyped
+
+    private void txtIdentificadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyReleased
+        String idVivienda = txtIdentificador.getText().trim();
+        AdmHabitaciones.cargarAnfitrion(idVivienda, txtNombrePrp);
+    }//GEN-LAST:event_txtIdentificadorKeyReleased
 
     /**
      * @param args the command line arguments
@@ -484,22 +493,22 @@ public class FrmHabitaciones extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JCheckBox chcBano;
-    private javax.swing.JComboBox<String> cmbPropiedades;
-    private javax.swing.JComboBox<String> cmbTipoHabt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblHabitaciones;
     private javax.swing.JTextField txtCodHabt;
+    private javax.swing.JTextField txtIdentificador;
+    private javax.swing.JTextField txtNombrePrp;
     private javax.swing.JTextField txtNumMaxHbt;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

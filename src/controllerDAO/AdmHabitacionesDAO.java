@@ -131,4 +131,7 @@ public class AdmHabitacionesDAO {
         }
         return lista;
     }
+    public static void actualizar(String identificadorHb, String identificadorVv, Habitacion p) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
