@@ -5,15 +5,17 @@
  */
 package arraylists;
 
+import controllerDAO.AdmViviendasDAO;
 import java.util.ArrayList;
 import model.HabitacionTipo;
+import model.Vivienda;
 import utilities.Servicios;
 
 /**
  *
  * @author N1L0XD
  */
-public class HabitacionArrayLists {    
+public class HabitacionArrayListsFK {    
       
     public static String getHabitacionTipo(int idVivienda) {
         ArrayList<HabitacionTipo> lista = Servicios.consultarTHabitacionTipo();
@@ -24,4 +26,14 @@ public class HabitacionArrayLists {
         }
         return "-";
     }
+    
+    public static String getVivienda(int id){
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
+        for (Vivienda x : lista) {
+            if(id == x.getId()){
+                return x.getIdentificador();
+            }
+        }
+        return "-";
+    } 
 }

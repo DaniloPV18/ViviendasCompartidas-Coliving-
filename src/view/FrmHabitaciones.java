@@ -10,7 +10,6 @@ import controller.AdmHabitaciones;
 import javax.swing.JOptionPane;
 import utilities.Validaciones;
 
-
 /**
  *
  * @author N1L0XD
@@ -338,44 +337,42 @@ public class FrmHabitaciones extends javax.swing.JFrame {
     private void tblHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHabitacionesMouseClicked
         indice = AdmHabitaciones.getIndexTable(tblHabitaciones);
         identificadorHabitacion = AdmHabitaciones.getIdentificador(tblHabitaciones, indice);
-        AdmHabitaciones.cargarRegistro(identificadorHabitacion,idVivienda,txtIdentificador,txtCodHabt,txtNumMaxHbt,txtPrecio, chcBano);
-        AdmHabitaciones.cargarVivienda(idVivienda,txtNombrePrp);
+        idVivienda = AdmHabitaciones.getIdentificadorVivienda(tblHabitaciones, indice);
+        AdmHabitaciones.cargarRegistro(identificadorHabitacion, idVivienda, txtIdentificador, txtCodHabt, txtNumMaxHbt, txtPrecio, chcBano);
+        AdmHabitaciones.cargarVivienda(idVivienda, txtNombrePrp);
     }//GEN-LAST:event_tblHabitacionesMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        if (AdmViviendas.getIndexTable(tblVivienda) != -1) {
-//            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
-//                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//                indice = AdmViviendas.getIndexTable(tblVivienda);
-//                identificadorHabitacion = AdmViviendas.getIdentificador(tblVivienda, indice);
-//                AdmViviendas.eliminarRegistro(identificadorHabitacion, indice);
-//                AdmViviendas.actualizarTabla(tblVivienda);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
-//        }
+        if (AdmHabitaciones.getIndexTable(tblHabitaciones) != -1) {
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                indice = AdmHabitaciones.getIndexTable(tblHabitaciones);
+                identificadorHabitacion = AdmHabitaciones.getIdentificador(tblHabitaciones, indice);
+                AdmHabitaciones.eliminarRegistro(identificadorHabitacion, indice);
+                AdmHabitaciones.actualizarTabla(tblHabitaciones);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-//        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
-//        String identificador = txtIDVivienda.getText().trim();
-//        String ciudad = (String) cmbCiudad.getSelectedItem();
-//        String nombre = txtNombreVivienda.getText().trim();
-//        String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
-//        String email = txtEmail.getText().trim();
-//        String direccion = txtDireccion.getText().trim();
-//        String numHab = txtNumHabt.getText().trim();
-//        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, numHab, anfitrion, tipoVivienda)) {
-//            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
-//                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//                AdmViviendas.actualizarRegistro(identificadorHabitacion);
-//                JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-//                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt);
-//                AdmViviendas.actualizarTabla(tblVivienda);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
-//        }
+        String idVivienda = txtIdentificador.getText().trim();
+        String identificador = txtCodHabt.getText().trim();
+        String max = txtNumMaxHbt.getText().trim();
+        boolean bano = chcBano.isSelected();
+        String precio = txtPrecio.getText().trim();
+        if (AdmHabitaciones.validarDatos(idVivienda, identificador, max, bano, precio)) {
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                AdmHabitaciones.actualizarRegistro(identificadorHabitacion);
+                JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
+                AdmHabitaciones.limpiarCampos(txtIdentificador, txtCodHabt, txtNumMaxHbt, txtPrecio, chcBano);
+                AdmHabitaciones.actualizarTabla(tblHabitaciones);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -392,7 +389,7 @@ public class FrmHabitaciones extends javax.swing.JFrame {
         if (AdmHabitaciones.validarDatos(idVivienda, identificador, max, bano, precio) && Validaciones.existeHabitacion(idVivienda, identificador)) {
             AdmHabitaciones.insertarRegistro();
             JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-            AdmHabitaciones.limpiarCampos(txtIdentificador,txtCodHabt,txtNumMaxHbt,txtPrecio,chcBano);
+            AdmHabitaciones.limpiarCampos(txtIdentificador, txtCodHabt, txtNumMaxHbt, txtPrecio, chcBano);
             AdmHabitaciones.actualizarTabla(tblHabitaciones);
         } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
@@ -408,13 +405,13 @@ public class FrmHabitaciones extends javax.swing.JFrame {
     private void txtNumMaxHbtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumMaxHbtKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c))
-        evt.consume();
+            evt.consume();
     }//GEN-LAST:event_txtNumMaxHbtKeyTyped
 
     private void txtCodHabtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodHabtKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c))
-        evt.consume();
+            evt.consume();
     }//GEN-LAST:event_txtCodHabtKeyTyped
 
     private void txtIdentificadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyReleased

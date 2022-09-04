@@ -77,9 +77,8 @@ public class AdmHabitacionesDAO {
                 ps.setDouble(4, habitacion.getPrecio());
                 ps.setInt(5, habitacion.getTipoHab());
                 ps.setInt(6, habitacion.getPropiedad());
-                ps.setInt(7, habitacion.getEstadoHab());       
-                ps.setInt(8, habitacion.getPromocion());
-                ps.setInt(9, id);
+                ps.setInt(7, habitacion.getEstadoHab());   
+                ps.setInt(8, id);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);

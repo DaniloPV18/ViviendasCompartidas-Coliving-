@@ -5,6 +5,7 @@
  */
 package controller;
 
+import arraylists.HabitacionArrayListsFK;
 import arraylists.ViviendaArrayListsFK;
 import controllerDAO.AdmHabitacionesDAO;
 import controllerDAO.AdmViviendasDAO;
@@ -31,6 +32,9 @@ public class AdmHabitaciones {
         int idAnfitrion = ViviendaArrayListsFK.getViviendaPK(idVivienda);
 
         if (Validaciones.vDouble(precio) && Validaciones.vInt(identificador)) {
+            if(max.compareToIgnoreCase("") == 0){
+                max = "1";
+            }
             double prc = Double.parseDouble(precio);
             int maxP = Integer.parseInt(max);
             int tipoHb = Integer.parseInt(max) < 2 ? 1 : 2;
@@ -53,7 +57,7 @@ public class AdmHabitaciones {
 
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(String identificadorHb) {
-//        AdmHabitacionesDAO.actualizar(identificadorHb, p);
+        AdmHabitacionesDAO.actualizar(Integer.parseInt(identificadorHb), p);
     }
 
     /* Eliminar registro a la Base de datos */
@@ -83,9 +87,8 @@ public class AdmHabitaciones {
             rowData[1] = x.getNumMax();
             rowData[2] = x.getBanios() == true ? "SI" : "NO";
             rowData[3] = x.getPrecio();
-//            rowData[4] = ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion());
-//            rowData[5] = ViviendaArrayListsFK.getCiudad(x.getCiudad());
-//            rowData[6] = ViviendaArrayListsFK.getTipoVivienda(x.getTipoVivienda());
+            rowData[4] = HabitacionArrayListsFK.getHabitacionTipo(x.getTipoHab());
+            rowData[5] = HabitacionArrayListsFK.getVivienda(x.getPropiedad());
             model.addRow(rowData);
         }
     }
@@ -111,6 +114,12 @@ public class AdmHabitaciones {
         return value;
     }
 
+    public static String getIdentificadorVivienda(JTable tabla, int indice) {
+        int row = tabla.getSelectedRow();
+        String value = tabla.getModel().getValueAt(indice, 5).toString();
+        return value;
+    }
+
     /* Cargar los datos de la fila seleccionada y actualizar el formulario */
     public static void cargarRegistro(String identificadorHabitacion, String idVivienda, JTextField txtIdentificador, JTextField txtCodHabt, JTextField txtNumMaxHbt, JTextField txtPrecio, JCheckBox chcBano) {
         Vivienda x = buscarVivienda(idVivienda);
@@ -118,6 +127,7 @@ public class AdmHabitaciones {
         txtIdentificador.setText(x.getIdentificador());
         txtCodHabt.setText(h.getIdentificador() + " ");
         txtPrecio.setText(h.getPrecio() + " ");
+        txtNumMaxHbt.setText(h.getNumMax()+ " ");
         chcBano.setSelected(h.getBanios());
     }
 
