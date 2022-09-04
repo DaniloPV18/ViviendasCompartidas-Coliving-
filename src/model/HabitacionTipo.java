@@ -23,8 +23,7 @@ public class HabitacionTipo {
         this.fechaReg = new Date();
     }
 
-    public HabitacionTipo(String identificador, String nombre, String estado) {
-        this.identificador = identificador;
+    public HabitacionTipo(String nombre, String estado) {        
         this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
