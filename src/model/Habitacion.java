@@ -39,6 +39,17 @@ public class Habitacion {
         this.promocion = promocion;
         this.fechaReg = new Date();
     }
+    
+    public Habitacion(int identificador, int numMax, boolean banio, double precio, int tipoHab, int propiedad, int estadoHab) {
+        this.identificador = identificador;
+        this.numMax = numMax;
+        this.banio = banio;
+        this.precio = precio;
+        this.tipoHab = tipoHab;
+        this.propiedad = propiedad;
+        this.estadoHab = estadoHab;
+        this.fechaReg = new Date();
+    }
 
     public int getId() {
         return id;
