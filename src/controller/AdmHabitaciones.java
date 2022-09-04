@@ -33,13 +33,13 @@ public class AdmHabitaciones {
     public static boolean validarDatos(String idVivienda, String identificador, String max, boolean bano, String precio) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
         int idAnfitrion = ViviendaArrayListsFK.getViviendaPK(idVivienda);
-        
+
         if (Validaciones.vDouble(precio) && Validaciones.vInt(identificador)) {
             double prc = Double.parseDouble(precio);
             int maxP = Integer.parseInt(max);
             int tipoHb = Integer.parseInt(max) < 2 ? 1 : 2;
             int identificadorHabitacion = Integer.parseInt(identificador);
-            
+
             /* Validar que los datos ingresados sean los solicitados */
             p = new Habitacion(identificadorHabitacion, maxP, bano, prc, tipoHb, idAnfitrion, 1, 1);
             if (Validaciones.vHabitacion(p)) {
@@ -52,12 +52,12 @@ public class AdmHabitaciones {
 
     /* Insertar registro a la Base de datos */
     public static void insertarRegistro() {
-        //AdmHabitacionesDAO.insertar(p);
+        AdmHabitacionesDAO.insertar(p);
     }
 
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(String identificadorHb, String identificadorVv) {
-        AdmHabitacionesDAO.actualizar(identificadorHb,identificadorVv, p);
+        AdmHabitacionesDAO.actualizar(identificadorHb, identificadorVv, p);
     }
 
     /* Eliminar registro a la Base de datos */
@@ -116,15 +116,18 @@ public class AdmHabitaciones {
     }
 
     /* Cargar los datos de la fila seleccionada y actualizar el formulario */
-    public static void cargarRegistro(String identificadorVivienda, JTextField txtIDVivienda, JTextField txtNombreVivienda, JTextField txtEmail, JTextField txtDireccion, JComboBox<String> cmbCedulaPropietario, JComboBox<String> cmbCiudad, JComboBox<String> cmbTipoVivienda) {
-        Vivienda x = buscarVivienda(identificadorVivienda);
-        txtIDVivienda.setText(x.getIdentificador());
-        txtNombreVivienda.setText(x.getNombre());
-        txtEmail.setText(x.getEmail());
-        txtDireccion.setText(x.getDireccion());
-        cmbCedulaPropietario.setSelectedIndex(x.getAnfitrion() - 1);
-        cmbCiudad.setSelectedIndex(x.getCiudad() - 1);
-        cmbTipoVivienda.setSelectedIndex(x.getTipoVivienda() - 1);
+    public static void cargarRegistro(String identificadorHabitacion, String idVivienda, JTextField txtIdentificador, JTextField txtCodHabt, JTextField txtNumMaxHbt, JTextField txtPrecio, JCheckBox chcBano) {
+        Vivienda x = buscarVivienda(idVivienda);
+        Habitacion h = buscarHabitacion(idVivienda, identificadorHabitacion);
+        txtIdentificador.setText(x.getIdentificador());
+        txtCodHabt.setText(h.getIdentificador() + " ");
+        txtPrecio.setText(h.getPrecio() + " ");
+        chcBano.setSelected(h.getBanios());
+    }
+
+    public static void cargarVivienda(String idVivienda, JTextField txtNombrePrp) {
+        Vivienda x = buscarVivienda(idVivienda);
+        txtNombrePrp.setText(x.getNombre());
     }
 
     /* Cargar los datos de la anfitrion de la vivienda seleccionada */
@@ -139,7 +142,7 @@ public class AdmHabitaciones {
         }
     }
 
-    /* Buscar una cedula que se encuentre registrada */
+    /* Buscar una Vivienda que se encuentre registrada */
     public static Vivienda buscarVivienda(String identificador) {
         ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
         for (Vivienda x : lista) {
@@ -150,8 +153,17 @@ public class AdmHabitaciones {
         return null;
     }
 
-    public static void limpiarCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public static Habitacion buscarHabitacion(String idVivienda, String identificador) {
+        Vivienda v = buscarVivienda(idVivienda);
+        if (v != null) {
+            ArrayList<Habitacion> lista = AdmHabitacionesDAO.consultar();
+            for (Habitacion x : lista) {
+                if (x.getIdentificador() == Integer.parseInt(identificador)) {
+                    return x;
+                }
+            }
+        }
+        return null;
     }
 
 }

@@ -19,6 +19,7 @@ public class FrmHabitaciones extends javax.swing.JFrame {
 
     private int indice;
     private String identificadorHabitacion;
+    private String idVivienda;
 
     public FrmHabitaciones() {
         initComponents();
@@ -173,7 +174,7 @@ public class FrmHabitaciones extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        jLabel1.setText("NOMBRE PROPIEDAD:");
+        jLabel1.setText("NOMBRE VIVIENDA:");
 
         jLabel3.setText("MAXIMO PERSONAS:");
 
@@ -335,10 +336,10 @@ public class FrmHabitaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHabitacionesMouseClicked
-//        indice = AdmViviendas.getIndexTable(tblVivienda);
-//        identificadorHabitacion = AdmViviendas.getIdentificador(tblVivienda, indice);
-//        AdmViviendas.cargarRegistro(identificadorHabitacion, txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion, txtNumHabt, cmbCedulaPropietario, cmbCiudad, cmbTipoVivienda);
-//        AdmViviendas.cargarAnfitrion(identificadorHabitacion, txtAnfitrion);
+        indice = AdmHabitaciones.getIndexTable(tblHabitaciones);
+        identificadorHabitacion = AdmHabitaciones.getIdentificador(tblHabitaciones, indice);
+        AdmHabitaciones.cargarRegistro(identificadorHabitacion,idVivienda,txtIdentificador,txtCodHabt,txtNumMaxHbt,txtPrecio, chcBano);
+        AdmHabitaciones.cargarVivienda(idVivienda,txtNombrePrp);
     }//GEN-LAST:event_tblHabitacionesMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -417,7 +418,7 @@ public class FrmHabitaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodHabtKeyTyped
 
     private void txtIdentificadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyReleased
-        String idVivienda = txtIdentificador.getText().trim();
+        idVivienda = txtIdentificador.getText().trim();
         AdmHabitaciones.cargarAnfitrion(idVivienda, txtNombrePrp);
     }//GEN-LAST:event_txtIdentificadorKeyReleased
 

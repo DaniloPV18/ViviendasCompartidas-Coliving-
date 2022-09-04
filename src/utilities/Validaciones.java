@@ -6,6 +6,7 @@
 package utilities;
 
 import controller.AdmAnfitriones;
+import controller.AdmHabitaciones;
 import controller.AdmHuespedes;
 import controller.AdmViviendas;
 import java.util.Date;
@@ -200,6 +201,12 @@ public class Validaciones {
     }
 
     public static boolean existeHabitacion(String idVivienda, String identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Habitacion o = AdmHabitaciones.buscarHabitacion(idVivienda, identificador);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "Habitacion ingresada ya existe: "+identificador +" en la vivienda: "+idVivienda);
+            return false;
+        }else{
+            return true;
+        }
     }
 }

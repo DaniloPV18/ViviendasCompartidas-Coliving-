@@ -24,23 +24,23 @@ public class AdmHabitacionesDAO {
 
     private static final String INSERTAR = "  INSERT INTO habitacion ("
             + "     identificador, num_max_per, banio , precio, fecha_reg, "
-            + "     tipohabitacion_id_tipohab, propiedad_id_propiedad, estadohabitacion_id_estadohab, promocion_id_promocion"
-            + ")VALUES(?,?,?,?,?,?,?,?,?)";
+            + "     habitacion_tipo_id_habitacion_tipo, vivienda_id_vivienda, habitacion_estado_id_habitacion_estado"
+            + ")VALUES(?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE habitacion "
             + "SET "
             + "     identificador = ?, num_max_per = ?, banio = ?, precio = ?, "
-            + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ? "
+            + "     habitacion_tipo_id_habitacion_tipo = ?, vivienda_id_vivienda = ?, habitacion_estado_id_habitacion_estado = ? "
             + "WHERE id_habitacion = ? ";
     
     private static final String ELIMINAR = " UPDATE habitacion "
             + "SET "
-            + "     estadohabitacion_id_estadohab = ? "
+            + "     habitacion_estado_id_habitacion_estado = ? "
             + "WHERE identificador = ? ";
 
     private static final String LISTAR = " SELECT * FROM habitacion "
-            + "WHERE estadohabitacion_id_estadohab = 1 or "
-            + "estadohabitacion_id_estadohab = 3 ";
+            + "WHERE habitacion_estado_id_habitacion_estado = 1 or "
+            + "habitacion_estado_id_habitacion_estado = 3 ";
 
     public static Connection getCn() {
         return cn;
@@ -58,8 +58,7 @@ public class AdmHabitacionesDAO {
                 ps.setTimestamp(5, Conversiones.getFecha(Conversiones.getFecha(habitacion.getFechaReg()))); 
                 ps.setInt(6, habitacion.getTipoHab());
                 ps.setInt(7, habitacion.getPropiedad());
-                ps.setInt(8, habitacion.getEstadoHab());       
-                ps.setInt(9, habitacion.getPromocion());                
+                ps.setInt(8, habitacion.getEstadoHab());            
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
