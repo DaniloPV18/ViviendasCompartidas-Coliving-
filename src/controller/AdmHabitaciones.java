@@ -6,20 +6,16 @@
 package controller;
 
 import arraylists.ViviendaArrayListsFK;
-import static controller.AdmAnfitriones.buscarCedula;
 import controllerDAO.AdmHabitacionesDAO;
 import controllerDAO.AdmViviendasDAO;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import model.Anfitrion;
 import model.Habitacion;
 import model.Vivienda;
-import utilities.Conversiones;
 import utilities.Validaciones;
 
 /**
@@ -56,8 +52,8 @@ public class AdmHabitaciones {
     }
 
     /* Actualizar registro a la Base de datos */
-    public static void actualizarRegistro(String identificadorHb, String identificadorVv) {
-        AdmHabitacionesDAO.actualizar(identificadorHb, identificadorVv, p);
+    public static void actualizarRegistro(String identificadorHb) {
+//        AdmHabitacionesDAO.actualizar(identificadorHb, p);
     }
 
     /* Eliminar registro a la Base de datos */
@@ -81,17 +77,17 @@ public class AdmHabitaciones {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
-//        for (Habitacion x : lista) {
-//            Object[] rowData = new Object[7];
-//            rowData[0] = x.getIdentificador();
-//            rowData[1] = x.getNombre();
-//            rowData[2] = x.getEmail();
-//            rowData[3] = x.getDireccion();
+        for (Habitacion x : lista) {
+            Object[] rowData = new Object[7];
+            rowData[0] = x.getIdentificador();
+            rowData[1] = x.getNumMax();
+            rowData[2] = x.getBanios() == true ? "SI" : "NO";
+            rowData[3] = x.getPrecio();
 //            rowData[4] = ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion());
 //            rowData[5] = ViviendaArrayListsFK.getCiudad(x.getCiudad());
 //            rowData[6] = ViviendaArrayListsFK.getTipoVivienda(x.getTipoVivienda());
-//            model.addRow(rowData);
-//        }
+            model.addRow(rowData);
+        }
     }
 
     /* Modificar el ancho de las columnas de la tabla */

@@ -72,11 +72,11 @@ public class FrmHabitaciones extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CÓDIGO", "MAX PERSONAS", "BAÑO", "PRECIO", "TIPO HABITACIÓN", "ID VIVIENDA", "TIPO"
+                "CÓDIGO", "MAX PERSONAS", "BAÑO", "PRECIO", "TIPO HABITACIÓN", "ID VIVIENDA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

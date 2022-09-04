@@ -29,6 +29,7 @@ public class Servicios {
                                                             + "INNER JOIN persona p ON a.id_persona = p.id_persona AND a.estado = 'HABILITADO' AND p.estado = 'HABILITADO' ";
     private static final String LISTARCIUDAD           = "SELECT * FROM ciudad WHERE estado = 'HABILITADO' ";
     private static final String LISTARVIVIENDATIPO     = "SELECT * FROM vivienda_tipo WHERE estado = 'HABILITADO' ";
+    private static final String LISTARHABITACIONTIPO   = "SELECT * FROM habitacion_tipo WHERE estado = 'HABILITADO' ";
     
     public static void ActualizarListas(){
         consultarTSexo();
@@ -133,6 +134,27 @@ public class Servicios {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     ViviendaTipo o = new ViviendaTipo(
+                            rs.getString(2),
+                            rs.getString(3)
+                    );
+                    o.setFechaReg(rs.getTimestamp(4));
+                    o.setId(rs.getInt(1));
+                    lista.add(o);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return lista;
+    }
+    public static ArrayList<HabitacionTipo> consultarTHabitacionTipo() {
+        ArrayList<HabitacionTipo> lista = new ArrayList<>();
+        if (cn != null) {
+            try {
+                PreparedStatement ps = cn.prepareStatement(LISTARHABITACIONTIPO);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    HabitacionTipo o = new HabitacionTipo(
                             rs.getString(2),
                             rs.getString(3)
                     );

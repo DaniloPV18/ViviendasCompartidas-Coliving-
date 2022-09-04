@@ -117,8 +117,7 @@ public class AdmHabitacionesDAO {
                             rs.getDouble(5),//precio
                             rs.getInt(7),//tipohabitacion_id_tipohab
                             rs.getInt(8),//propiedad_id_propiedad
-                            rs.getInt(9),//estadohabitacion_id_estadohab
-                            rs.getInt(10)//promocion_id_promocion
+                            rs.getInt(9)//estadohabitacion_id_estadohab
                     );
                     p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(6));
@@ -129,8 +128,5 @@ public class AdmHabitacionesDAO {
             }
         }
         return lista;
-    }
-    public static void actualizar(String identificadorHb, String identificadorVv, Habitacion p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
