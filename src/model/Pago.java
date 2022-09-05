@@ -56,6 +56,31 @@ public class Pago {
         this.fechaReg = new Date();
     }
 
+    public Pago(double monto, Date fechaInicio, Date fechaFinal, String estado, int metodoPago, int huesped, int tipoPago, int habitacion, int propiedad) {
+        this.monto = monto;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.estado = estado;
+        this.metodoPago = metodoPago;
+        this.huesped = huesped;
+        this.tipoPago = tipoPago;
+        this.habitacion = habitacion;
+        this.propiedad = propiedad;
+        this.fechaReg = new Date();
+    }
+    
+    public Pago(double monto, Date fechaInicio, Date fechaFinal, String estado, int metodoPago, int huesped, int habitacion, int propiedad) {
+        this.monto = monto;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.estado = estado;
+        this.metodoPago = metodoPago;
+        this.huesped = huesped;
+        this.habitacion = habitacion;
+        this.propiedad = propiedad;
+        this.fechaReg = new Date();
+    }
+    
     public int getId() {
         return id;
     }
