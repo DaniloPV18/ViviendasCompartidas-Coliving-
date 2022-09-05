@@ -29,6 +29,16 @@ public class ViviendaArrayListsFK {
         return 0;
     }
     
+    public static String getViviendaIdentificador(String nombreVivienda){
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
+        for (Vivienda x : lista) {
+            if(nombreVivienda.compareToIgnoreCase(x.getNombre()) == 0){
+                return x.getIdentificador();
+            }
+        }
+        return "-";
+    }
+    
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getAnfitrionFK(String anfitrion) {
         ArrayList<Anfitrion> lista = JSwingUtilsVivienda.getInstance().getListaAnfitrionBD();
