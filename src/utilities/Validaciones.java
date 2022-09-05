@@ -200,10 +200,10 @@ public class Validaciones {
         return fechaI && fechaF;
     }
 
-    public static boolean existeHabitacion(String idVivienda, String identificador) {
-        Habitacion o = AdmHabitaciones.buscarHabitacion(idVivienda, identificador);
+    public static boolean existeHabitacion(String identificadorVivienda, String identificadorHabitacion) {
+        Habitacion o = AdmHabitaciones.buscarHabitacion(identificadorVivienda, identificadorHabitacion);
         if( o != null){
-            JOptionPane.showMessageDialog(null, "Habitacion ingresada ya existe: "+identificador +" en la vivienda: "+idVivienda);
+            JOptionPane.showMessageDialog(null, "Habitacion ingresada ya existe: "+identificadorHabitacion +" en la vivienda: "+identificadorVivienda);
             return false;
         }else{
             return true;

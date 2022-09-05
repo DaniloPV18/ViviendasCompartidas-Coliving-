@@ -149,22 +149,22 @@ public class AdmHabitaciones {
     }
 
     /* Buscar una Vivienda que se encuentre registrada */
-    public static Vivienda buscarVivienda(String identificador) {
+    public static Vivienda buscarVivienda(String identificadorVivienda) {
         ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
         for (Vivienda x : lista) {
-            if (x.getIdentificador().compareToIgnoreCase(identificador) == 0) {
+            if (x.getIdentificador().compareToIgnoreCase(identificadorVivienda) == 0) {
                 return x;
             }
         }
         return null;
     }
 
-    public static Habitacion buscarHabitacion(String idVivienda, String identificador) {
-        Vivienda v = buscarVivienda(idVivienda);
+    public static Habitacion buscarHabitacion(String identificadorVivienda, String identificadorHabitacion) {
+        Vivienda v = buscarVivienda(identificadorVivienda);
         if (v != null) {
             ArrayList<Habitacion> lista = AdmHabitacionesDAO.consultar();
             for (Habitacion x : lista) {
-                if (x.getIdentificador() == Integer.parseInt(identificador)) {
+                if (x.getIdentificador() == Integer.parseInt(identificadorHabitacion)) {
                     return x;
                 }
             }
