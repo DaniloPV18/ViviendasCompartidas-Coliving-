@@ -5,14 +5,18 @@
 package controller;
 
 import arraylists.HuespedArrayListsFK;
+import arraylists.PagosArrayListsFK;
 import arraylists.ViviendaArrayListsFK;
 import com.toedter.calendar.JDateChooser;
+import controllerDAO.AdmPagosDAO;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.Anfitrion;
 import model.Habitacion;
+import model.Huesped;
 import model.Pago;
+import utilities.Validaciones;
 
 /**
  *
@@ -22,21 +26,30 @@ public class AdmPagos {
 
     private static Pago p = null;
 
-    public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String dinero, String codHab0, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin) {
+    public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
         int idHuesp = HuespedArrayListsFK.getHuespedFK(idHuesped);
         int idVivienda = ViviendaArrayListsFK.getViviendaPK(ViviendaArrayListsFK.getViviendaIdentificador(nombreVivienda));
-        int codigoHabt = Integer.parseInt(codHab);
+//        int codigoHabt = Integer.parseInt(codHab);
+        int metPago = PagosArrayListsFK.getMetodoPagoFK(metodoPago);
         /* Validar que los datos ingresados sean los solicitados */
-        p = new Pago(metodoPago, idHuesp, fechaInicio, fechaFinal, dinero, codigoHabt, idHuesp, codigoHabt, codigoHabt, idVivienda);
-//        if (Validaciones.vAnfitrion(p)) {
-//            return true;
-//        }
+        if (Validaciones.vDouble(precio) && codHab!=null) {
+            int codigoHabt = Integer.parseInt(codHab);
+            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, codigoHabt, idVivienda);
+            if (Validaciones.vPagoFechas(p) && Validaciones.vPago(p)) {
+                System.out.println(p.toString());
+                return true;
+            }
+        }
         return false;
     }
 
-    public static void cargarAnfitrion(String identificadorHuesped, JTextField txtNombreHuesped) {
-        Anfitrion x = AdmAnfitriones.buscarCedula(identificadorHuesped);
+    public static void insertarRegistro() {
+//        AdmPagosDAO.insertar(p);
+    }
+
+    public static void cargarHuesped(String identificadorHuesped, JTextField txtNombreHuesped) {
+        Huesped x = AdmHuespedes.buscarCedula(identificadorHuesped);
         if (x != null) {
             txtNombreHuesped.setForeground(Color.BLACK);
             txtNombreHuesped.setText(x.getNombres() + " " + x.getApellidos());

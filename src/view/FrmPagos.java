@@ -8,6 +8,7 @@ package view;
 import components.JSwingUtilsPagos;
 import connection.Conexion;
 import controller.AdmPagos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -421,10 +422,14 @@ public class FrmPagos extends javax.swing.JFrame {
         String codHab = (String) cmbCodHab.getSelectedItem();
         String metodoPago = (String) cmbMetodoPago.getSelectedItem();
         String dinero = txtPrecioFinal.getText().trim();
-        if (AdmPagos.getIndexTable(tblPromo) != -1) {
-            if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, codHab, dtcFechaInicio, dtcFechaFin)) {
-
+        if (AdmPagos.getIndexTable(tblPromo) == -1) {
+            if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin)) {
+//                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion);
+            } else {
+                JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
             }
+        } else {
+
         }
 //        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
 //        String identificador = txtIDVivienda.getText().trim();
@@ -456,14 +461,14 @@ public class FrmPagos extends javax.swing.JFrame {
 
     private void txtIdHuespedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdHuespedKeyReleased
         idHuesped = txtIdHuesped.getText().trim();
-        AdmPagos.cargarAnfitrion(idHuesped, txtNombreHuesped);
+        AdmPagos.cargarHuesped(idHuesped, txtNombreHuesped);
     }//GEN-LAST:event_txtIdHuespedKeyReleased
 
     private void cmbCodHabItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCodHabItemStateChanged
         try {
             String codigoHabt = cmbCodHab.getSelectedItem().toString();
             String nombreVivienda = cmbViviendaNombre.getSelectedItem().toString();
-            AdmPagos.cargarPrecio(codigoHabt, nombreVivienda,txtPrecioHabt,txtPrecioFinal);
+            AdmPagos.cargarPrecio(codigoHabt, nombreVivienda, txtPrecioHabt, txtPrecioFinal);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cmbCodHabItemStateChanged

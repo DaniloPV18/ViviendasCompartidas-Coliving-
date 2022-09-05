@@ -29,7 +29,7 @@ public class AdmHabitaciones {
 
     public static boolean validarDatos(String idVivienda, String identificador, String max, boolean bano, String precio) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
-        int idAnfitrion = ViviendaArrayListsFK.getViviendaPK(idVivienda);
+        int idViviend = ViviendaArrayListsFK.getViviendaPK(idVivienda);
 
         if (Validaciones.vDouble(precio) && Validaciones.vInt(identificador)) {
             if(max.compareToIgnoreCase("") == 0){
@@ -41,7 +41,7 @@ public class AdmHabitaciones {
             int identificadorHabitacion = Integer.parseInt(identificador);
 
             /* Validar que los datos ingresados sean los solicitados */
-            p = new Habitacion(identificadorHabitacion, maxP, bano, prc, tipoHb, idAnfitrion, 1, 1);
+            p = new Habitacion(identificadorHabitacion, maxP, bano, prc, tipoHb, idViviend, 1, 1);
             if (Validaciones.vHabitacion(p)) {
                 System.out.println(p.toString());
                 return true;
