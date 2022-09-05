@@ -103,7 +103,7 @@ public class FrmPromociones extends javax.swing.JFrame {
             }
         });
 
-        btnSalir.setBackground(new java.awt.Color(153, 204, 255));
+        btnSalir.setBackground(new java.awt.Color(255, 0, 0));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
