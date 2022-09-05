@@ -43,8 +43,6 @@ public class FrmPagos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        btnEliminar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
@@ -73,6 +71,7 @@ public class FrmPagos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPromo = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        btnChoose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -80,24 +79,6 @@ public class FrmPagos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 255, 153));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 204));
-
-        btnEliminar.setBackground(new java.awt.Color(153, 204, 255));
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnEliminar.setText("ELIMINAR");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnModificar.setBackground(new java.awt.Color(153, 204, 255));
-        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnModificar.setText("MODIFICAR");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
 
         btnSalir.setBackground(new java.awt.Color(255, 0, 0));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -112,27 +93,17 @@ public class FrmPagos extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         btnRegresar.setBackground(new java.awt.Color(153, 204, 255));
@@ -239,9 +210,8 @@ public class FrmPagos extends javax.swing.JFrame {
                                     .addComponent(dtcFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbMetodoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbTipoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtPrecioFinal)
-                                        .addComponent(txtPrecioHabt, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)))))
+                                    .addComponent(txtPrecioFinal, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtPrecioHabt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,13 +275,22 @@ public class FrmPagos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOMBRE PROPIEDAD", "COD HABITACION", "PRECIO", "PRECIO DESC"
+                "NOMBRE PROPIEDAD", "COD HABITACION", "PRECIO", "PRECIO DESC", "PRECIO + IMP"
             }
         ));
         jScrollPane1.setViewportView(tblPromo);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("HABITACIONES CON PROMOCIONES");
+
+        btnChoose.setBackground(new java.awt.Color(153, 204, 255));
+        btnChoose.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnChoose.setText("SELECCIONAR");
+        btnChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -322,7 +301,8 @@ public class FrmPagos extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,11 +331,13 @@ public class FrmPagos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -376,41 +358,6 @@ public class FrmPagos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        if (AdmViviendas.getIndexTable(tblVivienda) != -1) {
-//            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea eliminar el registro?", "WARNING",
-//                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//                indice = AdmViviendas.getIndexTable(tblVivienda);
-//                identificadorVivienda = AdmViviendas.getIdentificador(tblVivienda, indice);
-//                AdmViviendas.eliminarRegistro(identificadorVivienda, indice);
-//                AdmViviendas.actualizarTabla(tblVivienda);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione un registro de la tabla que desea eliminar.");
-//        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-//        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
-//        String identificador = txtIDVivienda.getText().trim();
-//        String ciudad = (String) cmbCiudad.getSelectedItem();
-//        String nombre = txtNombreVivienda.getText().trim();
-//        String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
-//        String email = txtEmail.getText().trim();
-//        String direccion = txtDireccion.getText().trim();
-//        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, anfitrion, tipoVivienda)) {
-//            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea actualizar el registro?", "WARNING",
-//                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//                AdmViviendas.actualizarRegistro(identificadorVivienda);
-//                JOptionPane.showMessageDialog(null, "Registro seleccionado ha sido actualizado.");
-//                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion);
-//                AdmViviendas.actualizarTabla(tblVivienda);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione un registro que desee actualizar.");
-//        }
-    }//GEN-LAST:event_btnModificarActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         Conexion.desconectar();
         this.dispose();
@@ -422,8 +369,7 @@ public class FrmPagos extends javax.swing.JFrame {
         String codHab = (String) cmbCodHab.getSelectedItem();
         String metodoPago = (String) cmbMetodoPago.getSelectedItem();
         String dinero = txtPrecioFinal.getText().trim();
-        if (AdmPagos.getIndexTable(tblPromo) == -1) {
-            if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin)) {
+        if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin)) {
                 if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     AdmPagos.insertarRegistro();
                     JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
@@ -432,24 +378,6 @@ public class FrmPagos extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
             }
-        } else {
-
-        }
-//        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
-//        String identificador = txtIDVivienda.getText().trim();
-//        String ciudad = (String) cmbCiudad.getSelectedItem();
-//        String nombre = txtNombreVivienda.getText().trim();
-//        String tipoVivienda = (String) cmbTipoVivienda.getSelectedItem();
-//        String email = txtEmail.getText().trim();
-//        String direccion = txtDireccion.getText().trim();
-//        if (AdmViviendas.validarDatos(identificador, nombre, email, direccion, anfitrion, tipoVivienda) && Validaciones.existeVivienda(identificador)) {
-//            AdmViviendas.insertarRegistro();
-//            JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-//            AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion);
-//            AdmViviendas.actualizarTabla(tblVivienda);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
-//        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -476,6 +404,10 @@ public class FrmPagos extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cmbCodHabItemStateChanged
+
+    private void btnChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChooseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -527,8 +459,7 @@ public class FrmPagos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnChoose;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSalir;

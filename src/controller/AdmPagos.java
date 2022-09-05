@@ -19,6 +19,7 @@ import model.Anfitrion;
 import model.Habitacion;
 import model.Huesped;
 import model.Pago;
+import model.PromocionHabitacion;
 import utilities.Validaciones;
 
 /**
@@ -48,7 +49,7 @@ public class AdmPagos {
     }
 
     public static void insertarRegistro() {
-//        AdmPagosDAO.insertar(p);
+        AdmPagosDAO.insertar(p);
     }
 
     public static void cargarHuesped(String identificadorHuesped, JTextField txtNombreHuesped) {
@@ -84,16 +85,16 @@ public class AdmPagos {
 
     public static void actualizarTabla(JTable tblPromo) {
         tamanoColumnasTabla(tblPromo);
-        ArrayList lista = AdmPromocionesDAO.consultarPromoHabitacion();
+        ArrayList<PromocionHabitacion> lista = AdmPromocionesDAO.consultarPromoHabitacion();
         DefaultTableModel model = (DefaultTableModel) tblPromo.getModel();
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
-        for (Object x : lista) {
+        for (PromocionHabitacion x : lista) {
             Object[] rowData = new Object[4];
-            rowData[0] = x;
-//            rowData[1] = x.getNombre();
-//            rowData[2] = x.getEmail();
-//            rowData[3] = x.getDireccion();
+            rowData[0] = x.getNombreVivienda();
+            rowData[1] = x.getCodigoHabitacion();
+            rowData[2] = x.getPrecio();
+            rowData[3] = x.getPrecioTotal();
             model.addRow(rowData);
         }
     }

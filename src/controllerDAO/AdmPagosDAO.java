@@ -23,23 +23,23 @@ public class AdmPagosDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO pago ("
+    private static final String INSERTAR = "  INSERT INTO pagos ("
             + "     monto_usuario, fecha_reg, fecha_inicio , fecha_final, estado, pago_metodo_id_pago_metodo, huesped_id_huesped, "
-            + "     habitacion_id_habitacion, habitacion_vivienda_id_vivienda, nacionalidad_id_nacionalidad "
-            + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
+            + "     habitacion_id_habitacion, habitacion_vivienda_id_vivienda "
+            + ")VALUES(?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE pago "
-            + "SET "
-            + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
-            + "     identificacion_tipo_id_identificacion_tipo = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
-            + "WHERE identificador = ? ";
-    
-    private static final String ELIMINAR = " UPDATE pago "
-            + "SET "
-            + "     estado = ?"
-            + "WHERE identificador = ? ";
+//    private static final String ACTUALIZAR = " UPDATE pago "
+//            + "SET "
+//            + "     identificador = ?, nombres = ?, apellidos = ?, fecha_nac = ?, email = ?, "
+//            + "     identificacion_tipo_id_identificacion_tipo = ?, sexo_id_sexo = ?, nacionalidad_id_nacionalidad = ? "
+//            + "WHERE identificador = ? ";
+//    
+//    private static final String ELIMINAR = " UPDATE pago "
+//            + "SET "
+//            + "     estado = ?"
+//            + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM pago WHERE estado = 'PAGADO' ";
+    private static final String LISTAR = " SELECT * FROM pagos WHERE estado = 'PAGADO' ";
 
     public static Connection getCn() {
         return cn;

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Promocion;
+import model.PromocionHabitacion;
 import utilities.Conversiones;
 
 /**
@@ -118,18 +119,20 @@ public class AdmPromocionesDAO {
         return lista;
     }
     
-    public static ArrayList consultarPromoHabitacion() {
-        ArrayList lista = new ArrayList<>();
+    public static ArrayList<PromocionHabitacion> consultarPromoHabitacion() {
+        ArrayList<PromocionHabitacion> lista = new ArrayList<>();
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(CONSULTARVISTA);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    String nombre = rs.getString(1);
-                    int codHabt =   rs.getInt(2);              
-                    double precio =   rs.getDouble(3);              
-                    double precioDescuento =   rs.getDouble(4);              
-                    lista.add(new Object[]{nombre,codHabt,precio,precioDescuento});
+                    PromocionHabitacion p = new PromocionHabitacion(
+                            rs.getString(1),
+                            rs.getInt(2),
+                            rs.getDouble(3),
+                            rs.getDouble(4)
+                    );                  
+                    lista.add(p);
                 }
             } catch (SQLException e) {
                 System.out.println(e);
