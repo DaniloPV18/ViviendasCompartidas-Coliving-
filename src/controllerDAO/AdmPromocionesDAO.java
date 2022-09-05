@@ -22,22 +22,24 @@ public class AdmPromocionesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO PROMOCION ("
+    private static final String INSERTAR = "  INSERT INTO promocion ("
             + "     fecha_inicial, fecha_final, descuento_habitacion, estado, fecha_reg"
             + ")VALUES(?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE PROMOCION "
+    private static final String ACTUALIZAR = " UPDATE promocion "
             + "SET "
             + "     fecha_inicial = ? , fecha_final = ? , descuento_habitacion = ? "
             + " WHERE id_promocion = ? ";
     
-    private static final String ELIMINAR = " UPDATE PROMOCION "
+    private static final String ELIMINAR = " UPDATE promocion "
             + "SET "
             + "     estado = ? "
             + "WHERE id_promocion = ? ";
 
-    private static final String LISTAR = " SELECT * FROM PROMOCION "
+    private static final String LISTAR = " SELECT * FROM promocion "
             + "WHERE estado = 'A' " ;
+    
+    private static String CONSULTARVISTA = "SELECT * FROM v_promo_hab";
 
     public static Connection getCn() {
         return cn;
@@ -108,6 +110,26 @@ public class AdmPromocionesDAO {
                     p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(6));                    
                     lista.add(p);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return lista;
+    }
+    
+    public static ArrayList consultarPromoHabitacion() {
+        ArrayList lista = new ArrayList<>();
+        if (cn != null) {
+            try {
+                PreparedStatement ps = cn.prepareStatement(CONSULTARVISTA);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    String nombre = rs.getString(1);
+                    int codHabt =   rs.getInt(2);              
+                    double precio =   rs.getDouble(3);              
+                    double precioDescuento =   rs.getDouble(4);              
+                    lista.add(new Object[]{nombre,codHabt,precio,precioDescuento});
                 }
             } catch (SQLException e) {
                 System.out.println(e);

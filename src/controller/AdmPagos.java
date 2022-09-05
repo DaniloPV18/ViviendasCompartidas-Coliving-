@@ -9,9 +9,12 @@ import arraylists.PagosArrayListsFK;
 import arraylists.ViviendaArrayListsFK;
 import com.toedter.calendar.JDateChooser;
 import controllerDAO.AdmPagosDAO;
+import controllerDAO.AdmPromocionesDAO;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import model.Anfitrion;
 import model.Habitacion;
 import model.Huesped;
@@ -33,8 +36,8 @@ public class AdmPagos {
 //        int codigoHabt = Integer.parseInt(codHab);
         int metPago = PagosArrayListsFK.getMetodoPagoFK(metodoPago);
         /* Validar que los datos ingresados sean los solicitados */
-        if (Validaciones.vDouble(precio) && codHab!=null) {
-            int codigoHabt = Integer.parseInt(codHab);
+        if (Validaciones.vDouble(precio) && codHab != null) {
+            int codigoHabt = PagosArrayListsFK.getIdHabitacion(Integer.parseInt(codHab), idVivienda);
             p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, codigoHabt, idVivienda);
             if (Validaciones.vPagoFechas(p) && Validaciones.vPago(p)) {
                 System.out.println(p.toString());
@@ -59,10 +62,6 @@ public class AdmPagos {
         }
     }
 
-    public static int getIndexTable(JTable tblPromo) {
-        return tblPromo.getSelectedRow();
-    }
-
     public static void cargarPrecio(String codigoHabt, String nombreVivienda, JTextField txtPrecioHabt, JTextField txtPrecioFinal) {
         String identificadorVivienda = ViviendaArrayListsFK.getViviendaIdentificador(nombreVivienda);
         if (identificadorVivienda != null) {
@@ -75,4 +74,35 @@ public class AdmPagos {
         }
     }
 
+    public static void limpiarCampos(JTextField txtIdHuesped) {
+        txtIdHuesped.setText("");
+    }
+
+    public static int getIndexTable(JTable tblPromo) {
+        return tblPromo.getSelectedRow();
+    }
+
+    public static void actualizarTabla(JTable tblPromo) {
+        tamanoColumnasTabla(tblPromo);
+        ArrayList lista = AdmPromocionesDAO.consultarPromoHabitacion();
+        DefaultTableModel model = (DefaultTableModel) tblPromo.getModel();
+        model.setRowCount(0);
+        /* Insertar registros a la tabla del formulario */
+        for (Object x : lista) {
+            Object[] rowData = new Object[4];
+            rowData[0] = x;
+//            rowData[1] = x.getNombre();
+//            rowData[2] = x.getEmail();
+//            rowData[3] = x.getDireccion();
+            model.addRow(rowData);
+        }
+    }
+
+    /* Modificar el ancho de las columnas de la tabla */
+    public static void tamanoColumnasTabla(JTable tblPersonas) {
+        int[] anchos = {7, 70, 90, 70, 30, 7, 7};
+        for (int i = 0; i < tblPersonas.getColumnCount(); i++) {
+            tblPersonas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+        }
+    }
 }

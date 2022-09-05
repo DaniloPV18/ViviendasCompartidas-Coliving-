@@ -5,7 +5,12 @@
 package arraylists;
 
 import components.JSwingUtilsPagos;
+import controllerDAO.AdmHabitacionesDAO;
+import controllerDAO.AdmPagosDAO;
+import controllerDAO.AdmViviendasDAO;
 import java.util.ArrayList;
+import model.Habitacion;
+import model.Pago;
 import model.PagoMetodo;
 
 /**
@@ -19,6 +24,16 @@ public class PagosArrayListsFK {
         ArrayList<PagoMetodo> lista = JSwingUtilsPagos.getInstance().getListaPagoMetodoBD();
         for (PagoMetodo x : lista) {
             if(nombre.compareToIgnoreCase(x.getNombre()) == 0){
+                return x.getId();
+            }
+        }
+        return 0;
+    }
+    
+    public static int getIdHabitacion(int codigoHabitacion, int idVivienda){
+        ArrayList<Habitacion> lista = AdmHabitacionesDAO.consultar();
+        for (Habitacion x : lista) {
+            if(x.getPropiedad() == idVivienda && x.getIdentificador()== codigoHabitacion){
                 return x.getId();
             }
         }

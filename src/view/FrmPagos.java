@@ -25,7 +25,7 @@ public class FrmPagos extends javax.swing.JFrame {
         /*Cargar combos con valores obtenidos de la BD*/
         JSwingUtilsPagos.cargarCombos(cmbViviendaNombre, cmbMetodoPago, cmbTipoPago);
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
-//        AdmViviendas.actualizarTabla(tblVivienda);
+        AdmPagos.actualizarTabla(tblPromo);
         /*Negar edición de Caja de texto */
         txtNombreHuesped.setEditable(false);
         txtPrecioHabt.setEditable(false);
@@ -424,7 +424,11 @@ public class FrmPagos extends javax.swing.JFrame {
         String dinero = txtPrecioFinal.getText().trim();
         if (AdmPagos.getIndexTable(tblPromo) == -1) {
             if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin)) {
-//                AdmViviendas.limpiarCampos(txtIDVivienda, txtNombreVivienda, txtEmail, txtDireccion);
+                if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    AdmPagos.insertarRegistro();
+                    JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
+                    AdmPagos.limpiarCampos(txtIdHuesped);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
             }

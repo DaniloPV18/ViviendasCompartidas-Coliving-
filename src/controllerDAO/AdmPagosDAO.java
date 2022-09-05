@@ -24,8 +24,8 @@ public class AdmPagosDAO {
     private static final Connection cn = Conexion.getConnection();
 
     private static final String INSERTAR = "  INSERT INTO pago ("
-            + "     identificador, nombres, apellidos , fecha_nac, email, estado, fecha_reg, "
-            + "     identificacion_tipo_id_identificacion_tipo, sexo_id_sexo, nacionalidad_id_nacionalidad "
+            + "     monto_usuario, fecha_reg, fecha_inicio , fecha_final, estado, pago_metodo_id_pago_metodo, huesped_id_huesped, "
+            + "     habitacion_id_habitacion, habitacion_vivienda_id_vivienda, nacionalidad_id_nacionalidad "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
     private static final String ACTUALIZAR = " UPDATE pago "
@@ -39,7 +39,7 @@ public class AdmPagosDAO {
             + "     estado = ?"
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM pago WHERE estado = 'HABILITADO' ";
+    private static final String LISTAR = " SELECT * FROM pago WHERE estado = 'PAGADO' ";
 
     public static Connection getCn() {
         return cn;
@@ -50,16 +50,15 @@ public class AdmPagosDAO {
         if (cn != null) {
             try {
                 PreparedStatement ps = cn.prepareStatement(INSERTAR);
-                ps.setString(1, pago.getIdentificador());
-                ps.setString(2, pago.getNombres());
-                ps.setString(3, pago.getApellidos());
-                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaNac())));
-                ps.setString(5, pago.getEmail());
-                ps.setString(6, pago.getEstado());
-                ps.setTimestamp(7, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaReg())));
-                ps.setInt(8, pago.getTipoId());
-                ps.setInt(9, pago.getSexo());
-                ps.setInt(10, pago.getNacionalidad());                
+                ps.setDouble(1, pago.getMonto());
+                ps.setTimestamp(2, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaReg())));
+                ps.setTimestamp(3, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaInicio())));
+                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaFinal())));
+                ps.setString(5, pago.getEstado());
+                ps.setInt   (6, pago.getMetodoPago());                
+                ps.setInt   (7, pago.getHuesped());
+                ps.setInt   (8, pago.getHabitacion());
+                ps.setInt   (9, pago.getPropiedad());                
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
             } catch (SQLException e) {
@@ -69,41 +68,41 @@ public class AdmPagosDAO {
     }
     
     //Actualizar registro en BD 
-    public static void actualizar(String identificadorPago, Pago pago) {
-        System.out.println(identificadorPago + " " + pago.toString());
-        if (cn != null) {
-            try {
-                PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
-                ps.setString(1, pago.getIdentificador());
-                ps.setString(2, pago.getNombres());
-                ps.setString(3, pago.getApellidos());
-                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaNac())));
-                ps.setString(5, pago.getEmail());
-                ps.setInt(6, pago.getTipoId());
-                ps.setInt(7, pago.getSexo());
-                ps.setInt(8, pago.getNacionalidad());
-                ps.setString(9, identificadorPago);
-                ps.execute();
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
-        }
-    }
+//    public static void actualizar(String identificadorPago, Pago pago) {
+//        System.out.println(identificadorPago + " " + pago.toString());
+//        if (cn != null) {
+//            try {
+//                PreparedStatement ps = cn.prepareStatement(ACTUALIZAR);
+//                ps.setString(1, pago.getIdentificador());
+//                ps.setString(2, pago.getNombres());
+//                ps.setString(3, pago.getApellidos());
+//                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaNac())));
+//                ps.setString(5, pago.getEmail());
+//                ps.setInt(6, pago.getTipoId());
+//                ps.setInt(7, pago.getSexo());
+//                ps.setInt(8, pago.getNacionalidad());
+//                ps.setString(9, identificadorPago);
+//                ps.execute();
+//            } catch (SQLException e) {
+//                System.out.println(e);
+//            }
+//        }
+//    }
     
     //Eliminado logico en BD 
-    public static void eliminar(String cedula){
-        String newEstado = "ELIMINADO";
-        if (cn != null) {
-            try {
-                PreparedStatement ps = cn.prepareStatement(ELIMINAR);
-                ps.setString(1, newEstado);
-                ps.setString(2, cedula);
-                ps.execute();
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
-        }
-    }
+//    public static void eliminar(String cedula){
+//        String newEstado = "ELIMINADO";
+//        if (cn != null) {
+//            try {
+//                PreparedStatement ps = cn.prepareStatement(ELIMINAR);
+//                ps.setString(1, newEstado);
+//                ps.setString(2, cedula);
+//                ps.execute();
+//            } catch (SQLException e) {
+//                System.out.println(e);
+//            }
+//        }
+//    }
     
     //Consulta de los registros almacenados en la tabla de la BD
     public static ArrayList<Pago> consultar() {
@@ -114,18 +113,17 @@ public class AdmPagosDAO {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     Pago p = new Pago(
-                            rs.getString(2),//identificador
-                            rs.getString(3),//nombres
-                            rs.getString(4),//apellidos
-                            rs.getDate(5),//fecha_nac
-                            rs.getString(6),//email
-                            rs.getString(7),//estado
-                            rs.getInt(9),//tipoidentificacion
-                            rs.getInt(10),//sexo
-                            rs.getInt(11)//nacionalidad
+                            rs.getDouble(2),
+                            rs.getDate(4),
+                            rs.getDate(5),
+                            rs.getString(6),
+                            rs.getInt(7),
+                            rs.getInt(9),
+                            rs.getInt(10),
+                            rs.getInt(11)
                     );
                     p.setId(rs.getInt(1));
-                    p.setFechaReg(rs.getTimestamp(8));
+                    p.setFechaReg(rs.getTimestamp(3));
                     lista.add(p);
                 }
             } catch (SQLException e) {

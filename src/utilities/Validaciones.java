@@ -49,7 +49,11 @@ public class Validaciones {
     public static boolean vInt(int numero) {
         try {
             int num = numero;
-            return true;
+            if (num != 0) {
+                return true;
+            }
+            return false;
+
         } catch (Exception e) {
             System.out.println("Error: la cadena debe contener solo números.");
             return false;
@@ -220,6 +224,6 @@ public class Validaciones {
     }
 
     public static boolean vPagoFechas(Pago p) {
-        return p.getFechaInicio()!=null && p.getFechaFinal()!=null ;
+        return p.getFechaInicio() != null && p.getFechaFinal() != null;
     }
 }
