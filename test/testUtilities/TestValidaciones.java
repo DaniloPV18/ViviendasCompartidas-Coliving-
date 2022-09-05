@@ -7,7 +7,8 @@ package testUtilities;
 
 import java.util.Date;
 import model.Habitacion;
-import model.Persona;
+import model.Anfitrion;
+import model.Huesped;
 import model.Vivienda;
 import utilities.Validaciones;
 /**
@@ -26,42 +27,75 @@ public class TestValidaciones {
         System.out.println(Validaciones.vEdad(19));
         System.out.println(Validaciones.vEdad(15));
         
-        testPersonas();
+        testAnfitriones();
+        testHuespedes();
         testViviendas();
         testHabitaciones();
     }
 
-    private static void testPersonas() {
+    private static void testAnfitriones() {
         
-        //Comprobar datos de objeto Persona -> ESCENARIO EDAD MENOR DE EDAD
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO EDAD MENOR DE EDAD");
-        System.out.println(new Persona("0931600548", "IVONNE ", "MINCHALA ", new Date(), "IVONNE@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "IVONNE ", "MINCHALA ", new Date(), "IVONNE@GMAIL.COM", "HABILITADO", 0, 0, 0)));        
+        //Comprobar datos de objeto Anfitrion -> ESCENARIO EDAD MENOR DE EDAD
+        System.out.println("Comprobar datos de objeto Anfitrion -> ESCENARIO EDAD MENOR DE EDAD");
+        System.out.println(new Anfitrion("0931600548", "IVONNE ", "MINCHALA ", new Date(), "IVONNE@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vAnfitrion(new Anfitrion("0931600548", "IVONNE ", "MINCHALA ", new Date(), "IVONNE@GMAIL.COM", "HABILITADO", 0, 0, 0)));        
         
-        //Comprobar datos de objeto Persona -> ESCENARIO EDAD MAYOR DE EDAD
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO EDAD MAYOR DE EDAD");
-        System.out.println(new Persona("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        //Comprobar datos de objeto Anfitrion -> ESCENARIO EDAD MAYOR DE EDAD
+        System.out.println("Comprobar datos de objeto Anfitrion -> ESCENARIO EDAD MAYOR DE EDAD");
+        System.out.println(new Anfitrion("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vAnfitrion(new Anfitrion("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES CONTIENEN NUMEROS");
-        System.out.println(new Persona("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        //Comprobar datos de objeto Anfitrion -> ESCENARIO NOMBRES CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Anfitrion -> ESCENARIO NOMBRES CONTIENEN NUMEROS");
+        System.out.println(new Anfitrion("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vAnfitrion(new Anfitrion("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO APELLIDOS CONTIENEN NUMEROS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO APELLIDOS CONTIENEN NUMEROS");
-        System.out.println(new Persona("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        //Comprobar datos de objeto Anfitrion -> ESCENARIO APELLIDOS CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Anfitrion -> ESCENARIO APELLIDOS CONTIENEN NUMEROS");
+        System.out.println(new Anfitrion("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vAnfitrion(new Anfitrion("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS");
-        System.out.println(new Persona("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        //Comprobar datos de objeto Anfitrion -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS
+        System.out.println("Comprobar datos de objeto Anfitrion -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS");
+        System.out.println(new Anfitrion("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vAnfitrion(new Anfitrion("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
         
-        //Comprobar datos de objeto Persona -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS
-        System.out.println("Comprobar datos de objeto Persona -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS ");
-        System.out.println(new Persona("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1).toString());
-        System.out.println(Validaciones.vPersona(new Persona("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
+        //Comprobar datos de objeto Anfitrion -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS
+        System.out.println("Comprobar datos de objeto Anfitrion -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS ");
+        System.out.println(new Anfitrion("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1).toString());
+        System.out.println(Validaciones.vAnfitrion(new Anfitrion("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
+    }
+    
+    private static void testHuespedes() {
+        //Comprobar datos de objeto Huesped -> ESCENARIO EDAD MENOR DE EDAD
+        System.out.println("Comprobar datos de objeto Huesped -> ESCENARIO EDAD MENOR DE EDAD");
+        System.out.println(new Huesped("0931600548", "IVONNE ", "MINCHALA ", new Date(), "IVONNE@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vHuesped(new Huesped("0931600548", "IVONNE ", "MINCHALA ", new Date(), "IVONNE@GMAIL.COM", "HABILITADO", 0, 0, 0)));        
+        
+        //Comprobar datos de objeto Huesped -> ESCENARIO EDAD MAYOR DE EDAD
+        System.out.println("Comprobar datos de objeto Huesped -> ESCENARIO EDAD MAYOR DE EDAD");
+        System.out.println(new Huesped("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vHuesped(new Huesped("0931600548", "DANILO ", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        
+        //Comprobar datos de objeto Huesped -> ESCENARIO NOMBRES CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Huesped -> ESCENARIO NOMBRES CONTIENEN NUMEROS");
+        System.out.println(new Huesped("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vHuesped(new Huesped("0931600548", "DANILO123 12313", "PIN ", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        
+        //Comprobar datos de objeto Huesped -> ESCENARIO APELLIDOS CONTIENEN NUMEROS
+        System.out.println("Comprobar datos de objeto Huesped -> ESCENARIO APELLIDOS CONTIENEN NUMEROS");
+        System.out.println(new Huesped("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vHuesped(new Huesped("0931600548", "DANILO ", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        
+        //Comprobar datos de objeto Huesped -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS
+        System.out.println("Comprobar datos de objeto Huesped -> ESCENARIO NOMBRES O APELLIDOS SE ENCUENTRAN VACIOS");
+        System.out.println(new Huesped("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0).toString());
+        System.out.println(Validaciones.vHuesped(new Huesped("0931600548", "", "11111 1111231", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "DANILO@GMAIL.COM", "HABILITADO", 0, 0, 0)));
+        
+        //Comprobar datos de objeto Huesped -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS
+        System.out.println("Comprobar datos de objeto Huesped -> ESCENARIO CARACTERES NO ADMITIDOS EN EL CAMPO NOMBRES O APELLIDOS ");
+        System.out.println(new Huesped("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1).toString());
+        System.out.println(Validaciones.vHuesped(new Huesped("0931600548", "KENETH{", "}RIERA", new java.util.GregorianCalendar(2000, java.util.Calendar.FEBRUARY, 11).getTime(), "KENETH@GMAIL.COM", "HABILITADO", 1, 0, 1)));
     }
 
     private static void testViviendas() {
@@ -104,5 +138,5 @@ public class TestValidaciones {
         System.out.println("Comprobar datos de objeto Habitacion -> ESCENARIO PRECIO MAYOR O IGUAL A 10000");
         System.out.println(new Habitacion(101, 4, true, 10000 , 1, 1, 1, 0).toString());
         System.out.println(Validaciones.vHabitacion(new Habitacion(101, 4, true, 10000 , 1, 1, 1, 0)));
-    }
+    }    
 }

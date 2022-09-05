@@ -23,7 +23,11 @@ public class Conexion {
     private static String myDB = "sys";
     private static String user = "root";
     private static String pass = "root";
+<<<<<<< HEAD
     private static String host = "127.0.0.1";
+=======
+    private static String host = "localhost";
+>>>>>>> master
     private static int port = 1451;
     
     public Conexion() {

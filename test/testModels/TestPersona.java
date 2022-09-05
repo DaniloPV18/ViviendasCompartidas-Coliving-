@@ -6,7 +6,8 @@
 package testModels;
 
 import java.util.Date;
-import model.Persona;
+import model.Anfitrion;
+import model.Huesped;
 
 /**
  *
@@ -14,8 +15,12 @@ import model.Persona;
  */
 public class TestPersona {
     public static void main(String[] args) {
-        //Crear objeto de tipo Persona 
-        System.out.println(new Persona().toString());
-        System.out.println(new Persona("0931600548", "Danilo Miguel", "Pin Veloz", new Date(), "daniloski_@gmail.com", "Habilitado", 0, 0, 0).toString());
+        //Crear objeto de tipo Anfitrion 
+        System.out.println(new Anfitrion().toString());
+        System.out.println(new Anfitrion("0931600548", "Danilo Miguel", "Pin Veloz", new Date(), "daniloski_@gmail.com", "Habilitado", 0, 0, 0).toString());
+        
+        //Crear objeto de tipo Huesped 
+        System.out.println(new Huesped().toString());
+        System.out.println(new Huesped("0931600548", "Danilo Miguel", "Pin Veloz", new Date(), "daniloski_@gmail.com", "Habilitado", 0, 0, 0).toString());
     }
 }

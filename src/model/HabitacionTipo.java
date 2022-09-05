@@ -14,7 +14,6 @@ import java.util.Date;
 public class HabitacionTipo {
 
     private int id;
-    private String identificador;
     private String nombre;
     private String estado;
     private Date fechaReg;
@@ -23,8 +22,7 @@ public class HabitacionTipo {
         this.fechaReg = new Date();
     }
 
-    public HabitacionTipo(String identificador, String nombre, String estado) {
-        this.identificador = identificador;
+    public HabitacionTipo(String nombre, String estado) {        
         this.nombre = nombre;
         this.estado = estado;
         this.fechaReg = new Date();
@@ -38,13 +36,13 @@ public class HabitacionTipo {
         this.id = id;
     }
 
-    public String getIdentificador() {
-        return identificador;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }    
 
     public String getHabitacionTipo() {
         return nombre;
@@ -72,7 +70,7 @@ public class HabitacionTipo {
 
     @Override
     public String toString() {
-        return "HabitacionTipo{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
+        return "HabitacionTipo{nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + '}';
     }
 
 }

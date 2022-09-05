@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllerDB;
+package controllerDAO;
 
 import connection.Conexion;
 import java.sql.Connection;
@@ -18,29 +18,29 @@ import utilities.Conversiones;
  *
  * @author N1L0XD
  */
-public class AdmHabitacionesDataBase {
+public class AdmHabitacionesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO HABITACION ("
-            + "     identificador, num_max_per, tiene_banio , precio, fecha_reg, "
-            + "     tipohabitacion_id_tipohab, propiedad_id_propiedad, estadohabitacion_id_estadohab, promocion_id_promocion"
-            + ")VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String INSERTAR = "  INSERT INTO habitacion ("
+            + "     identificador, num_max_per, banio , precio, fecha_reg, "
+            + "     habitacion_tipo_id_habitacion_tipo, vivienda_id_vivienda, habitacion_estado_id_habitacion_estado"
+            + ")VALUES(?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE HABITACION "
+    private static final String ACTUALIZAR = " UPDATE habitacion "
             + "SET "
-            + "     identificador = ?, num_max_per = ?, tiene_banio = ?, precio = ?, "
-            + "     tipohabitacion_id_tipohab = ?, propiedad_id_propiedad = ?, estadohabitacion_id_estadohab = ?, promocion_id_promocion = ? "
+            + "     identificador = ?, num_max_per = ?, banio = ?, precio = ?, "
+            + "     habitacion_tipo_id_habitacion_tipo = ?, vivienda_id_vivienda = ?, habitacion_estado_id_habitacion_estado = ? "
             + "WHERE id_habitacion = ? ";
     
-    private static final String ELIMINAR = " UPDATE HABITACION "
+    private static final String ELIMINAR = " UPDATE habitacion "
             + "SET "
-            + "     estadohabitacion_id_estadohab = ? "
+            + "     habitacion_estado_id_habitacion_estado = ? "
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM HABITACION "
-            + "WHERE estadohabitacion_id_estadohab = 1 or "
-            + "estadohabitacion_id_estadohab = 3 ";
+    private static final String LISTAR = " SELECT * FROM habitacion "
+            + "WHERE habitacion_estado_id_habitacion_estado = 1 or "
+            + "habitacion_estado_id_habitacion_estado = 3 ";
 
     public static Connection getCn() {
         return cn;
@@ -58,8 +58,7 @@ public class AdmHabitacionesDataBase {
                 ps.setTimestamp(5, Conversiones.getFecha(Conversiones.getFecha(habitacion.getFechaReg()))); 
                 ps.setInt(6, habitacion.getTipoHab());
                 ps.setInt(7, habitacion.getPropiedad());
-                ps.setInt(8, habitacion.getEstadoHab());       
-                ps.setInt(9, habitacion.getPromocion());                
+                ps.setInt(8, habitacion.getEstadoHab());            
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -78,9 +77,8 @@ public class AdmHabitacionesDataBase {
                 ps.setDouble(4, habitacion.getPrecio());
                 ps.setInt(5, habitacion.getTipoHab());
                 ps.setInt(6, habitacion.getPropiedad());
-                ps.setInt(7, habitacion.getEstadoHab());       
-                ps.setInt(8, habitacion.getPromocion());
-                ps.setInt(9, id);
+                ps.setInt(7, habitacion.getEstadoHab());   
+                ps.setInt(8, id);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -114,12 +112,11 @@ public class AdmHabitacionesDataBase {
                     Habitacion p = new Habitacion(
                             rs.getInt(2),//identificador
                             rs.getInt(3),//num_max_per
-                            rs.getBoolean(4),//tiene_banio
+                            rs.getBoolean(4),//banio
                             rs.getDouble(5),//precio
                             rs.getInt(7),//tipohabitacion_id_tipohab
                             rs.getInt(8),//propiedad_id_propiedad
-                            rs.getInt(9),//estadohabitacion_id_estadohab
-                            rs.getInt(10)//promocion_id_promocion
+                            rs.getInt(9)//estadohabitacion_id_estadohab
                     );
                     p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(6));

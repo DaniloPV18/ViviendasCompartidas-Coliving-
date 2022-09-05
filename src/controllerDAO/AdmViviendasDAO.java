@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllerDB;
+package controllerDAO;
 
 import connection.Conexion;
 import java.sql.Connection;
@@ -18,27 +18,27 @@ import utilities.Conversiones;
  *
  * @author N1L0XD
  */
-public class AdmViviendasDataBase {
+public class AdmViviendasDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO VIVIENDA ("
-            + "     identificador, nombre, email, direccion, num_hab, fecha_reg, "
+    private static final String INSERTAR = "  INSERT INTO vivienda ("
+            + "     identificador, nombre, email, direccion, fecha_reg, "
             + "     anfitrion_id_persona, vivienda_tipo_id_vivienda_tipo, vivienda_estado_id_vivienda_estado, ciudad_id_ciudad"
-            + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
+            + ")VALUES(?,?,?,?,?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE VIVIENDA "
+    private static final String ACTUALIZAR = " UPDATE vivienda "
             + "SET "
-            + "     identificador = ?, nombre = ?, email = ?, direccion = ?, num_hab = ?, "
+            + "     identificador = ?, nombre = ?, email = ?, direccion = ?, "
             + "     anfitrion_id_persona = ?, vivienda_tipo_id_vivienda_tipo = ?, vivienda_estado_id_vivienda_estado = ?, ciudad_id_ciudad = ? "
             + "WHERE identificador = ? ";
     
-    private static final String ELIMINAR = " UPDATE VIVIENDA "
+    private static final String ELIMINAR = " UPDATE vivienda "
             + "SET "
             + "     vivienda_estado_id_vivienda_estado = ? "
             + "WHERE identificador = ? ";
 
-    private static final String LISTAR = " SELECT * FROM VIVIENDA "
+    private static final String LISTAR = " SELECT * FROM vivienda "
             + "WHERE vivienda_estado_id_vivienda_estado = 1 or "
             + "vivienda_estado_id_vivienda_estado = 3 ";
 
@@ -55,12 +55,11 @@ public class AdmViviendasDataBase {
                 ps.setString(2, vivienda.getNombre());
                 ps.setString(3, vivienda.getEmail());
                 ps.setString(4, vivienda.getDireccion());
-                ps.setInt   (5, vivienda.getNumHab());
-                ps.setTimestamp(6, Conversiones.getFecha(Conversiones.getFecha(vivienda.getFechaReg())));                
-                ps.setInt(7, vivienda.getAnfitrion());
-                ps.setInt(8, vivienda.getTipoVivienda());
-                ps.setInt(9, vivienda.getEstadoVivienda());                
-                ps.setInt(10, vivienda.getCiudad());                
+                ps.setTimestamp(5, Conversiones.getFecha(Conversiones.getFecha(vivienda.getFechaReg())));                
+                ps.setInt(6, vivienda.getAnfitrion());
+                ps.setInt(7, vivienda.getTipoVivienda());
+                ps.setInt(8, vivienda.getEstadoVivienda());                
+                ps.setInt(9, vivienda.getCiudad());                
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -76,13 +75,12 @@ public class AdmViviendasDataBase {
                 ps.setString(1, vivienda.getIdentificador());
                 ps.setString(2, vivienda.getNombre());
                 ps.setString(3, vivienda.getEmail());
-                ps.setString(4, vivienda.getDireccion());
-                ps.setInt   (5, vivienda.getNumHab());            
-                ps.setInt(6, vivienda.getAnfitrion());
-                ps.setInt(7, vivienda.getTipoVivienda());
-                ps.setInt(8, vivienda.getEstadoVivienda());                
-                ps.setInt(9, vivienda.getCiudad());
-                ps.setString(10, identificador);
+                ps.setString(4, vivienda.getDireccion());       
+                ps.setInt(5, vivienda.getAnfitrion());
+                ps.setInt(6, vivienda.getTipoVivienda());
+                ps.setInt(7, vivienda.getEstadoVivienda());                
+                ps.setInt(8, vivienda.getCiudad());
+                ps.setString(9, identificador);
                 ps.execute();
             } catch (SQLException e) {
                 System.out.println(e);
@@ -118,14 +116,13 @@ public class AdmViviendasDataBase {
                             rs.getString(3),//nombre
                             rs.getString(4),//email
                             rs.getString(5),//direccion
-                            rs.getInt(6),//numHab
-                            rs.getInt(8),//anfitrion
-                            rs.getInt(9),//tipoVivienda
-                            rs.getInt(10),//estadoVivienda
-                            rs.getInt(11)//ciudad
+                            rs.getInt(7),//anfitrion
+                            rs.getInt(8),//tipoVivienda
+                            rs.getInt(9),//estadoVivienda
+                            rs.getInt(10)//ciudad
                     );
                     p.setId(rs.getInt(1));
-                    p.setFechaReg(rs.getTimestamp(7));                    
+                    p.setFechaReg(rs.getTimestamp(6));                    
                     lista.add(p);
                 }
             } catch (SQLException e) {

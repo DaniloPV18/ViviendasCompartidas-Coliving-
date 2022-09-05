@@ -5,7 +5,7 @@
  */
 package testController;
 
-import controllerDB.AdmViviendasDataBase;
+import controllerDAO.AdmViviendasDAO;
 import java.util.ArrayList;
 import model.Vivienda;
 
@@ -27,12 +27,12 @@ public class TestAdmPropiedades {
     }
 
     private static void insertarDatosPrueba() {
-        AdmViviendasDataBase.insertar(new Vivienda
+        AdmViviendasDAO.insertar(new Vivienda
         ("000000004", "TOUR INTERNATIONAL", "TOURINTERNATIONAL@GMAIL.COM", "SUR GUAYAQUIL", 10, 1, 1, 3, 1));
     }
 
     private static void consultarTabla() {
-        ArrayList<Vivienda> ls1 = AdmViviendasDataBase.consultar();
+        ArrayList<Vivienda> ls1 = AdmViviendasDAO.consultar();
         if(ls1!=null && ls1.size()>0){
             for (Vivienda persona : ls1) {
                 System.out.println(persona.toString());

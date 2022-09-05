@@ -5,11 +5,16 @@
  */
 package utilities;
 
-import controller.AdmPersonas;
+import controller.AdmAnfitriones;
+import controller.AdmHabitaciones;
+import controller.AdmHuespedes;
 import controller.AdmViviendas;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import model.Anfitrion;
 import model.Habitacion;
-import model.Persona;
+import model.Huesped;
+import model.Promocion;
 import model.Vivienda;
 
 /**
@@ -22,6 +27,16 @@ public class Validaciones {
     public static boolean vInt(String cadena) {
         try {
             int num = Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: la cadena debe contener solo números.");
+            return false;
+        }
+    }
+    
+    public static boolean vDouble(String cadena) {
+        try {
+            double num = Double.parseDouble(cadena);
             return true;
         } catch (NumberFormatException e) {
             System.out.println("Error: la cadena debe contener solo números.");
@@ -104,8 +119,18 @@ public class Validaciones {
         //return (num >= 10000) ?  false : true;
     }
     
-    public static boolean existePersona(String cedula){
-        Persona o = AdmPersonas.buscarCedula(cedula);
+    public static boolean existeAnfitrion(String cedula){
+        Anfitrion o = AdmAnfitriones.buscarCedula(cedula);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "La cedula ingresada ya existe: "+cedula);
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public static boolean existeHuesped(String cedula){
+        Huesped o = AdmHuespedes.buscarCedula(cedula);
         if( o != null){
             JOptionPane.showMessageDialog(null, "La cedula ingresada ya existe: "+cedula);
             return false;
@@ -115,7 +140,17 @@ public class Validaciones {
     }
     
     //Validar que los datos ingresado de la entidad Persona sean correctos
-    public static boolean vPersona(Persona persona) {
+    public static boolean vAnfitrion(Anfitrion persona) {
+        boolean nombres = vWords(persona.getNombres());
+        boolean apellidos = vWords(persona.getApellidos());
+        boolean tipoId = vInt(persona.getTipoId());
+        boolean sexoId = vInt(persona.getSexo());
+        boolean mayorEdad = vEdad(Conversiones.getEdad(persona.getFechaNac()));
+        return  nombres && apellidos && tipoId && sexoId && mayorEdad;
+    }
+    
+    //Validar que los datos ingresado de la entidad Persona sean correctos
+    public static boolean vHuesped(Huesped persona) {
         boolean nombres = vWords(persona.getNombres());
         boolean apellidos = vWords(persona.getApellidos());
         boolean tipoId = vInt(persona.getTipoId());
@@ -127,12 +162,11 @@ public class Validaciones {
     //Validar que los datos ingresado de la entidad Vivienda sean correctos
     public static boolean vVivienda(Vivienda vivienda) {
         boolean nombres = vWords(vivienda.getNombre());
-        boolean numHab = vNumHab(vivienda.getNumHab());
         boolean anfitrion = vInt(vivienda.getAnfitrion());
         boolean tipoVivienda = vInt(vivienda.getTipoVivienda());
         boolean estadoVivienda = vInt(vivienda.getEstadoVivienda());
         boolean ciudad = vInt(vivienda.getCiudad());
-        return nombres && numHab && anfitrion && tipoVivienda && estadoVivienda && ciudad;
+        return nombres && anfitrion && tipoVivienda && estadoVivienda && ciudad;
     }
 
     //Validar que los datos ingresado de la entidad Habitacion sean correctos
@@ -146,6 +180,30 @@ public class Validaciones {
         Vivienda o = AdmViviendas.buscarVivienda(identificador);
         if( o != null){
             JOptionPane.showMessageDialog(null, "Vivienda ingresada ya existe: "+identificador);
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public static boolean validarFecha(Date fecha){
+        return fecha.before(new Date(System.currentTimeMillis()));
+    }
+    
+    public static boolean validarFecha(Date fechaI, Date fechaF){
+        return fechaI.before(fechaF);
+    }
+    
+    public static boolean vPromocion(Promocion p) {
+        boolean fechaI = validarFecha(p.getFechaInicio());
+        boolean fechaF = validarFecha(p.getFechaInicio(), p.getFechaFinal());
+        return fechaI && fechaF;
+    }
+
+    public static boolean existeHabitacion(String idVivienda, String identificador) {
+        Habitacion o = AdmHabitaciones.buscarHabitacion(idVivienda, identificador);
+        if( o != null){
+            JOptionPane.showMessageDialog(null, "Habitacion ingresada ya existe: "+identificador +" en la vivienda: "+idVivienda);
             return false;
         }else{
             return true;

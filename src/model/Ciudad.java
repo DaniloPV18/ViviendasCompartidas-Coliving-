@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class Ciudad {
     private int id;
-    private int identificador;
     private String nombre;
     private String estado;
     private Date fechaReg;
@@ -23,8 +22,7 @@ public class Ciudad {
         this.fechaReg = new Date();
     }
     
-    public Ciudad(int identificador, String nombre, String estado, int region) {
-        this.identificador = identificador;
+    public Ciudad(String nombre, String estado, int region) {
         this.nombre = nombre;
         this.estado = estado;
         this.region = region;
@@ -37,15 +35,7 @@ public class Ciudad {
 
     public void setId(int id) {
         this.id = id;
-    }    
-    
-    public int getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
-    }
+    } 
 
     public String getNombre() {
         return nombre;
@@ -81,7 +71,7 @@ public class Ciudad {
 
     @Override
     public String toString() {
-        return "Ciudad{" + "identificador=" + identificador + ", nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + ", region=" + region + '}';
+        return "Ciudad{ nombre=" + nombre + ", estado=" + estado + ", fechaReg=" + fechaReg + ", region=" + region + '}';
     }
     
     

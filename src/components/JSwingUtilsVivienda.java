@@ -1,6 +1,6 @@
 package components;
 
-import controllerDB.AdmPersonasDataBase;
+import controllerDAO.AdmAnfitrionesDAO;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import model.*;
@@ -37,7 +37,7 @@ public class JSwingUtilsVivienda {
 
     public void setListaAnfitrionBD(ArrayList<Anfitrion> listaAnfitrionBD) {
         JSwingUtilsVivienda.listaAnfitrionBD = listaAnfitrionBD;
-    }    
+    }
 
     public ArrayList<Ciudad> getListaCiudadBD() {
         return listaCiudadBD;
@@ -54,27 +54,23 @@ public class JSwingUtilsVivienda {
     public void setListaViviendaTipoBD(ArrayList<ViviendaTipo> listaViviendaTipoBD) {
         JSwingUtilsVivienda.listaViviendaTipoBD = listaViviendaTipoBD;
     }
-    
-    public static void cargarCombos(JComboBox<String> cmbCedulaAnfitrion, JComboBox<String> cmbCiudad, JComboBox<String> cmbViviendaTipo) {        
+
+    public static void cargarCombos(JComboBox<String> cmbCedulaAnfitrion, JComboBox<String> cmbCiudad, JComboBox<String> cmbViviendaTipo) {
         cargarComboAnfitrion(cmbCedulaAnfitrion);
         cargarComboCiudad(cmbCiudad);
         cargarComboViviendaTipo(cmbViviendaTipo);
     }
-    
+
     //Cargar elementos del combo con la tabla de la Base de datos
-    public static void cargarComboAnfitrion(JComboBox<String> cmbCedulaAnfitrion) {   
+    public static void cargarComboAnfitrion(JComboBox<String> cmbCedulaAnfitrion) {
         //Obtener los registros de la tabla de la base de datos
-        getInstance().setListaAnfitrionBD(Servicios.consultarTAnfitrion());
+        getInstance().setListaAnfitrionBD(AdmAnfitrionesDAO.consultar());
         //Setear elementos del combo con la tabla de la Base de datos
         for (Anfitrion a : getInstance().getListaAnfitrionBD()) {
-            for (Persona p : AdmPersonasDataBase.consultar()) {
-                if(a.getIdentificador() == p.getId()){
-                    cmbCedulaAnfitrion.addItem(p.getIdentificador());
-                }
-            }
+            cmbCedulaAnfitrion.addItem(a.getIdentificador());
         }
     }
-    
+
     public static void cargarComboCiudad(JComboBox<String> cmbCiudad) {
         getInstance().setListaCiudadBD(Servicios.consultarTCiudad());
         for (Ciudad elemento : getInstance().getListaCiudadBD()) {

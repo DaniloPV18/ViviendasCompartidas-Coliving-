@@ -15,7 +15,7 @@ import model.IdentificacionTipo;
  *
  * @author N1L0XD
  */
-public class PersonaArrayListsFK {
+public class HuespedArrayListsFK {
     
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getSexoFK(String nombre){

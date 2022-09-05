@@ -6,9 +6,11 @@
 package arraylists;
 
 import components.JSwingUtilsVivienda;
+import controllerDAO.AdmViviendasDAO;
 import java.util.ArrayList;
 import model.Anfitrion;
 import model.Ciudad;
+import model.Vivienda;
 import model.ViviendaTipo;
 
 /**
@@ -17,13 +19,32 @@ import model.ViviendaTipo;
  */
 public class ViviendaArrayListsFK {    
       
-
+    public static int getViviendaPK(String idVivienda) {
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
+        for (Vivienda x : lista) {
+            if(idVivienda.compareToIgnoreCase(x.getIdentificador()) == 0){
+                return x.getId();
+            }
+        }
+        return 0;
+    }
+    
+    public static String getViviendaIdentificador(String nombreVivienda){
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
+        for (Vivienda x : lista) {
+            if(nombreVivienda.compareToIgnoreCase(x.getNombre()) == 0){
+                return x.getIdentificador();
+            }
+        }
+        return "-";
+    }
+    
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getAnfitrionFK(String anfitrion) {
         ArrayList<Anfitrion> lista = JSwingUtilsVivienda.getInstance().getListaAnfitrionBD();
         for (Anfitrion x : lista) {
-            if(anfitrion.compareToIgnoreCase(x.getIdentificadorPersona()) == 0){
-                return x.getIdentificador();
+            if(anfitrion.compareToIgnoreCase(x.getIdentificador()) == 0){
+                return x.getId();
             }
         }
         return 0;
@@ -34,7 +55,7 @@ public class ViviendaArrayListsFK {
         ArrayList<Anfitrion> lista = JSwingUtilsVivienda.getInstance().getListaAnfitrionBD();
         for (Anfitrion x : lista) {
             if(anfitrion == x.getId()){
-                return x.getIdentificadorPersona();
+                return x.getIdentificador();
             }
         }
         return "-";
@@ -82,5 +103,5 @@ public class ViviendaArrayListsFK {
             }
         }
         return "-";
-    }
+    } 
 }

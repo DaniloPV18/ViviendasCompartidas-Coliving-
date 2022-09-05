@@ -42,6 +42,18 @@ public class Vivienda {
         this.fechaReg = new Date();
     }
 
+    public Vivienda(String identificador, String nombre, String email, String direccion, int anfitrion, int tipoVivienda, int estadoVivienda, int ciudad) {
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.email = email;
+        this.direccion = direccion;
+        this.anfitrion = anfitrion;
+        this.tipoVivienda = tipoVivienda;
+        this.estadoVivienda = estadoVivienda;
+        this.ciudad = ciudad;
+        this.fechaReg = new Date();
+    }
+
     public int getId() {
         return id;
     }

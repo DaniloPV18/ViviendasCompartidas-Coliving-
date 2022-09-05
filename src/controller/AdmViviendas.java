@@ -6,15 +6,14 @@
 package controller;
 
 import arraylists.ViviendaArrayListsFK;
-import com.toedter.calendar.JDateChooser;
-import static controller.AdmPersonas.buscarCedula;
-import controllerDB.AdmViviendasDataBase;
+import static controller.AdmAnfitriones.buscarCedula;
+import controllerDAO.AdmViviendasDAO;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import model.Persona;
+import model.Anfitrion;
 import model.Vivienda;
 import utilities.Conversiones;
 import utilities.Validaciones;
@@ -27,51 +26,46 @@ public class AdmViviendas {
 
     private static Vivienda p = null;
 
-    public static boolean validarDatos(String identificador, String nombre, String email, String direccion, String numHab, String anfitrion, String tipoVivienda) {
+    public static boolean validarDatos(String identificador, String nombre, String email, String direccion, String anfitrion, String tipoVivienda) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
-        if (Validaciones.vInt(numHab)) {
-            int idAnfitrion = ViviendaArrayListsFK.getAnfitrionFK(anfitrion);
-            int idTipoVivienda = ViviendaArrayListsFK.getTipoViviendaFK(tipoVivienda);
+        int idAnfitrion = ViviendaArrayListsFK.getAnfitrionFK(anfitrion);
+        int idTipoVivienda = ViviendaArrayListsFK.getTipoViviendaFK(tipoVivienda);
 
-            /* Validar que los datos ingresados sean los solicitados */
-            p = new Vivienda(identificador, nombre, email, direccion,
-                    Integer.parseInt(numHab), idAnfitrion, idTipoVivienda, 1, 1);
-            if (Validaciones.vVivienda(p)) {
-                p = Conversiones.viviendaUpperCase(p);
-                return true;
-            }
-            return false;
+        /* Validar que los datos ingresados sean los solicitados */
+        p = new Vivienda(identificador, nombre, email, direccion, idAnfitrion, idTipoVivienda, 1, 1);
+        if (Validaciones.vVivienda(p)) {
+            p = Conversiones.viviendaUpperCase(p);
+            return true;
         }
         return false;
     }
 
     /* Insertar registro a la Base de datos */
     public static void insertarRegistro() {
-        AdmViviendasDataBase.insertar(p);
+        AdmViviendasDAO.insertar(p);
     }
 
     /* Actualizar registro a la Base de datos */
     public static void actualizarRegistro(String identificadorPersona) {
-        AdmViviendasDataBase.actualizar(identificadorPersona, p);
+        AdmViviendasDAO.actualizar(identificadorPersona, p);
     }
 
     /* Eliminar registro a la Base de datos */
     public static void eliminarRegistro(String identificadorPersona, int indice) {
-        AdmViviendasDataBase.eliminar(identificadorPersona);
+        AdmViviendasDAO.eliminar(identificadorPersona);
     }
 
     /* Limpiar los campos del formulario */
-    public static void limpiarCampos(JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail, JTextField txtNumHabt) {
+    public static void limpiarCampos(JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtEmail) {
         txtCedula.setText(" ");
         txtNombres.setText(" ");
         txtApellidos.setText(" ");
-        txtNumHabt.setText(" ");
     }
 
     /* Metodo para actualizar los registros de la tabla del formulario */
     public static void actualizarTabla(JTable tblPersonas) {
         tamanoColumnasTabla(tblPersonas);
-        ArrayList<Vivienda> lista = AdmViviendasDataBase.consultar();
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
         DefaultTableModel model = (DefaultTableModel) tblPersonas.getModel();
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
@@ -110,28 +104,35 @@ public class AdmViviendas {
     }
 
     /* Cargar los datos de la fila seleccionada y actualizar el formulario */
-    public static void cargarRegistro(String identificadorVivienda, JTextField txtIDVivienda, JTextField txtNombreVivienda, JTextField txtEmail, JTextField txtDireccion, JTextField txtNumHabt, JComboBox<String> cmbCedulaPropietario, JComboBox<String> cmbCiudad, JComboBox<String> cmbTipoVivienda) {
+    public static void cargarRegistro(String identificadorVivienda, JTextField txtIDVivienda, JTextField txtNombreVivienda, JTextField txtEmail, JTextField txtDireccion, JComboBox<String> cmbCedulaPropietario, JComboBox<String> cmbCiudad, JComboBox<String> cmbTipoVivienda) {
         Vivienda x = buscarVivienda(identificadorVivienda);
         txtIDVivienda.setText(x.getIdentificador());
         txtNombreVivienda.setText(x.getNombre());
         txtEmail.setText(x.getEmail());
         txtDireccion.setText(x.getDireccion());
-        txtNumHabt.setText(x.getNumHab() + "");
         cmbCedulaPropietario.setSelectedIndex(x.getAnfitrion() - 1);
         cmbCiudad.setSelectedIndex(x.getCiudad() - 1);
         cmbTipoVivienda.setSelectedIndex(x.getTipoVivienda() - 1);
     }
 
     /* Cargar los datos de la anfitrion de la vivienda seleccionada */
-    public static void cargarAnfitrion(String identificadorVivienda, JTextField txtAnfitrion) {
-        Vivienda x = buscarVivienda(identificadorVivienda);
-        Persona o = buscarCedula(ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion()));
-        txtAnfitrion.setText(o.getNombres() + " " + o.getApellidos());
+    public static void cargarAnfitrion(String identificador, JTextField txtAnfitrion, int caso) {
+        switch (caso) {
+            case 1:
+                Vivienda x = buscarVivienda(identificador);
+                Anfitrion o = buscarCedula(ViviendaArrayListsFK.getAnfitrion(x.getAnfitrion()));
+                txtAnfitrion.setText(o.getNombres() + " " + o.getApellidos());
+                break;
+            case 2:
+                Anfitrion n = buscarCedula(identificador);
+                txtAnfitrion.setText(n.getNombres() + " " + n.getApellidos());
+                break;
+        }
     }
 
     /* Buscar una cedula que se encuentre registrada */
     public static Vivienda buscarVivienda(String identificador) {
-        ArrayList<Vivienda> lista = AdmViviendasDataBase.consultar();
+        ArrayList<Vivienda> lista = AdmViviendasDAO.consultar();
         for (Vivienda x : lista) {
             if (x.getIdentificador().compareToIgnoreCase(identificador) == 0) {
                 return x;
