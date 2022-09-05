@@ -7,6 +7,7 @@ package view;
 
 import components.JSwingUtilsPagos;
 import connection.Conexion;
+import controller.AdmPagos;
 
 /**
  *
@@ -16,11 +17,12 @@ public class FrmPagos extends javax.swing.JFrame {
 
     private int indice;
     private String identificadorVivienda;
+    private String idHuesped;
 
     public FrmPagos() {
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
-        JSwingUtilsPagos.cargarCombos(cmbViviendaNombre,cmbMetodoPago,cmbTipoPago); 
+        JSwingUtilsPagos.cargarCombos(cmbViviendaNombre, cmbMetodoPago, cmbTipoPago);
         /*Cargar registros de la BD e insertarlos en la tabla por defecto*/
 //        AdmViviendas.actualizarTabla(tblVivienda);
         /*Negar edición de Caja de texto */
@@ -53,16 +55,18 @@ public class FrmPagos extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        dtcFechaNac = new com.toedter.calendar.JDateChooser();
-        dtcFechaNac1 = new com.toedter.calendar.JDateChooser();
+        dtcFechaFin = new com.toedter.calendar.JDateChooser();
+        dtcFechaInicio = new com.toedter.calendar.JDateChooser();
         txtNombreHuesped = new javax.swing.JTextField();
         txtIdHuesped = new javax.swing.JTextField();
         cmbViviendaNombre = new javax.swing.JComboBox<>();
         cmbCodHab = new javax.swing.JComboBox<>();
         cmbMetodoPago = new javax.swing.JComboBox<>();
         cmbTipoPago = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        txtDinero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPromo = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,7 +155,7 @@ public class FrmPagos extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel7.setText("TIPO DE PAGO");
+        jLabel7.setText("DINERO RECIBIDO");
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel18.setText("METODO DE PAGO");
@@ -174,33 +178,9 @@ public class FrmPagos extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel24.setText("NOMBRES Y APELLIDOS");
 
-        dtcFechaNac.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dtcFechaNacMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                dtcFechaNacMouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                dtcFechaNacMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                dtcFechaNacMouseReleased(evt);
-            }
-        });
-
-        dtcFechaNac1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dtcFechaNac1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                dtcFechaNac1MouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                dtcFechaNac1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                dtcFechaNac1MouseReleased(evt);
+        txtIdHuesped.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdHuespedKeyReleased(evt);
             }
         });
 
@@ -209,6 +189,9 @@ public class FrmPagos extends javax.swing.JFrame {
                 cmbViviendaNombreItemStateChanged(evt);
             }
         });
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel8.setText("TIPO DE PAGO");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -239,13 +222,15 @@ public class FrmPagos extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel18)
+                                    .addComponent(jLabel8)
                                     .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dtcFechaNac1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                                    .addComponent(dtcFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dtcFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                                    .addComponent(dtcFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbMetodoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbTipoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(cmbTipoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDinero, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
@@ -269,24 +254,32 @@ public class FrmPagos extends javax.swing.JFrame {
                     .addComponent(cmbCodHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dtcFechaNac1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
-                    .addComponent(dtcFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtDinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13))))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPromo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -294,7 +287,7 @@ public class FrmPagos extends javax.swing.JFrame {
                 "NOMBRE PROPIEDAD", "COD HABITACION", "PRECIO", "PRECIO DESC"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPromo);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("HABITACIONES CON PROMOCIONES");
@@ -332,14 +325,16 @@ public class FrmPagos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -401,6 +396,16 @@ public class FrmPagos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String idHuesped = txtIdHuesped.getText().trim();
+        String nombreVivienda = (String) cmbViviendaNombre.getSelectedItem();
+        String codHab = (String) cmbCodHab.getSelectedItem();
+        String metodoPago = (String) cmbMetodoPago.getSelectedItem();
+        String dinero = txtDinero.getText().trim();
+        if (AdmPagos.getIndexTable(tblPromo) != -1) {
+            if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, codHab, dtcFechaInicio, dtcFechaFin)) {
+
+            }
+        }
 //        String anfitrion = (String) cmbCedulaPropietario.getSelectedItem();
 //        String identificador = txtIDVivienda.getText().trim();
 //        String ciudad = (String) cmbCiudad.getSelectedItem();
@@ -424,43 +429,15 @@ public class FrmPagos extends javax.swing.JFrame {
         frmMenu.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void dtcFechaNacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMouseClicked
-
-    }//GEN-LAST:event_dtcFechaNacMouseClicked
-
-    private void dtcFechaNacMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMouseEntered
-
-    }//GEN-LAST:event_dtcFechaNacMouseEntered
-
-    private void dtcFechaNacMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMousePressed
-
-    }//GEN-LAST:event_dtcFechaNacMousePressed
-
-    private void dtcFechaNacMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNacMouseReleased
-
-    }//GEN-LAST:event_dtcFechaNacMouseReleased
-
-    private void dtcFechaNac1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNac1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dtcFechaNac1MouseClicked
-
-    private void dtcFechaNac1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNac1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dtcFechaNac1MouseEntered
-
-    private void dtcFechaNac1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNac1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dtcFechaNac1MousePressed
-
-    private void dtcFechaNac1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dtcFechaNac1MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dtcFechaNac1MouseReleased
-
     private void cmbViviendaNombreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbViviendaNombreItemStateChanged
         String nombreVivienda = cmbViviendaNombre.getSelectedItem().toString();
-//        AdmViviendas.cargarAnfitrion(nombreVivienda, txtAnfitrion);
-    JSwingUtilsPagos.cargarCombos(nombreVivienda,cmbCodHab);
+        JSwingUtilsPagos.cargarCombos(nombreVivienda, cmbCodHab);
     }//GEN-LAST:event_cmbViviendaNombreItemStateChanged
+
+    private void txtIdHuespedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdHuespedKeyReleased
+        idHuesped = txtIdHuesped.getText().trim();
+        AdmPagos.cargarAnfitrion(idHuesped, txtNombreHuesped);
+    }//GEN-LAST:event_txtIdHuespedKeyReleased
 
     /**
      * @param args the command line arguments
@@ -521,8 +498,8 @@ public class FrmPagos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbMetodoPago;
     private javax.swing.JComboBox<String> cmbTipoPago;
     private javax.swing.JComboBox<String> cmbViviendaNombre;
-    private com.toedter.calendar.JDateChooser dtcFechaNac;
-    private com.toedter.calendar.JDateChooser dtcFechaNac1;
+    private com.toedter.calendar.JDateChooser dtcFechaFin;
+    private com.toedter.calendar.JDateChooser dtcFechaInicio;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
@@ -532,12 +509,14 @@ public class FrmPagos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPromo;
+    private javax.swing.JTextField txtDinero;
     private javax.swing.JTextField txtIdHuesped;
     private javax.swing.JTextField txtNombreHuesped;
     // End of variables declaration//GEN-END:variables
