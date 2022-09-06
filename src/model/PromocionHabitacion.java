@@ -13,12 +13,14 @@ public class PromocionHabitacion {
     private int codigoHabitacion;
     private double precio;
     private double precioTotal;
+    private double precioFinal;
 
-    public PromocionHabitacion(String nombreVivienda, int codigoHabitacion, double precio, double precioTotal) {
+    public PromocionHabitacion(String nombreVivienda, int codigoHabitacion, double precio, double precioTotal, double precioFinal) {
         this.nombreVivienda = nombreVivienda;
         this.codigoHabitacion = codigoHabitacion;
         this.precio = precio;
         this.precioTotal = precioTotal;
+        this.precioFinal = precioFinal;
     }
 
     public String getNombreVivienda() {
@@ -53,10 +55,20 @@ public class PromocionHabitacion {
         this.precioTotal = precioTotal;
     }
 
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+
     @Override
     public String toString() {
-        return "PromocionHabitacion{" + "nombreVivienda=" + nombreVivienda + ", codigoHabitacion=" + codigoHabitacion + ", precio=" + precio + ", precioTotal=" + precioTotal + '}';
+        return "PromocionHabitacion{" + "nombreVivienda=" + nombreVivienda + ", codigoHabitacion=" + codigoHabitacion + ", precio=" + precio + ", precioTotal=" + precioTotal + ", precioFinal=" + precioFinal + '}';
     }
+
     
+        
     
 }
