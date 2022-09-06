@@ -12,6 +12,7 @@ import controllerDAO.AdmPagosDAO;
 import controllerDAO.AdmPromocionesDAO;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -83,6 +84,23 @@ public class AdmPagos {
         return tblPromo.getSelectedRow();
     }
 
+    /* Obtener el identificador de la fila seleccionada de la tabla del formulario */
+    public static PromocionHabitacion getPromoHabitacion(JTable tblPersonas, int indice) {
+        String nombre = tblPersonas.getModel().getValueAt(indice, 0).toString();
+        String codigo = tblPersonas.getModel().getValueAt(indice, 1).toString();
+        String precio = tblPersonas.getModel().getValueAt(indice, 2).toString();
+        String precioDesc = tblPersonas.getModel().getValueAt(indice, 3).toString();
+        String precioFinal = tblPersonas.getModel().getValueAt(indice, 4).toString();
+        return new PromocionHabitacion(nombre, Integer.parseInt(codigo), Double.parseDouble(precio), Double.parseDouble(precioDesc), Double.parseDouble(precioFinal));
+    }
+    
+    public static void cargarRegistro(JComboBox<String> cmbViviendaNombre, JComboBox<String> cmbCodHab, JTextField txtPrecioHabt, JTextField txtPrecioFinal, PromocionHabitacion ph) {
+        cmbViviendaNombre.setSelectedItem(ph.getNombreVivienda());
+        cmbCodHab.setSelectedItem(ph.getCodigoHabitacion()+"");
+        txtPrecioHabt.setText(ph.getPrecioTotal()+"");
+        txtPrecioFinal.setText(ph.getPrecioFinal()+"");
+    }
+
     public static void actualizarTabla(JTable tblPromo) {
         tamanoColumnasTabla(tblPromo);
         ArrayList<PromocionHabitacion> lista = AdmPromocionesDAO.consultarPromoHabitacion();
@@ -90,11 +108,12 @@ public class AdmPagos {
         model.setRowCount(0);
         /* Insertar registros a la tabla del formulario */
         for (PromocionHabitacion x : lista) {
-            Object[] rowData = new Object[4];
+            Object[] rowData = new Object[5];
             rowData[0] = x.getNombreVivienda();
             rowData[1] = x.getCodigoHabitacion();
             rowData[2] = x.getPrecio();
             rowData[3] = x.getPrecioTotal();
+            rowData[4] = x.getPrecioFinal();
             model.addRow(rowData);
         }
     }
@@ -105,5 +124,5 @@ public class AdmPagos {
         for (int i = 0; i < tblPersonas.getColumnCount(); i++) {
             tblPersonas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-    }
+    }    
 }

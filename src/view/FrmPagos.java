@@ -9,6 +9,7 @@ import components.JSwingUtilsPagos;
 import connection.Conexion;
 import controller.AdmPagos;
 import javax.swing.JOptionPane;
+import model.PromocionHabitacion;
 
 /**
  *
@@ -370,14 +371,14 @@ public class FrmPagos extends javax.swing.JFrame {
         String metodoPago = (String) cmbMetodoPago.getSelectedItem();
         String dinero = txtPrecioFinal.getText().trim();
         if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin)) {
-                if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    AdmPagos.insertarRegistro();
-                    JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
-                    AdmPagos.limpiarCampos(txtIdHuesped);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
+            if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                AdmPagos.insertarRegistro();
+                JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
+                AdmPagos.limpiarCampos(txtIdHuesped);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -406,7 +407,13 @@ public class FrmPagos extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbCodHabItemStateChanged
 
     private void btnChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseActionPerformed
-        // TODO add your handling code here:
+        indice = AdmPagos.getIndexTable(tblPromo);
+        if (indice != -1) {
+            PromocionHabitacion ph = AdmPagos.getPromoHabitacion(tblPromo, indice);
+            AdmPagos.cargarRegistro(cmbViviendaNombre,cmbCodHab,txtPrecioHabt,txtPrecioFinal, ph);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila para cargar los datos en el formulario.");
+        }
     }//GEN-LAST:event_btnChooseActionPerformed
 
     /**
