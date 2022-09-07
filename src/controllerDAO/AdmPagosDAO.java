@@ -24,9 +24,9 @@ public class AdmPagosDAO {
     private static final Connection cn = Conexion.getConnection();
 
     private static final String INSERTAR = "  INSERT INTO pagos ("
-            + "     monto_usuario, fecha_reg, fecha_inicio , fecha_final, estado, pago_metodo_id_pago_metodo, huesped_id_huesped, "
+            + "     monto_usuario, fecha_reg, fecha_inicio , fecha_final, estado, pago_metodo_id_pago_metodo, huesped_id_huesped, pago_tipo_id_pago_tipo"
             + "     habitacion_id_habitacion, habitacion_vivienda_id_vivienda "
-            + ")VALUES(?,?,?,?,?,?,?,?,?)";
+            + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
 
 //    private static final String ACTUALIZAR = " UPDATE pago "
 //            + "SET "
@@ -57,8 +57,9 @@ public class AdmPagosDAO {
                 ps.setString(5, pago.getEstado());
                 ps.setInt   (6, pago.getMetodoPago());                
                 ps.setInt   (7, pago.getHuesped());
-                ps.setInt   (8, pago.getHabitacion());
-                ps.setInt   (9, pago.getPropiedad());                
+                ps.setInt   (8, pago.getTipoPago());
+                ps.setInt   (9, pago.getHabitacion());
+                ps.setInt   (10, pago.getPropiedad());                
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
             } catch (SQLException e) {

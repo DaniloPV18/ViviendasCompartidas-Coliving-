@@ -40,7 +40,25 @@ public class AdmPagos {
         /* Validar que los datos ingresados sean los solicitados */
         if (Validaciones.vDouble(precio) && codHab != null) {
             int codigoHabt = PagosArrayListsFK.getIdHabitacion(Integer.parseInt(codHab), idVivienda);
-            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, codigoHabt, idVivienda);
+            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, 1, codigoHabt, idVivienda);
+            if (Validaciones.vPagoFechas(p) && Validaciones.vPago(p)) {
+                System.out.println(p.toString());
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin, String tipoPago) {
+        /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
+        int idHuesp = HuespedArrayListsFK.getHuespedFK(idHuesped);
+        int idVivienda = ViviendaArrayListsFK.getViviendaPK(ViviendaArrayListsFK.getViviendaIdentificador(nombreVivienda));
+//        int codigoHabt = Integer.parseInt(codHab);
+        int metPago = PagosArrayListsFK.getMetodoPagoFK(metodoPago);
+        /* Validar que los datos ingresados sean los solicitados */
+        if (Validaciones.vDouble(precio) && codHab != null) {
+            int codigoHabt = PagosArrayListsFK.getIdHabitacion(Integer.parseInt(codHab), idVivienda);
+            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, 2, codigoHabt, idVivienda);
             if (Validaciones.vPagoFechas(p) && Validaciones.vPago(p)) {
                 System.out.println(p.toString());
                 return true;
@@ -124,5 +142,5 @@ public class AdmPagos {
         for (int i = 0; i < tblPersonas.getColumnCount(); i++) {
             tblPersonas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-    }    
+    } 
 }
