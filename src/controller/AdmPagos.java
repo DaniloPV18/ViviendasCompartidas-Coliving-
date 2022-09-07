@@ -16,7 +16,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import model.Anfitrion;
 import model.Habitacion;
 import model.Huesped;
 import model.Pago;
@@ -31,7 +30,7 @@ public class AdmPagos {
 
     private static Pago p = null;
 
-    public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin) {
+    public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin, int tipoPago) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
         int idHuesp = HuespedArrayListsFK.getHuespedFK(idHuesped);
         int idVivienda = ViviendaArrayListsFK.getViviendaPK(ViviendaArrayListsFK.getViviendaIdentificador(nombreVivienda));
@@ -40,7 +39,7 @@ public class AdmPagos {
         /* Validar que los datos ingresados sean los solicitados */
         if (Validaciones.vDouble(precio) && codHab != null) {
             int codigoHabt = PagosArrayListsFK.getIdHabitacion(Integer.parseInt(codHab), idVivienda);
-            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, 1, codigoHabt, idVivienda);
+            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, tipoPago, codigoHabt, idVivienda);
             if (Validaciones.vPagoFechas(p) && Validaciones.vPago(p)) {
                 System.out.println(p.toString());
                 return true;
@@ -49,16 +48,16 @@ public class AdmPagos {
         return false;
     }
     
-    public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin, String tipoPago) {
+    public static boolean validarDatos(String identificadorRs, String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin, int tipoPago) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
         int idHuesp = HuespedArrayListsFK.getHuespedFK(idHuesped);
         int idVivienda = ViviendaArrayListsFK.getViviendaPK(ViviendaArrayListsFK.getViviendaIdentificador(nombreVivienda));
 //        int codigoHabt = Integer.parseInt(codHab);
         int metPago = PagosArrayListsFK.getMetodoPagoFK(metodoPago);
         /* Validar que los datos ingresados sean los solicitados */
-        if (Validaciones.vDouble(precio) && codHab != null) {
+        if (Validaciones.vDouble(precio) && codHab != null && !identificadorRs.isEmpty()) {
             int codigoHabt = PagosArrayListsFK.getIdHabitacion(Integer.parseInt(codHab), idVivienda);
-            p = new Pago(Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, 2, codigoHabt, idVivienda);
+            p = new Pago(identificadorRs, Double.parseDouble(precio), dtcFechaInicio.getDate(), dtcFechaFin.getDate(), "PAGADO", metPago, idHuesp, tipoPago, codigoHabt, idVivienda);
             if (Validaciones.vPagoFechas(p) && Validaciones.vPago(p)) {
                 System.out.println(p.toString());
                 return true;
@@ -142,5 +141,5 @@ public class AdmPagos {
         for (int i = 0; i < tblPersonas.getColumnCount(); i++) {
             tblPersonas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-    } 
+    }
 }

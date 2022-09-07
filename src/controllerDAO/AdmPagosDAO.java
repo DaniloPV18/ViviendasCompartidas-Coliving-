@@ -23,10 +23,15 @@ public class AdmPagosDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO pagos ("
+    private static final String INSERTAR_DIRECTO = "  INSERT INTO pagos ("
             + "     monto_usuario, fecha_reg, fecha_inicio , fecha_final, estado, pago_metodo_id_pago_metodo, huesped_id_huesped, pago_tipo_id_pago_tipo"
-            + "     habitacion_id_habitacion, habitacion_vivienda_id_vivienda "
+            + "     ,habitacion_id_habitacion, habitacion_vivienda_id_vivienda "
             + ")VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+    private static final String INSERTAR_RESERVA = "  INSERT INTO pagos ("
+            + "     monto_usuario, fecha_reg, fecha_inicio , fecha_final, estado, pago_metodo_id_pago_metodo, huesped_id_huesped, pago_tipo_id_pago_tipo"
+            + "     ,habitacion_id_habitacion, habitacion_vivienda_id_vivienda, identificador "
+            + ")VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
 //    private static final String ACTUALIZAR = " UPDATE pago "
 //            + "SET "
@@ -38,36 +43,67 @@ public class AdmPagosDAO {
 //            + "SET "
 //            + "     estado = ?"
 //            + "WHERE identificador = ? ";
-
     private static final String LISTAR = " SELECT * FROM pagos WHERE estado = 'PAGADO' ";
 
     public static Connection getCn() {
         return cn;
     }
-    
+
     //Insertar registro en BD 
     public static void insertar(Pago pago) {
         if (cn != null) {
-            try {
-                PreparedStatement ps = cn.prepareStatement(INSERTAR);
-                ps.setDouble(1, pago.getMonto());
-                ps.setTimestamp(2, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaReg())));
-                ps.setTimestamp(3, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaInicio())));
-                ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaFinal())));
-                ps.setString(5, pago.getEstado());
-                ps.setInt   (6, pago.getMetodoPago());                
-                ps.setInt   (7, pago.getHuesped());
-                ps.setInt   (8, pago.getTipoPago());
-                ps.setInt   (9, pago.getHabitacion());
-                ps.setInt   (10, pago.getPropiedad());                
-                ps.execute();
-                JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
-            } catch (SQLException e) {
-                System.out.println(e);
+            switch (pago.getTipoPago()) {
+                case 1:
+                    insertarDirecto(pago);
+                    break;
+                case 2:
+                    insertarReserva(pago);
+                    break;
             }
         }
     }
+
+    private static void insertarDirecto(Pago pago) {
+        try {
+            PreparedStatement ps = cn.prepareStatement(INSERTAR_DIRECTO);
+            ps.setDouble(1, pago.getMonto());
+            ps.setTimestamp(2, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaReg())));
+            ps.setTimestamp(3, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaInicio())));
+            ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaFinal())));
+            ps.setString(5, pago.getEstado());
+            ps.setInt(6, pago.getMetodoPago());
+            ps.setInt(7, pago.getHuesped());
+            ps.setInt(8, pago.getTipoPago());
+            ps.setInt(9, pago.getHabitacion());
+            ps.setInt(10, pago.getPropiedad());
+            ps.execute();
+            JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     
+    private static void insertarReserva(Pago pago) {
+        try {
+            PreparedStatement ps = cn.prepareStatement(INSERTAR_RESERVA);
+            ps.setDouble(1, pago.getMonto());
+            ps.setTimestamp(2, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaReg())));
+            ps.setTimestamp(3, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaInicio())));
+            ps.setTimestamp(4, Conversiones.getFecha(Conversiones.getFecha(pago.getFechaFinal())));
+            ps.setString(5, pago.getEstado());
+            ps.setInt(6, pago.getMetodoPago());
+            ps.setInt(7, pago.getHuesped());
+            ps.setInt(8, pago.getTipoPago());
+            ps.setInt(9, pago.getHabitacion());
+            ps.setInt(10, pago.getPropiedad());
+            ps.setString(11, pago.getIdentificador());
+            ps.execute();
+            JOptionPane.showMessageDialog(null, "Datos han sido insertados.");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     //Actualizar registro en BD 
 //    public static void actualizar(String identificadorPago, Pago pago) {
 //        System.out.println(identificadorPago + " " + pago.toString());
@@ -89,7 +125,6 @@ public class AdmPagosDAO {
 //            }
 //        }
 //    }
-    
     //Eliminado logico en BD 
 //    public static void eliminar(String cedula){
 //        String newEstado = "ELIMINADO";
@@ -104,7 +139,6 @@ public class AdmPagosDAO {
 //            }
 //        }
 //    }
-    
     //Consulta de los registros almacenados en la tabla de la BD
     public static ArrayList<Pago> consultar() {
         ArrayList<Pago> lista = new ArrayList<>();
@@ -133,4 +167,5 @@ public class AdmPagosDAO {
         }
         return lista;
     }
+
 }

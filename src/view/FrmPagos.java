@@ -29,7 +29,8 @@ public class FrmPagos extends javax.swing.JFrame {
         AdmPagos.actualizarTabla(tblPromo);
         /*Negar edición de Caja de texto */
         txtNombreHuesped.setEditable(false);
-        txtPrecioHabt.setEditable(false);        
+        txtPrecioHabt.setEditable(false);
+        System.getProperty("java.classpath");
     }
 
     /**
@@ -380,21 +381,21 @@ public class FrmPagos extends javax.swing.JFrame {
         String codHab = (String) cmbCodHab.getSelectedItem();
         String metodoPago = (String) cmbMetodoPago.getSelectedItem();
         String dinero = txtPrecioFinal.getText().trim();
-        String tipoPago = (String) cmbTipoPago.getSelectedItem();
-        if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin) && cmbTipoPago.getSelectedIndex()==0) {
+        int tipoPago = cmbTipoPago.getSelectedIndex() + 1;
+        String identificadorRs = txtReserva.getText().trim();
+        if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin, tipoPago) && cmbTipoPago.getSelectedIndex() == 0) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmPagos.insertarRegistro();
                 JOptionPane.showMessageDialog(null, "Pago directo ha sido ingresado.");
                 AdmPagos.limpiarCampos(txtIdHuesped);
-            } 
-        }else if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin, tipoPago) && cmbTipoPago.getSelectedIndex()==1) {
+            }
+        } else if (AdmPagos.validarDatos(identificadorRs, idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin, tipoPago) && cmbTipoPago.getSelectedIndex() == 1) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar la reserva?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmPagos.insertarRegistro();
-                JOptionPane.showMessageDialog(null, "Pago directo ha sido ingresado.");
+                JOptionPane.showMessageDialog(null, "Pago de reserva ha sido ingresado.");
                 AdmPagos.limpiarCampos(txtIdHuesped);
             }
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -428,24 +429,24 @@ public class FrmPagos extends javax.swing.JFrame {
         indice = AdmPagos.getIndexTable(tblPromo);
         if (indice != -1) {
             PromocionHabitacion ph = AdmPagos.getPromoHabitacion(tblPromo, indice);
-            AdmPagos.cargarRegistro(cmbViviendaNombre,cmbCodHab,txtPrecioHabt,txtPrecioFinal, ph);
+            AdmPagos.cargarRegistro(cmbViviendaNombre, cmbCodHab, txtPrecioHabt, txtPrecioFinal, ph);
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una fila para cargar los datos en el formulario.");
         }
     }//GEN-LAST:event_btnChooseActionPerformed
 
     private void cmbTipoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoPagoItemStateChanged
-        if(cmbTipoPago.getSelectedIndex()==0){
+        if (cmbTipoPago.getSelectedIndex() == 0) {
             lblPrecioFinal.setText("PRECIO FINAL");
             txtPrecioFinal.setEditable(false);
             txtReserva.setEditable(false);
             txtReserva.setText("---------------------------------");
-        }else{            
+        } else {
             lblPrecioFinal.setText("MONTO ABONADO");
             txtPrecioFinal.setText("");
             txtReserva.setText("");
             txtReserva.setEditable(true);
-            txtPrecioFinal.setEditable(true);            
+            txtPrecioFinal.setEditable(true);
         }
     }//GEN-LAST:event_cmbTipoPagoItemStateChanged
 
