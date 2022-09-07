@@ -15,13 +15,13 @@ import model.PromocionHabitacion;
  *
  * @author N1L0XD
  */
-public class FrmPagos extends javax.swing.JFrame {
+public class FrmReservas extends javax.swing.JFrame {
 
     private int indice;
     private String identificadorVivienda;
     private String idHuesped;
 
-    public FrmPagos() {
+    public FrmReservas() {
         initComponents();
         /*Cargar combos con valores obtenidos de la BD*/
         JSwingUtilsPagos.cargarCombos(cmbViviendaNombre, cmbMetodoPago, cmbTipoPago);
@@ -126,7 +126,7 @@ public class FrmPagos extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("REALIZAR PAGO");
+        jLabel4.setText("REALIZAR RESERVA");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
@@ -370,11 +370,10 @@ public class FrmPagos extends javax.swing.JFrame {
         String codHab = (String) cmbCodHab.getSelectedItem();
         String metodoPago = (String) cmbMetodoPago.getSelectedItem();
         String dinero = txtPrecioFinal.getText().trim();
-        String tipoPago = (String) cmbTipoPago.getSelectedItem();
-        if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin) && cmbTipoPago.getSelectedIndex()==0) {
+        if (AdmPagos.validarDatos(idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin)) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmPagos.insertarRegistro();
-                JOptionPane.showMessageDialog(null, "Pago directo ha sido ingresado.");
+                JOptionPane.showMessageDialog(null, "Registro ha sido ingresado.");
                 AdmPagos.limpiarCampos(txtIdHuesped);
             }
         } else {
