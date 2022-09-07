@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Promocion;
+import model.PromocionHabitacion;
 import utilities.Conversiones;
 
 /**
@@ -22,22 +23,24 @@ public class AdmPromocionesDAO {
 
     private static final Connection cn = Conexion.getConnection();
 
-    private static final String INSERTAR = "  INSERT INTO PROMOCION ("
+    private static final String INSERTAR = "  INSERT INTO promocion ("
             + "     fecha_inicial, fecha_final, descuento_habitacion, estado, fecha_reg"
             + ")VALUES(?,?,?,?,?)";
 
-    private static final String ACTUALIZAR = " UPDATE PROMOCION "
+    private static final String ACTUALIZAR = " UPDATE promocion "
             + "SET "
             + "     fecha_inicial = ? , fecha_final = ? , descuento_habitacion = ? "
             + " WHERE id_promocion = ? ";
     
-    private static final String ELIMINAR = " UPDATE PROMOCION "
+    private static final String ELIMINAR = " UPDATE promocion "
             + "SET "
             + "     estado = ? "
             + "WHERE id_promocion = ? ";
 
-    private static final String LISTAR = " SELECT * FROM PROMOCION "
+    private static final String LISTAR = " SELECT * FROM promocion "
             + "WHERE estado = 'A' " ;
+    
+    private static String CONSULTARVISTA = "SELECT * FROM v_promo_hab";
 
     public static Connection getCn() {
         return cn;
@@ -107,6 +110,29 @@ public class AdmPromocionesDAO {
                     );
                     p.setId(rs.getInt(1));
                     p.setFechaReg(rs.getTimestamp(6));                    
+                    lista.add(p);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return lista;
+    }
+    
+    public static ArrayList<PromocionHabitacion> consultarPromoHabitacion() {
+        ArrayList<PromocionHabitacion> lista = new ArrayList<>();
+        if (cn != null) {
+            try {
+                PreparedStatement ps = cn.prepareStatement(CONSULTARVISTA);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    PromocionHabitacion p = new PromocionHabitacion(
+                            rs.getString(1),
+                            rs.getInt(2),
+                            rs.getDouble(3),
+                            rs.getDouble(4),
+                            rs.getDouble(5)
+                    );                  
                     lista.add(p);
                 }
             } catch (SQLException e) {
