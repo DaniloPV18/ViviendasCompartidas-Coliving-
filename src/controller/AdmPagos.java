@@ -99,8 +99,8 @@ public class AdmPagos {
             txtPrecioHabt.setText(h.getPrecio() + "");
             txtPrecioFinal.setText(((Double.parseDouble(txtPrecioHabt.getText()) * 0.12) + (Double.parseDouble(txtPrecioHabt.getText()))) + " ");
         } else {
-            txtPrecioHabt.setText("-");
-            txtPrecioFinal.setText("-");
+            txtPrecioHabt.setText("");
+            txtPrecioFinal.setText("");
         }
     }
 
@@ -198,10 +198,14 @@ public class AdmPagos {
     }
 
     public static boolean validarCantidad(JTextField txtMontoDeuda, JTextField txtPrecioFinal) {
-        double deuda = Double.parseDouble(txtMontoDeuda.getText().trim());
-        double abono = Double.parseDouble(txtPrecioFinal.getText().trim());
-        if(abono <= deuda){            
+        if (txtMontoDeuda.getText().isEmpty()) {
             return true;
+        }else{
+            double deuda = Double.parseDouble(txtMontoDeuda.getText().trim());
+            double abono = Double.parseDouble(txtPrecioFinal.getText().trim());
+            if (abono <= deuda) {
+                return true;
+            }
         }
         JOptionPane.showMessageDialog(null, "El abono dado debe ser igual o menor a la deuda registrada.");
         return false;

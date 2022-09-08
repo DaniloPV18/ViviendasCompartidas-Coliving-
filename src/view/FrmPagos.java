@@ -437,7 +437,11 @@ public class FrmPagos extends javax.swing.JFrame {
         try {
             String codigoHabt = cmbCodHab.getSelectedItem().toString();
             String nombreVivienda = cmbViviendaNombre.getSelectedItem().toString();
-            AdmPagos.cargarPrecio(codigoHabt, nombreVivienda, txtPrecioHabt, txtPrecioFinal);
+            if(cmbTipoPago.getSelectedIndex() == 0){
+                AdmPagos.cargarPrecio(codigoHabt, nombreVivienda, txtPrecioHabt, txtPrecioFinal);
+            }else{
+                AdmPagos.cargarPrecio(codigoHabt, nombreVivienda, txtPrecioHabt, txtMontoDeuda);
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cmbCodHabItemStateChanged
