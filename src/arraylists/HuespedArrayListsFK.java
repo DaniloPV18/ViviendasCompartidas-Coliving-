@@ -30,6 +30,16 @@ public class HuespedArrayListsFK {
         }
         return 0;
     }
+    
+    public static String getHuespedFK(int anfitrion) {
+        ArrayList<Huesped> lista = AdmHuespedesDAO.consultar();
+        for (Huesped x : lista) {
+            if (anfitrion == x.getId()) {
+                return x.getIdentificador();
+            }
+        }
+        return "-";
+    }
 
     /* Metodo para recuperar la llave foránea(ID) a partir de la cadena ingresada */
     public static int getSexoFK(String nombre) {
