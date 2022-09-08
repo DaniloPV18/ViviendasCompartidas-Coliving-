@@ -43,7 +43,9 @@ public class AdmPagosDAO {
 //            + "SET "
 //            + "     estado = ?"
 //            + "WHERE identificador = ? ";
-    private static final String LISTAR = " SELECT * FROM pagos WHERE estado = 'PAGADO' ";
+    private static final String LISTAR_PAGADOS = " SELECT * FROM pagos WHERE estado = 'PAGADO' ";
+    
+    private static final String LISTAR_RESERVAS = " SELECT * FROM pagos WHERE pago_tipo_id_pago_tipo = 2 and identificador = ?";
 
     public static Connection getCn() {
         return cn;
@@ -144,7 +146,7 @@ public class AdmPagosDAO {
         ArrayList<Pago> lista = new ArrayList<>();
         if (cn != null) {
             try {
-                PreparedStatement ps = cn.prepareStatement(LISTAR);
+                PreparedStatement ps = cn.prepareStatement(LISTAR_PAGADOS);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     Pago p = new Pago(
@@ -153,6 +155,37 @@ public class AdmPagosDAO {
                             rs.getDate(5),
                             rs.getString(6),
                             rs.getInt(7),
+                            rs.getInt(9),
+                            rs.getInt(10),
+                            rs.getInt(11)
+                    );
+                    p.setId(rs.getInt(1));
+                    p.setFechaReg(rs.getTimestamp(3));
+                    lista.add(p);
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return lista;
+    }
+    
+    public static ArrayList<Pago> consultarReservas(String identificadorReserva) {
+        ArrayList<Pago> lista = new ArrayList<>();
+        if (cn != null) {
+            try {
+                PreparedStatement ps = cn.prepareStatement(LISTAR_RESERVAS);
+                ps.setString(1, identificadorReserva);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Pago p = new Pago(
+                            rs.getString(13),
+                            rs.getDouble(2),
+                            rs.getDate(4),
+                            rs.getDate(5),
+                            rs.getString(6),
+                            rs.getInt(7),
+                            rs.getInt(8),
                             rs.getInt(9),
                             rs.getInt(10),
                             rs.getInt(11)

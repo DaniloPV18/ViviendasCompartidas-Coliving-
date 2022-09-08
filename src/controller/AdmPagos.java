@@ -4,6 +4,7 @@
  */
 package controller;
 
+import arraylists.HabitacionArrayListsFK;
 import arraylists.HuespedArrayListsFK;
 import arraylists.PagosArrayListsFK;
 import arraylists.ViviendaArrayListsFK;
@@ -13,6 +14,7 @@ import controllerDAO.AdmPromocionesDAO;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,15 @@ import utilities.Validaciones;
 public class AdmPagos {
 
     private static Pago p = null;
+    private static ArrayList<Pago> listaReservas = null;
+
+    public static ArrayList<Pago> getListaReservas() {
+        return listaReservas;
+    }
+
+    public static void setListaReservas(ArrayList<Pago> listaReservas) {
+        AdmPagos.listaReservas = listaReservas;
+    }
 
     public static boolean validarDatos(String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin, int tipoPago) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
@@ -47,7 +58,7 @@ public class AdmPagos {
         }
         return false;
     }
-    
+
     public static boolean validarDatos(String identificadorRs, String idHuesped, String nombreVivienda, String codHab, String metodoPago, String precio, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin, int tipoPago) {
         /* Obtener las llaves foráneas de los combobox a través de los ArrayList */
         int idHuesp = HuespedArrayListsFK.getHuespedFK(idHuesped);
@@ -93,8 +104,23 @@ public class AdmPagos {
         }
     }
 
-    public static void limpiarCampos(JTextField txtIdHuesped) {
+    public static void limpiarCampos(JTextField txtNombreHuesped, JTextField txtIdHuesped, JTextField txtPrecioHabt, JTextField txtPrecioFinal, JTextField txtReserva, JTextField txtMontoDeuda, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin) {
+        txtNombreHuesped.setText("");
         txtIdHuesped.setText("");
+        txtPrecioHabt.setText("");
+        txtPrecioFinal.setText("");
+        txtReserva.setText("");
+        txtMontoDeuda.setText("");
+        dtcFechaInicio.setDate(new java.util.Date());
+        dtcFechaFin.setDate(new java.util.Date());
+    }
+
+    public static void limpiarCampos(JTextField txtNombreHuesped, JTextField txtIdHuesped, JTextField txtPrecioHabt, JTextField txtMontoDeuda, JTextField txtPrecioFinal) {
+        txtNombreHuesped.setText("");
+        txtIdHuesped.setText("");
+        txtPrecioHabt.setText("");
+        txtMontoDeuda.setText("");
+        txtPrecioFinal.setText("");
     }
 
     public static int getIndexTable(JTable tblPromo) {
@@ -110,12 +136,31 @@ public class AdmPagos {
         String precioFinal = tblPersonas.getModel().getValueAt(indice, 4).toString();
         return new PromocionHabitacion(nombre, Integer.parseInt(codigo), Double.parseDouble(precio), Double.parseDouble(precioDesc), Double.parseDouble(precioFinal));
     }
-    
+
     public static void cargarRegistro(JComboBox<String> cmbViviendaNombre, JComboBox<String> cmbCodHab, JTextField txtPrecioHabt, JTextField txtPrecioFinal, PromocionHabitacion ph) {
         cmbViviendaNombre.setSelectedItem(ph.getNombreVivienda());
-        cmbCodHab.setSelectedItem(ph.getCodigoHabitacion()+"");
-        txtPrecioHabt.setText(ph.getPrecioTotal()+"");
-        txtPrecioFinal.setText(ph.getPrecioFinal()+"");
+        cmbCodHab.setSelectedItem(ph.getCodigoHabitacion() + "");
+        txtPrecioHabt.setText(ph.getPrecioTotal() + "");
+        txtPrecioFinal.setText(ph.getPrecioFinal() + "");
+    }
+
+    public static void cargarRegistro(JTextField txtNombreHuesped, JTextField txtIdHuesped, JComboBox<String> cmbViviendaNombre, JComboBox<String> cmbCodHab, JTextField txtPrecioHabt, JTextField txtMontoDeuda, JTextField txtAbono, JDateChooser dtcFechaInicio, JDateChooser dtcFechaFin) {
+        Pago pg = getListaReservas().get(0);
+        double totalAbonado = 0.0;
+        for (Pago listaReserva : getListaReservas()) {
+            totalAbonado += listaReserva.getMonto();
+        }
+        cargarHuesped(HuespedArrayListsFK.getHuespedFK(pg.getHuesped()), txtNombreHuesped);
+        txtIdHuesped.setText(HuespedArrayListsFK.getHuespedFK(pg.getHuesped()));
+        cmbViviendaNombre.setSelectedIndex(pg.getPropiedad() - 1);
+        cmbCodHab.setSelectedItem(PagosArrayListsFK.getIdHabitacion(pg.getHabitacion(), pg.getPropiedad()));
+        Habitacion h = AdmHabitaciones.buscarHabitacion(HabitacionArrayListsFK.getVivienda(pg.getPropiedad()), (String) cmbCodHab.getSelectedItem());
+        dtcFechaInicio.setDate(pg.getFechaInicio());
+        dtcFechaFin.setDate(pg.getFechaFinal());
+        txtPrecioHabt.setText(h.getPrecio() + "");
+        txtMontoDeuda.setText(Double.parseDouble(txtPrecioHabt.getText()) - totalAbonado + "");
+        txtAbono.setText(totalAbonado + "");
+//        txtPrecioFinal.setText(ph.getPrecioFinal() + "");
     }
 
     public static void actualizarTabla(JTable tblPromo) {
@@ -141,5 +186,24 @@ public class AdmPagos {
         for (int i = 0; i < tblPersonas.getColumnCount(); i++) {
             tblPersonas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
+    }
+
+    public static boolean existeReserva(String identificadorReserva) {
+        ArrayList<Pago> lista = AdmPagosDAO.consultarReservas(identificadorReserva);
+        return lista.size() >= 1;
+    }
+
+    public static void cargarReservas(String identificadorReserva) {
+        setListaReservas(AdmPagosDAO.consultarReservas(identificadorReserva));
+    }
+
+    public static boolean validarCantidad(JTextField txtMontoDeuda, JTextField txtPrecioFinal) {
+        double deuda = Double.parseDouble(txtMontoDeuda.getText().trim());
+        double abono = Double.parseDouble(txtPrecioFinal.getText().trim());
+        if(abono <= deuda){            
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "El abono dado debe ser igual o menor a la deuda registrada.");
+        return false;
     }
 }

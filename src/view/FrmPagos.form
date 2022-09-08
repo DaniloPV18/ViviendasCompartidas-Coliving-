@@ -234,9 +234,11 @@
                                   <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPrecioFinal" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPrecioDebe" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="47" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtMontoDeuda" min="-2" pref="116" max="-2" attributes="0"/>
                                   <Component id="txtPrecioFinal" min="-2" pref="116" max="-2" attributes="0"/>
                                   <Component id="txtPrecioHabt" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -307,12 +309,17 @@
                           <Component id="txtPrecioHabt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtMontoDeuda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPrecioDebe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="7" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPrecioFinal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPrecioFinal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -471,6 +478,19 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtReserva">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtReservaKeyReleased"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPrecioDebe">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="MONTO DEUDA"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtMontoDeuda">
             </Component>
           </SubComponents>
         </Container>

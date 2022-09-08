@@ -30,7 +30,7 @@ public class FrmPagos extends javax.swing.JFrame {
         /*Negar edición de Caja de texto */
         txtNombreHuesped.setEditable(false);
         txtPrecioHabt.setEditable(false);
-        System.getProperty("java.classpath");
+        txtMontoDeuda.setEditable(false);
     }
 
     /**
@@ -71,6 +71,8 @@ public class FrmPagos extends javax.swing.JFrame {
         txtPrecioFinal = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtReserva = new javax.swing.JTextField();
+        lblPrecioDebe = new javax.swing.JLabel();
+        txtMontoDeuda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPromo = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -190,6 +192,15 @@ public class FrmPagos extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("IDENTIFICADOR RESERVA");
 
+        txtReserva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtReservaKeyReleased(evt);
+            }
+        });
+
+        lblPrecioDebe.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        lblPrecioDebe.setText("MONTO DEUDA");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -219,9 +230,11 @@ public class FrmPagos extends javax.swing.JFrame {
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
                             .addComponent(lblPrecioFinal)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel10)
+                            .addComponent(lblPrecioDebe))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMontoDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPrecioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPrecioHabt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -276,11 +289,15 @@ public class FrmPagos extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecioHabt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMontoDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrecioDebe))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrecioFinal))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         tblPromo.setModel(new javax.swing.table.DefaultTableModel(
@@ -387,13 +404,13 @@ public class FrmPagos extends javax.swing.JFrame {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmPagos.insertarRegistro();
                 JOptionPane.showMessageDialog(null, "Pago directo ha sido ingresado.");
-                AdmPagos.limpiarCampos(txtIdHuesped);
+                AdmPagos.limpiarCampos(txtNombreHuesped, txtIdHuesped, txtPrecioHabt, txtPrecioFinal, txtReserva, txtMontoDeuda, dtcFechaInicio, dtcFechaFin);
             }
-        } else if (AdmPagos.validarDatos(identificadorRs, idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin, tipoPago) && cmbTipoPago.getSelectedIndex() == 1) {
+        } else if (AdmPagos.validarDatos(identificadorRs, idHuesped, nombreVivienda, codHab, metodoPago, dinero, dtcFechaInicio, dtcFechaFin, tipoPago) && cmbTipoPago.getSelectedIndex() == 1 && AdmPagos.validarCantidad(txtMontoDeuda, txtPrecioFinal)) {
             if (JOptionPane.showConfirmDialog(null, "¿Seguro desea registrar la reserva?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 AdmPagos.insertarRegistro();
                 JOptionPane.showMessageDialog(null, "Pago de reserva ha sido ingresado.");
-                AdmPagos.limpiarCampos(txtIdHuesped);
+                AdmPagos.limpiarCampos(txtNombreHuesped, txtIdHuesped, txtPrecioHabt, txtPrecioFinal, txtReserva, txtMontoDeuda, dtcFechaInicio, dtcFechaFin);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Verifique los datos ingresados en los campos.");
@@ -439,6 +456,7 @@ public class FrmPagos extends javax.swing.JFrame {
         if (cmbTipoPago.getSelectedIndex() == 0) {
             lblPrecioFinal.setText("PRECIO FINAL");
             txtPrecioFinal.setEditable(false);
+            txtPrecioFinal.setText("");
             txtReserva.setEditable(false);
             txtReserva.setText("---------------------------------");
         } else {
@@ -449,6 +467,17 @@ public class FrmPagos extends javax.swing.JFrame {
             txtPrecioFinal.setEditable(true);
         }
     }//GEN-LAST:event_cmbTipoPagoItemStateChanged
+
+    private void txtReservaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReservaKeyReleased
+        String identificadorReserva = txtReserva.getText().trim();
+        boolean exReserva = AdmPagos.existeReserva(identificadorReserva);
+        if(exReserva){
+            AdmPagos.cargarReservas(identificadorReserva);
+            AdmPagos.cargarRegistro(txtNombreHuesped, txtIdHuesped, cmbViviendaNombre, cmbCodHab, txtPrecioHabt, txtMontoDeuda, txtPrecioFinal, dtcFechaInicio, dtcFechaFin);
+        }else{
+            AdmPagos.limpiarCampos(txtNombreHuesped, txtIdHuesped, txtPrecioHabt, txtMontoDeuda, txtPrecioFinal);
+        }
+    }//GEN-LAST:event_txtReservaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -526,9 +555,11 @@ public class FrmPagos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPrecioDebe;
     private javax.swing.JLabel lblPrecioFinal;
     private javax.swing.JTable tblPromo;
     private javax.swing.JTextField txtIdHuesped;
+    private javax.swing.JTextField txtMontoDeuda;
     private javax.swing.JTextField txtNombreHuesped;
     private javax.swing.JTextField txtPrecioFinal;
     private javax.swing.JTextField txtPrecioHabt;
